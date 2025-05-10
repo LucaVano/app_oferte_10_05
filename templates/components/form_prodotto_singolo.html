@@ -20,9 +20,9 @@
                     value="{{ tab.product_name|default('') if tab else '' }}">
             </div>
             <div class="col-md-5">
-                <label for="product_{{ tab_index }}code_" class="form-label">Modello</label>
-                <input type="text" class="form-control" id="product_{{ tab_index }}code_" name="product_{{ tab_index }}code_" required
-                    value="{{ tab.product_code|default('') if tab else '' }}">
+                <label for="product_{{ tab_index }}code_" class="form-label">Modello (uso interno)</label>
+                <input type="text" class="form-control bg-light fst-italic" id="product_{{ tab_index }}code_" name="product_{{ tab_index }}code_"
+                    value="{{ tab.product_code|default('') if tab else '' }}" placeholder="Solo per riferimento interno">
             </div>
         </div>
         

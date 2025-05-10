@@ -16,7 +16,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>Nome Prodotto</th>
-                        <th>Modello</th>
+                        <th class="text-muted fst-italic">Modello (uso interno)</th>
                         <th>Prezzo Unitario (€)</th>
                         <th>Quantità</th>
                         <th>Descrizione</th>
@@ -32,8 +32,9 @@
                                         value="{{ tab.products[i][0] if i < tab.products|length else '' }}">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" name="product_{{ tab_index }}model__{{ i }}" 
-                                        value="{{ tab.products[i][1] if i < tab.products|length else '' }}">
+                                    <input type="text" class="form-control bg-light fst-italic" name="product_{{ tab_index }}model__{{ i }}" 
+                                        value="{{ tab.products[i][1] if i < tab.products|length else '' }}"
+                                        placeholder="Solo per riferimento interno">
                                 </td>
                                 <td>
                                     <input type="number" step="0.01" min="0" class="form-control" name="product_{{ tab_index }}price__{{ i }}" 
@@ -65,7 +66,8 @@
                                     <input type="text" class="form-control" name="product_{{ tab_index }}name__{{ i }}">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" name="product_{{ tab_index }}model__{{ i }}">
+                                    <input type="text" class="form-control bg-light fst-italic" name="product_{{ tab_index }}model__{{ i }}" 
+                                        placeholder="Solo per riferimento interno">
                                 </td>
                                 <td>
                                     <input type="number" step="0.01" min="0" class="form-control" name="product_{{ tab_index }}price__{{ i }}" value="0.00">
