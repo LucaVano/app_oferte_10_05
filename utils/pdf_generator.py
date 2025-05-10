@@ -237,7 +237,7 @@ def generate_pdf(offerta, app_root):
                     y_position -= 35 + para_height
 
                     c.setFont("Times-Bold", 12)
-                    c.drawString(50, y_position, f"Prezzo Unitario: {prezzo_unitario:.2f} €")
+                    c.drawString(50, y_position, f"Prezzo Unitario: {format_price(prezzo_unitario)} €")
                     c.drawString(300, y_position, f"Quantità: {quantita:.0f}")
                     y_position -= 40
 
@@ -378,7 +378,7 @@ def generate_pdf(offerta, app_root):
                 f"TENSIONE:                                     {volts}",
                 f"POTENZA:                                      {power}",
                 f"DIMENSIONI [LxPxH]:                {size}",
-                f"PREZZO UNITARIO:                   {unit_price} €",
+                f"PREZZO UNITARIO:                   {format_price(unit_price)} €",
                 f"QUANTITA':                                   {quantity}",
                 f"POS: {pos}"
             ]
