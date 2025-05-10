@@ -1,0 +1,485 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ 'Modifica Offerta' if is_edit else 'Nuova Offerta' }} - Generatore Offerte Valtservice{% endblock %}
+
+{% block extra_css %}
+<style>
+    .product-card {
+        transition: all 0.3s ease;
+    }
+    .product-card:hover {
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    }
+    .remove-tab-btn:hover, .remove-product-btn:hover {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3">{{ 'Modifica Offerta' if is_edit else 'Nuova Offerta' }}</h1>
+    <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">
+        <i class="fas fa-arrow-left me-1"></i> Indietro
+    </button>
+</div>
+
+<form action="{{ url_for('edit_offerta', offerta_id=offerta.id) if is_edit else url_for('nuova_offerta') }}" method="post" enctype="multipart/form-data" id="offerForm">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light">
+            <h5 class="card-title mb-0">Informazioni Offerta</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="date" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="date" name="date" required
+                           value="{{ offerta.date if is_edit else today_date }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="offer_number" class="form-label">Numero Offerta</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="offer_number" name="offer_number" 
+                               value="{{ offerta.offer_number if is_edit else next_number }}">
+                        <div class="input-group-text">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="update_counter" name="update_counter">
+                                <label class="form-check-label" for="update_counter">Aggiorna contatore</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label for="customer" class="form-label">Cliente</label>
+                    <input type="text" class="form-control" id="customer" name="customer" required
+                           value="{{ offerta.customer if is_edit else '' }}">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="customer_email" class="form-label">Email Cliente</label>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email"
+                           value="{{ offerta.customer_email if is_edit else '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label for="address" class="form-label">Indirizzo</label>
+                    <input type="text" class="form-control" id="address" name="address"
+                           value="{{ offerta.address if is_edit else '' }}">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="offer_description" class="form-label">Descrizione Offerta</label>
+                <textarea class="form-control" id="offer_description" name="offer_description" rows="3">{{ offerta.offer_description if is_edit else '' }}</textarea>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h4">Schede Prodotto</h3>
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary" id="addSingleProductBtn">
+                <i class="fas fa-plus"></i> Aggiungi Prodotto Singolo
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="addMultiProductBtn">
+                <i class="fas fa-plus"></i> Aggiungi Multiprodotto
+            </button>
+        </div>
+    </div>
+    
+    <div id="tabsContainer">
+        {% if is_edit and offerta.tabs %}
+            {% for tab in offerta.tabs %}
+                {% set tab_index = loop.index0 %}
+                {% if tab.type == 'single_product' %}
+                    {% include 'components/form_prodotto_singolo.html' with context %}
+                {% elif tab.type == 'multi_product' %}
+                    {% include 'components/form_multiprodotto.html' with context %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <input type="hidden" name="tab_count" id="tabCount" value="{{ offerta.tabs|length if is_edit and offerta.tabs else 0 }}">
+    
+    <div class="text-center my-4">
+        <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-save me-2"></i> {{ 'Aggiorna Offerta' if is_edit else 'Genera Offerta' }}
+        </button>
+    </div>
+</form>
+
+<!-- Template per nuove schede (nascosti) -->
+<div id="singleProductTemplate" class="d-none">
+    {% include 'components/form_prodotto_singolo.html' with context %}
+</div>
+
+<div id="multiProductTemplate" class="d-none">
+    {% include 'components/form_multiprodotto.html' with context %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabsContainer = document.getElementById('tabsContainer');
+        const tabCount = document.getElementById('tabCount');
+        let currentTabIndex = parseInt(tabCount.value) || 0;
+        
+        console.log("Inizializzazione pagina - currentTabIndex:", currentTabIndex);
+        
+        // Immediatamente dopo il caricamento, assicuriamoci che tutti i tab abbiano indici corretti
+        updateTabIndices();
+        
+        // Aggiungi una scheda prodotto singolo
+        document.getElementById('addSingleProductBtn').addEventListener('click', function() {
+            // Clone e modifica il template
+            const template = document.getElementById('singleProductTemplate').innerHTML;
+            const modifiedTemplate = template.replace(/\{\{ tab_index \}\}/g, currentTabIndex);
+            
+            // Crea un elemento temporaneo per l'inserimento nel DOM
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = modifiedTemplate;
+            
+            // Aggiungi al container solo il primo figlio
+            const newElement = tempDiv.firstElementChild;
+            tabsContainer.appendChild(newElement);
+            
+            // Incremento dell'indice
+            currentTabIndex++;
+            tabCount.value = currentTabIndex;
+            console.log("Aggiunta scheda singolo prodotto - nuovo tabCount:", tabCount.value);
+            
+            // Aggiungi event listener al nuovo pulsante di rimozione
+            addRemoveTabEventListener();
+            
+            // Inizializza la funzione toggleDiscount per questa scheda
+            const newCheckbox = newElement.querySelector('.discount-checkbox');
+            const newDiscountInput = newElement.querySelector(`#discount_${currentTabIndex - 1}`);
+            if (newCheckbox && newDiscountInput) {
+                newCheckbox.addEventListener('change', function() {
+                    newDiscountInput.disabled = !this.checked;
+                });
+                // Imposta lo stato iniziale
+                newDiscountInput.disabled = !newCheckbox.checked;
+            }
+            
+            // Aggiorna tutti gli indici per essere sicuri
+            updateTabIndices();
+        });
+        
+        // Aggiungi una scheda multiprodotto
+        document.getElementById('addMultiProductBtn').addEventListener('click', function() {
+            // Clone e modifica il template
+            const template = document.getElementById('multiProductTemplate').innerHTML;
+            const modifiedTemplate = template.replace(/\{\{ tab_index \}\}/g, currentTabIndex);
+            
+            // Crea un elemento temporaneo per l'inserimento nel DOM
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = modifiedTemplate;
+            
+            // Aggiungi al container solo il primo figlio
+            const newElement = tempDiv.firstElementChild;
+            tabsContainer.appendChild(newElement);
+            
+            // Incremento dell'indice
+            currentTabIndex++;
+            tabCount.value = currentTabIndex;
+            console.log("Aggiunta scheda multiprodotto - nuovo tabCount:", tabCount.value);
+            
+            // Aggiungi event listener al nuovo pulsante di rimozione
+            addRemoveTabEventListener();
+            
+            // Inizializza event listeners per i prodotti in multiprodotto
+            initMultiProductListeners(currentTabIndex - 1);
+            
+            // Aggiorna tutti gli indici per essere sicuri
+            updateTabIndices();
+        });
+        
+        // Funzione per aggiungere event listener ai pulsanti di rimozione
+        function addRemoveTabEventListener() {
+            document.querySelectorAll('.remove-tab-btn').forEach(button => {
+                // Rimuovi eventuali event listener esistenti per evitare duplicazioni
+                button.removeEventListener('click', removeTabHandler);
+                // Aggiungi il nuovo event listener
+                button.addEventListener('click', removeTabHandler);
+            });
+        }
+        
+        // Handler per la rimozione di schede
+        function removeTabHandler() {
+            const card = this.closest('.product-card');
+            card.remove();
+            
+            // Aggiorna gli indici delle schede
+            updateTabIndices();
+        }
+        
+        // Aggiorna gli indici delle schede dopo la rimozione
+        function updateTabIndices() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                const oldIndex = card.getAttribute('data-tab-index');
+                const tabType = card.getAttribute('data-tab-type');
+                
+                console.log(`Aggiornamento indice da ${oldIndex} a ${index} per scheda di tipo ${tabType}`);
+                
+                // Aggiorna l'attributo data-tab-index
+                card.setAttribute('data-tab-index', index);
+                
+                // Aggiorna tutti gli input con il nuovo indice
+                card.querySelectorAll('input, select, textarea').forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (name && name.includes('_' + oldIndex)) {
+                        input.setAttribute('name', name.replace('_' + oldIndex, '_' + index));
+                    }
+                    
+                    const id = input.getAttribute('id');
+                    if (id && id.includes('_' + oldIndex)) {
+                        const newId = id.replace('_' + oldIndex, '_' + index);
+                        input.setAttribute('id', newId);
+                        
+                        // Aggiorna anche le label associate
+                        const label = card.querySelector(`label[for="${id}"]`);
+                        if (label) {
+                            label.setAttribute('for', newId);
+                        }
+                    }
+                });
+                
+                // Aggiorna il tipo di tab - questo è fondamentale!
+                const tabTypeInputName = `tab_type_${index}`;
+                let tabTypeInput = card.querySelector(`input[name="${tabTypeInputName}"]`);
+                
+                // Se non esiste il campo, lo creiamo
+                if (!tabTypeInput) {
+                    tabTypeInput = document.createElement('input');
+                    tabTypeInput.type = 'hidden';
+                    card.appendChild(tabTypeInput);
+                }
+                
+                // Imposta il nome corretto e il valore
+                tabTypeInput.name = tabTypeInputName;
+                tabTypeInput.value = tabType;
+                
+                console.log(`Impostato campo tab_type_${index} = ${tabType}`);
+                
+                // Gestione speciale per multiprodotto
+                if (tabType === 'multi_product') {
+                    const table = card.querySelector(`table[id="products_table_${oldIndex}"]`);
+                    if (table) {
+                        table.id = `products_table_${index}`;
+                    }
+                    
+                    const productCount = card.querySelector(`input[id="product_count_${oldIndex}"]`);
+                    if (productCount) {
+                        productCount.id = `product_count_${index}`;
+                        productCount.name = `product_count_${index}`;
+                    }
+                    
+                    const addProductBtn = card.querySelector('.add-product-btn');
+                    if (addProductBtn) {
+                        addProductBtn.setAttribute('data-tab-index', index);
+                    }
+                    
+                    // Aggiorna gli indici dei prodotti nella tabella
+                    const productRows = card.querySelectorAll('.product-row');
+                    productRows.forEach((row, rowIndex) => {
+                        row.querySelectorAll('input').forEach(input => {
+                            const nameParts = input.name.split('_');
+                            if (nameParts.length >= 3 && nameParts[1] == oldIndex) {
+                                nameParts[1] = index;
+                                input.name = nameParts.join('_');
+                            }
+                        });
+                    });
+                }
+            });
+            
+            // Aggiorna il contatore totale
+            currentTabIndex = cards.length;
+            tabCount.value = currentTabIndex;
+            console.log("Indici aggiornati, nuovo tabCount:", tabCount.value);
+        }
+        
+        // Inizializza la funzione toggleDiscount per tutte le schede esistenti
+        function initToggleDiscount(index) {
+            const checkbox = document.getElementById(`discount_flag_${index}`);
+            const discountInput = document.getElementById(`discount_${index}`);
+            if (checkbox && discountInput) {
+                checkbox.addEventListener('change', function() {
+                    discountInput.disabled = !this.checked;
+                });
+                // Imposta lo stato iniziale
+                discountInput.disabled = !checkbox.checked;
+            }
+        }
+        
+        // Inizializza event listeners per i prodotti in multiprodotto
+        function initMultiProductListeners(tabIndex) {
+            // Trova il pulsante per aggiungere prodotti
+            const addProductBtn = document.querySelector(`.add-product-btn[data-tab-index="${tabIndex}"]`);
+            
+            if (addProductBtn) {
+                // Rimuovi eventuali event listener esistenti
+                addProductBtn.removeEventListener('click', addProductHandler);
+                // Aggiungi nuovo event listener
+                addProductBtn.addEventListener('click', addProductHandler);
+            }
+            
+            // Aggiungi event listeners ai pulsanti di rimozione prodotto esistenti
+            const productTable = document.getElementById(`products_table_${tabIndex}`);
+            if (productTable) {
+                productTable.querySelectorAll('.remove-product-btn').forEach(button => {
+                    // Rimuovi eventuali listener esistenti
+                    button.removeEventListener('click', removeProductHandler);
+                    // Aggiungi nuovo listener
+                    button.addEventListener('click', removeProductHandler);
+                });
+            }
+        }
+        
+        // Handler per l'aggiunta di prodotti in multiprodotto
+        function addProductHandler() {
+            const tabIndex = this.getAttribute('data-tab-index');
+            const table = document.getElementById(`products_table_${tabIndex}`);
+            const productCount = document.getElementById(`product_count_${tabIndex}`);
+            const newIndex = parseInt(productCount.value);
+            
+            const newRow = document.createElement('tr');
+            newRow.className = 'product-row';
+            newRow.innerHTML = `
+                <td>
+                    <input type="text" class="form-control" name="product_name_${tabIndex}_${newIndex}" required>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="product_model_${tabIndex}_${newIndex}" required>
+                </td>
+                <td>
+                    <input type="number" step="0.01" min="0" class="form-control" name="product_price_${tabIndex}_${newIndex}" value="0.00" required>
+                </td>
+                <td>
+                    <input type="number" step="1" min="1" class="form-control" name="product_quantity_${tabIndex}_${newIndex}" value="1" required>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="product_description_${tabIndex}_${newIndex}">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            
+            table.querySelector('tbody').appendChild(newRow);
+            productCount.value = newIndex + 1;
+            
+            // Aggiungi l'event listener al nuovo pulsante di rimozione
+            const removeBtn = newRow.querySelector('.remove-product-btn');
+            removeBtn.addEventListener('click', removeProductHandler);
+        }
+        
+        // Handler per la rimozione di prodotti dalla tabella
+        function removeProductHandler() {
+            const row = this.closest('tr');
+            const table = row.closest('table');
+            const tabIndex = table.id.replace('products_table_', '');
+            
+            // Non rimuovere l'ultima riga
+            if (table.querySelectorAll('tbody tr').length > 1) {
+                row.remove();
+                
+                // Aggiorna il contatore e rinumera gli indici
+                updateProductIndices(table, tabIndex);
+            } else {
+                // Se è l'ultima riga, pulisci solo i campi
+                row.querySelectorAll('input').forEach(input => {
+                    input.value = input.type === 'number' ? (input.name.includes('quantity') ? '1' : '0.00') : '';
+                });
+            }
+        }
+        
+        // Aggiorna gli indici dei prodotti dopo la rimozione
+        function updateProductIndices(table, tabIndex) {
+            const rows = table.querySelectorAll('tbody tr');
+            const productCount = document.getElementById(`product_count_${tabIndex}`);
+            
+            rows.forEach((row, index) => {
+                row.querySelectorAll('input').forEach(input => {
+                    const nameParts = input.name.split('_');
+                    nameParts[nameParts.length - 1] = index;
+                    input.name = nameParts.join('_');
+                });
+            });
+            
+            productCount.value = rows.length;
+        }
+        
+        // Aggiungi event listener ai pulsanti di rimozione esistenti e inizializza altre funzioni
+        addRemoveTabEventListener();
+        
+        // Inizializza eventi per tutte le schede esistenti
+        document.querySelectorAll('.product-card').forEach(card => {
+            const index = card.getAttribute('data-tab-index');
+            const type = card.getAttribute('data-tab-type');
+            
+            if (type === 'single_product') {
+                initToggleDiscount(index);
+            } else if (type === 'multi_product') {
+                initMultiProductListeners(index);
+            }
+        });
+        
+        // Convalida del form prima dell'invio
+        document.getElementById('offerForm').addEventListener('submit', function(event) {
+            const cards = document.querySelectorAll('.product-card');
+            if (cards.length === 0) {
+                event.preventDefault();
+                alert('Devi aggiungere almeno una scheda prodotto!');
+            } else {
+                // Controlla e aggiorna il valore tab_count
+                tabCount.value = cards.length;
+                console.log("Form submission - tabCount set to:", tabCount.value);
+                
+                // Assicurati che tutti gli indici siano corretti prima dell'invio
+                updateTabIndices();
+                
+                // Debug - mostra tutti i campi del form prima dell'invio
+                console.log("Form submission - campi del form:");
+                const formData = new FormData(this);
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+            }
+        });
+        
+        // Assicurati che gli indici siano aggiornati all'inizio
+        updateTabIndices();
+    });
+</script>
+
+<script>
+// Funzione globale per gestire il toggle dello sconto
+function toggleDiscount(checkbox) {
+    const index = checkbox.id.replace('discount_flag_', '');
+    const discountInput = document.getElementById('discount_' + index);
+    
+    if (discountInput) {
+        discountInput.disabled = !checkbox.checked;
+        console.log("Toggle sconto per indice " + index + ": " + checkbox.checked);
+    }
+}
+
+// Inizializza tutti i checkbox dello sconto
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.discount-checkbox').forEach(function(checkbox) {
+        // Imposta lo stato iniziale di tutti i campi sconto
+        toggleDiscount(checkbox);
+    });
+});
+</script>
+
+{% endblock %}

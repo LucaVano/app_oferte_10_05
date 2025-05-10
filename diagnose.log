@@ -1,0 +1,94 @@
+2025-04-24 14:22:52,141 [INFO] 
+============================================================
+2025-04-24 14:22:52,142 [INFO] ============= DIAGNOSI APP OFFERTE VALTSERVICE =============
+2025-04-24 14:22:52,142 [INFO] ============================================================
+2025-04-24 14:22:52,156 [INFO] Data e ora: Thu Apr 24 02:22:52 PM CEST 2025
+2025-04-24 14:22:52,157 [INFO] Percorso script: /volume1/web/app_offerte/diagnose.py
+2025-04-24 14:22:52,157 [INFO] 
+============================================================
+2025-04-24 14:22:52,157 [INFO] ================= VERIFICA VERSIONE PYTHON =================
+2025-04-24 14:22:52,158 [INFO] ============================================================
+2025-04-24 14:22:52,158 [INFO] Versione Python: 3.8.15
+2025-04-24 14:22:52,158 [INFO] ✅ Versione Python OK
+2025-04-24 14:22:52,159 [INFO] 
+============================================================
+2025-04-24 14:22:52,159 [INFO] =================== VERIFICA DIPENDENZE ====================
+2025-04-24 14:22:52,159 [INFO] ============================================================
+2025-04-24 14:22:52,161 [ERROR] ⚠️ flask: NON INSTALLATO
+2025-04-24 14:22:52,162 [ERROR] ⚠️ werkzeug: NON INSTALLATO
+2025-04-24 14:22:52,162 [ERROR] ⚠️ jinja2: NON INSTALLATO
+2025-04-24 14:22:52,163 [ERROR] ⚠️ reportlab: NON INSTALLATO
+2025-04-24 14:22:52,165 [ERROR] ⚠️ PIL: NON INSTALLATO
+2025-04-24 14:22:52,166 [ERROR] ⚠️ dateutil: NON INSTALLATO
+2025-04-24 14:22:52,167 [ERROR] ⚠️ waitress: NON INSTALLATO
+2025-04-24 14:22:52,168 [INFO] 
+============================================================
+2025-04-24 14:22:52,168 [INFO] ==================== VERIFICA PERMESSI =====================
+2025-04-24 14:22:52,169 [INFO] ============================================================
+2025-04-24 14:22:52,170 [INFO] ✅ /volume1/web/app_offerte: rwx
+2025-04-24 14:22:52,170 [INFO] ✅ /volume1/web/app_offerte/data: rwx
+2025-04-24 14:22:52,171 [INFO] ✅ /volume1/web/app_offerte/static/uploads: rwx
+2025-04-24 14:22:52,171 [INFO] ✅ /volume1/web/app_offerte/app.py: rwx
+2025-04-24 14:22:52,172 [INFO] ✅ /volume1/web/app_offerte/wsgi.py: rwx
+2025-04-24 14:22:52,172 [INFO] 
+============================================================
+2025-04-24 14:22:52,173 [INFO] ====================== VERIFICA RETE =======================
+2025-04-24 14:22:52,173 [INFO] ============================================================
+2025-04-24 14:22:52,191 [INFO] ⚠️ La porta 5002 è già in uso. L'app potrebbe essere già in esecuzione.
+2025-04-24 14:22:52,200 [INFO] IP locale: 127.0.0.1
+2025-04-24 14:22:52,201 [INFO] 
+============================================================
+2025-04-24 14:22:52,201 [INFO] ================ VERIFICA AMBIENTE SYNOLOGY ================
+2025-04-24 14:22:52,201 [INFO] ============================================================
+2025-04-24 14:22:52,202 [INFO] ✅ Ambiente Synology rilevato
+2025-04-24 14:22:52,202 [INFO] ✅ Percorso /volume1/web esiste
+2025-04-24 14:22:52,203 [INFO] ✅ Utente 'http' esiste
+2025-04-24 14:22:52,204 [INFO] 
+============================================================
+2025-04-24 14:22:52,204 [INFO] ==================== VERIFICA DATABASE =====================
+2025-04-24 14:22:52,204 [INFO] ============================================================
+2025-04-24 14:22:52,205 [INFO] ✅ offerte_index.json esiste
+2025-04-24 14:22:52,218 [INFO] ✅ offerte_index.json è un JSON valido
+2025-04-24 14:22:52,219 [INFO] ✅ counter.json esiste
+2025-04-24 14:22:52,220 [INFO] ✅ counter.json è un JSON valido
+2025-04-24 14:22:52,233 [INFO] Trovate 22 offerte
+2025-04-24 14:22:52,233 [INFO] 
+============================================================
+2025-04-24 14:22:52,233 [INFO] ======================= ANALISI LOG ========================
+2025-04-24 14:22:52,234 [INFO] ============================================================
+2025-04-24 14:22:52,236 [INFO] File di log analizzato (644 linee). Trovati errori:
+2025-04-24 14:22:52,236 [INFO] 
+⚠️ Errore nel parsing degli indici tab (2 occorrenze):
+2025-04-24 14:22:52,237 [INFO]   → 2025-04-22 09:57:23,496 [ERROR] app:92 - Errore nell'elaborazione del tab tab_type_: invalid literal for int() with base 10: ''
+2025-04-24 14:22:52,237 [INFO]   → 2025-04-22 10:05:11,038 [ERROR] app:101 - Errore nell'elaborazione del tab tab_type_: invalid literal for int() with base 10: ''
+2025-04-24 14:22:52,237 [INFO] 
+============================================================
+2025-04-24 14:22:52,238 [INFO] ======================== RISULTATI =========================
+2025-04-24 14:22:52,238 [INFO] ============================================================
+2025-04-24 14:22:52,238 [INFO] ✅ Versione Python
+2025-04-24 14:22:52,239 [INFO] ⚠️ Dipendenze
+2025-04-24 14:22:52,239 [INFO] ✅ Permessi file
+2025-04-24 14:22:52,239 [INFO] ✅ Rete
+2025-04-24 14:22:52,240 [INFO] ✅ Ambiente Synology
+2025-04-24 14:22:52,240 [INFO] ✅ Database
+2025-04-24 14:22:52,240 [INFO] ✅ Analisi log
+2025-04-24 14:22:52,241 [INFO] 
+Trovati problemi. Tentativo di correzione automatica...
+2025-04-24 14:22:52,241 [INFO] 
+============================================================
+2025-04-24 14:22:52,241 [INFO] ================= TENTATIVI DI CORREZIONE ==================
+2025-04-24 14:22:52,242 [INFO] ============================================================
+2025-04-24 14:22:52,243 [INFO] Tentativo di correzione dei permessi...
+2025-04-24 14:22:52,256 [INFO] ✅ Permessi corretti
+2025-04-24 14:22:52,256 [INFO] 
+============================================================
+2025-04-24 14:22:52,257 [INFO] ======================= CONCLUSIONE ========================
+2025-04-24 14:22:52,257 [INFO] ============================================================
+2025-04-24 14:22:52,257 [INFO] ⚠️ Ci sono problemi che potrebbero impedire il corretto funzionamento dell'app.
+2025-04-24 14:22:52,258 [INFO]    Si consiglia di verificare il log (diagnose.log) per i dettagli.
+2025-04-24 14:22:52,258 [INFO] 
+Consigli per la risoluzione dei problemi:
+2025-04-24 14:22:52,258 [INFO] 1. Riavviare l'applicazione: systemctl restart app-offerte
+2025-04-24 14:22:52,259 [INFO] 2. Controllare i log: tail -f app.log
+2025-04-24 14:22:52,259 [INFO] 3. Verificare i permessi: chown -R http:http /volume1/web/app_offerte
+2025-04-24 14:22:52,259 [INFO] 4. Reinstallare le dipendenze: pip install -r requirements-synology.txt

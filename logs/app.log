@@ -1,0 +1,32 @@
+'FLASK_ENV' is deprecated and will not be used in Flask 2.3. Use 'FLASK_DEBUG' instead.
+2025-04-24 11:44:18,440 [INFO] Avvio server in modalità produzione sulla porta 5000
+Traceback (most recent call last):
+  File "wsgi.py", line 26, in <module>
+    serve(application, host='0.0.0.0', port=port, threads=8)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/__init__.py", line 13, in serve
+    server = _server(app, **kw)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 78, in create_server
+    last_serv = TcpWSGIServer(
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 244, in __init__
+    self.bind_server_socket()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 361, in bind_server_socket
+    self.bind(sockaddr)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/wasyncore.py", line 396, in bind
+    return self.socket.bind(addr)
+OSError: [Errno 98] Address already in use
+'FLASK_ENV' is deprecated and will not be used in Flask 2.3. Use 'FLASK_DEBUG' instead.
+2025-04-24 11:46:13,129 [INFO] Avvio server in modalità produzione sulla porta 5000
+Traceback (most recent call last):
+  File "wsgi.py", line 26, in <module>
+    serve(application, host='0.0.0.0', port=port, threads=8)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/__init__.py", line 13, in serve
+    server = _server(app, **kw)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 78, in create_server
+    last_serv = TcpWSGIServer(
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 244, in __init__
+    self.bind_server_socket()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/server.py", line 361, in bind_server_socket
+    self.bind(sockaddr)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/waitress/wasyncore.py", line 396, in bind
+    return self.socket.bind(addr)
+OSError: [Errno 98] Address already in use

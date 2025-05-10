@@ -1,0 +1,56 @@
+{
+    "date": "2025-04-22",
+    "customer": "eruygweygriiwe",
+    "customer_email": "danielev98@virgilio.it",
+    "address": "foueqfojajdfo",
+    "offer_description": "dfoudhfouhadfuof",
+    "offer_number": "2025-0030",
+    "id": "12ac3cf5-d652-403a-8d2f-565b4dfdf7ea",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "dfakjbadojfa",
+            "product_name": "dfkbdaojfgodjsa",
+            "quantity": "1",
+            "unit_price": "2345",
+            "description": "",
+            "discount": "0",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422145409_Pizza.png"
+        },
+        {
+            "type": "multi_product",
+            "max_items_per_page": 3,
+            "products": [
+                [
+                    "rweft7weug",
+                    "fdiahadihbf",
+                    "100",
+                    "1",
+                    ""
+                ]
+            ]
+        },
+        {
+            "type": "single_product",
+            "product_code": "fdiabfoabfo",
+            "product_name": "dakfjadojfojdafa",
+            "quantity": "3",
+            "unit_price": "47854",
+            "description": "",
+            "discount": "0",
+            "discount_flag": true,
+            "power_w": "3254235",
+            "volts": "34542",
+            "size": "42524542",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0030.pdf",
+    "status": "in_attesa"
+}

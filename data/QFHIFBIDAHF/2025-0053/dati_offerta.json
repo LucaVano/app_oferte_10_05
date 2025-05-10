@@ -1,0 +1,25 @@
+{
+    "date": "2025-04-22",
+    "customer": "qfhifbidahf",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "gjfdjafald",
+    "offer_description": "",
+    "offer_number": "2025-0053",
+    "id": "bdf2fc40-7e4c-47cc-bfe9-93f54ea2bb2d",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "fkbfhdakf",
+                    "dkhbfkahdbf",
+                    "3425",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0053.pdf"
+}

@@ -1,0 +1,27 @@
+{
+    "date": "2025-04-22",
+    "customer": "Gigio",
+    "customer_email": "danielev98@virgilio.it",
+    "address": "Via nel fosso,2",
+    "offer_description": "",
+    "offer_number": "2025-0013",
+    "id": "21b312dc-021e-47f3-89c2-709239375511",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "iufasaf",
+            "product_name": "Daniele Vanotti",
+            "quantity": "2",
+            "unit_price": "3499",
+            "description": "",
+            "discount": "15",
+            "discount_flag": true,
+            "power_w": "1567",
+            "volts": "2343",
+            "size": "120x56x32411",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422104533_arancio.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0013.pdf"
+}

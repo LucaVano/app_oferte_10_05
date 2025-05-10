@@ -1,0 +1,28 @@
+{
+    "date": "2025-04-22",
+    "customer": "fkehqbfqe",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "eqkbfqebf",
+    "offer_description": "",
+    "offer_number": "2025-0050",
+    "id": "1a96df47-6aca-4815-bd2e-2d1d1c37b4b6",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "vdhvdakhbvdak",
+            "product_name": "vkd kvjlajv adv",
+            "quantity": "1",
+            "unit_price": "2635",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422182748_PH_505100_1_1_505100.jpg"
+        }
+    ],
+    "pdf_path": "offerta_2025-0050.pdf",
+    "status": "accettata"
+}

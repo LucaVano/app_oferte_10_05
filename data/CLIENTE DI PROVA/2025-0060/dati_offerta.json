@@ -1,0 +1,27 @@
+{
+    "date": "2025-04-23",
+    "customer": "Cliente di prova",
+    "customer_email": "prova1@fafas.it",
+    "address": "acsdascdsa",
+    "offer_description": "adsasdsdaascd",
+    "offer_number": "2025-0060",
+    "id": "2df022f2-4553-4c3d-983a-ca1ffe6a10d6",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "dqwdqwqd",
+            "product_name": "qwdq",
+            "quantity": "1",
+            "unit_price": "123",
+            "description": "wwqeweq",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "1",
+            "volts": "234",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": "/static/uploads/20250423152118_arancio.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0060.pdf"
+}

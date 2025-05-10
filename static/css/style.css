@@ -1,0 +1,190 @@
+/* CSS personalizzato per l'applicazione */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+/* Stile per la navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    margin-right: 0.5rem;
+}
+
+/* Stile per le card */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    font-weight: 500;
+}
+
+/* Stili per i pulsanti */
+.btn {
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0074d9;
+    border-color: #0074d9;
+}
+
+.btn-primary:hover {
+    background-color: #0066c0;
+    border-color: #0066c0;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+/* Stili per le tabelle */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    font-weight: 600;
+    border-top: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 116, 217, 0.05);
+}
+
+/* Animazioni e transizioni */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Stili per il footer */
+footer {
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 0.5rem;
+        border-radius: 0.25rem !important;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}
+
+/* Stili per i form */
+.form-control:focus {
+    border-color: #0074d9;
+    box-shadow: 0 0 0 0.2rem rgba(0, 116, 217, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+/* Stili per le schede prodotto */
+.product-card {
+    margin-bottom: 1.5rem;
+}
+
+.product-card .card-header {
+    background-color: #f8f9fa;
+}
+
+.remove-tab-btn, .remove-product-btn {
+    transition: all 0.2s ease;
+}
+
+.remove-tab-btn:hover, .remove-product-btn:hover {
+    color: #dc3545;
+}
+
+/* Stili per i messaggi flash */
+.alert {
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.alert-success {
+    border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+    border-left: 4px solid #dc3545;
+}
+
+.alert-warning {
+    border-left: 4px solid #ffc107;
+}
+
+.alert-info {
+    border-left: 4px solid #17a2b8;
+}
+
+/* Miglioramenti visivi per dispositivi mobile */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+}

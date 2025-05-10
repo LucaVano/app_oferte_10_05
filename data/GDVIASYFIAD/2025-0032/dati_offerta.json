@@ -1,0 +1,28 @@
+{
+    "date": "2025-04-22",
+    "customer": "gdviasyfiad",
+    "customer_email": "danielev98@virgilio.it",
+    "address": "cdkjfadjlnf",
+    "offer_description": "",
+    "offer_number": "2025-0032",
+    "id": "44ffe7e2-ddf8-4e20-8f35-f33232669814",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "fdajfhdjoahfo",
+            "product_name": "fdakjfodjahf",
+            "quantity": "1",
+            "unit_price": "23434",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422152309_Pizza.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0032.pdf",
+    "status": "accettata"
+}

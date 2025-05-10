@@ -1,0 +1,27 @@
+{
+    "date": "2025-04-23",
+    "customer": "asdfasdfadf",
+    "customer_email": "asdas@daad",
+    "address": "asdasdsda",
+    "offer_description": "wddwdwq",
+    "offer_number": "2025-0059",
+    "id": "ba276748-2f37-4145-82f9-10d682702905",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "saas",
+            "product_name": "ascasc",
+            "quantity": "1",
+            "unit_price": "123",
+            "description": "",
+            "discount": "20.00",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": "/static/uploads/20250423152038_Pizza.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0059.pdf"
+}

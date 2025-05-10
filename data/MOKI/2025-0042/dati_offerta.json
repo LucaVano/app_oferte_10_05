@@ -1,0 +1,47 @@
+{
+    "date": "2025-04-22",
+    "customer": "MOKI",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "fhbeqhibqef",
+    "offer_description": "",
+    "offer_number": "2025-0042",
+    "id": "d4baeec5-1139-4f76-9235-bb6c3631916d",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "cqeucuqge dc",
+            "product_name": "chqecuqechqe",
+            "quantity": "3",
+            "unit_price": "2345",
+            "description": "qhkev ihqebfiqebfqbefojjqefjefqjl",
+            "discount": "23",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422174145_Immagine_2025-04-01_140525.png"
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "3141341341",
+                    "egqewgwr",
+                    "23",
+                    "10",
+                    "fadvdavdv"
+                ],
+                [
+                    "fdgwgwrgwr",
+                    "egwgwr",
+                    "32",
+                    "12",
+                    "qcdaavdav"
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0042.pdf"
+}

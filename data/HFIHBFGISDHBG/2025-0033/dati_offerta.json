@@ -1,0 +1,40 @@
+{
+    "date": "2025-04-22",
+    "customer": "hfihbfgisdhbg",
+    "customer_email": "danielev98@virgilio.it",
+    "address": "fdaiufouadhfg",
+    "offer_description": "",
+    "offer_number": "2025-0033",
+    "id": "9ff7e90d-9460-479d-b98d-a8f3c613b357",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "gwjhbgsfubogs",
+            "product_name": "gsoudgousfgous",
+            "quantity": "1",
+            "unit_price": "23354",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "max_items_per_page": 3,
+            "products": [
+                [
+                    "vskjfvgjhogsf",
+                    "dfkvbsfojhbv",
+                    "500",
+                    "1",
+                    ""
+                ]
+            ]
+        }
+    ],
+    "pdf_path": "offerta_2025-0033.pdf"
+}

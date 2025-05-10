@@ -1,0 +1,138 @@
+<div class="card mb-4 shadow-sm product-card" data-tab-index="{{ tab_index }}" data-tab-type="single_product">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Prodotto Singolo</h5>
+        <button type="button" class="btn btn-sm btn-outline-danger remove-tab-btn">
+            <i class="fas fa-times"></i> Rimuovi
+        </button>
+    </div>
+    <div class="card-body">
+        <input type="hidden" name="tab_{{ tab_index }}type_" value="single_product">
+        
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <label for="posizione_{{ tab_index }}" class="form-label">Posizione</label>
+                <input type="text" class="form-control" id="posizione_{{ tab_index }}" name="posizione_{{ tab_index }}" 
+                    value="{{ tab.posizione|default('') if tab else '' }}">
+            </div>
+            <div class="col-md-5">
+                <label for="product_{{ tab_index }}name_" class="form-label">Nome Prodotto</label>
+                <input type="text" class="form-control" id="product_{{ tab_index }}name_" name="product_{{ tab_index }}name_" required
+                    value="{{ tab.product_name|default('') if tab else '' }}">
+            </div>
+            <div class="col-md-5">
+                <label for="product_{{ tab_index }}code_" class="form-label">Modello</label>
+                <input type="text" class="form-control" id="product_{{ tab_index }}code_" name="product_{{ tab_index }}code_" required
+                    value="{{ tab.product_code|default('') if tab else '' }}">
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="volts_{{ tab_index }}" class="form-label">Tensione (V)</label>
+                <input type="text" class="form-control" id="volts_{{ tab_index }}" name="volts_{{ tab_index }}"
+                    value="{{ tab.volts|default('') if tab else '' }}">
+            </div>
+            <div class="col-md-4">
+                <label for="power_{{ tab_index }}w_" class="form-label">Potenza (W)</label>
+                <input type="text" class="form-control" id="power_{{ tab_index }}w_" name="power_{{ tab_index }}w_"
+                    value="{{ tab.power_w|default('') if tab else '' }}">
+            </div>
+            <div class="col-md-4">
+                <label for="size_{{ tab_index }}" class="form-label">Dimensioni (LxPxH)</label>
+                <input type="text" class="form-control" id="size_{{ tab_index }}" name="size_{{ tab_index }}"
+                    value="{{ tab.size|default('') if tab else '' }}">
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="unit_{{ tab_index }}price_" class="form-label">Prezzo Unitario (€)</label>
+                <input type="number" step="0.01" min="0" class="form-control" id="unit_{{ tab_index }}price_" name="unit_{{ tab_index }}price_" required
+                    value="{{ tab.unit_price|default('0.00') if tab else '0.00' }}">
+            </div>
+            <div class="col-md-6">
+                <label for="quantity_{{ tab_index }}" class="form-label">Quantità</label>
+                <input type="number" step="1" min="1" class="form-control" id="quantity_{{ tab_index }}" name="quantity_{{ tab_index }}" required
+                    value="{{ tab.quantity|default('1') if tab else '1' }}">
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="discount_{{ tab_index }}" class="form-label">Sconto (%)</label>
+                <input type="number" step="0.01" min="0" max="100" class="form-control" id="discount_{{ tab_index }}" name="discount_{{ tab_index }}"
+                    value="{{ tab.discount|default('0') if tab else '0' }}">
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+                <div class="form-check mt-3">
+                    <input class="form-check-input discount-checkbox" type="checkbox" id="discount_flag_{{ tab_index }}" name="discount_{{ tab_index }}flag_"
+                        {{ 'checked' if tab and tab.discount_flag else '' }}>
+                    <label class="form-check-label" for="discount_flag_{{ tab_index }}">
+                        Applicare sconto
+                    </label>
+                </div>
+            </div>
+        </div>        
+        
+        <div class="mb-3">
+            <label for="description_{{ tab_index }}" class="form-label">Descrizione Prodotto</label>
+            <div class="position-relative">
+                <textarea class="form-control" id="description_{{ tab_index }}" name="description_{{ tab_index }}" 
+                          rows="4" maxlength="1000" 
+                          onkeyup="updateCharCount('description_{{ tab_index }}', 'charCount_{{ tab_index }}', 1000)">{{ tab.description|default('') if tab is defined and tab else '' }}</textarea>
+                <small id="charCount_{{ tab_index }}" class="form-text text-muted position-absolute bottom-0 end-0 p-1">
+                    <span>0</span>/1000 caratteri
+                </small>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="product_image_{{ tab_index }}" class="form-label">Immagine Prodotto</label>
+            <input type="file" class="form-control" id="product_image_{{ tab_index }}" name="product_{{ tab_index }}image_" accept="image/*">
+            {% if tab and tab.product_image_path %}
+                <div class="mt-2">
+                    <img src="{{ tab.product_image_path }}" alt="Immagine prodotto" class="img-thumbnail" style="max-height: 100px;">
+                    <input type="hidden" name="existing_image_{{ tab_index }}" value="{{ tab.product_image_path }}">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Rimuovo il codice che disabilita il campo sconto
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Rimuovo il codice che disabilita il campo sconto
+        
+        // Inizializza il contatore di caratteri
+        const textarea = document.getElementById('description_{{ tab_index }}');
+        if (textarea) {
+            updateCharCount('description_{{ tab_index }}', 'charCount_{{ tab_index }}', 1000);
+        }
+    });
+    
+    // Funzione per aggiornare il contatore di caratteri
+    function updateCharCount(textareaId, counterId, maxLength) {
+        const textarea = document.getElementById(textareaId);
+        const counter = document.getElementById(counterId);
+        
+        if (textarea && counter) {
+            const currentLength = textarea.value.length;
+            counter.querySelector('span').textContent = currentLength;
+            
+            // Cambia colore se si avvicina al limite
+            if (currentLength >= maxLength * 0.9) {
+                counter.classList.add('text-danger');
+                counter.classList.remove('text-muted');
+            } else {
+                counter.classList.add('text-muted');
+                counter.classList.remove('text-danger');
+            }
+        }
+    }
+</script>

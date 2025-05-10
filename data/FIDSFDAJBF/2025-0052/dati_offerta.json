@@ -1,0 +1,28 @@
+{
+    "date": "2025-04-22",
+    "customer": "fidsfdajbf",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "vdHFIEb",
+    "offer_description": "",
+    "offer_number": "2025-0052",
+    "id": "32992c57-80df-4e34-bd4c-c06c2b2f0f26",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "qfugvdufai",
+            "product_name": "cjhdchdba",
+            "quantity": "1",
+            "unit_price": "34543",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "2",
+            "product_image_path": "/static/uploads/20250422183518_Immagine_2025-04-01_140525.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0052.pdf",
+    "status": "accettata"
+}

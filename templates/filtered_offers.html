@@ -1,0 +1,270 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-5 mb-3">{{ title }}</h1>
+            <p class="lead">
+                {% if title == 'Offerte in Attesa' %}
+                    Visualizza e gestisci le offerte in attesa di risposta. Puoi accettare le offerte, modificarle o eliminarle.
+                {% else %}
+                    Visualizza e gestisci le offerte accettate. Puoi rimetterle in attesa, modificarle o eliminarle.
+                {% endif %}
+            </p>
+        </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-end">
+            <a href="{{ url_for('nuova_offerta') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-plus-circle me-2"></i> Crea Nuova Offerta
+            </a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="searchInput" class="form-control form-control-lg" 
+                               placeholder="Cerca per numero offerta, cliente o descrizione...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas {{ icon }} me-2"></i>{{ title }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {% if offers %}
+                        <div class="row" id="offersContainer">
+                            {% for offer in offers %}
+                            <div class="col-12 mb-4 offer-card" 
+                                 data-offer-number="{{ offer.offer_number }}"
+                                 data-customer="{{ offer.customer }}"
+                                 data-description="{{ offer.offer_description }}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-3">
+                                                <h5 class="card-title mb-0">
+                                                    <i class="fas fa-file-invoice me-2"></i>
+                                                    Offerta {{ offer.offer_number }}
+                                                </h5>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="mb-0">
+                                                    <strong>Cliente:</strong> {{ offer.customer }}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p class="mb-0">
+                                                    <strong>Data:</strong> {{ offer.date }}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex justify-content-end">
+                                                    <div class="btn-group me-2">
+                                                        <a href="{{ url_for('view_offerta', offerta_id=offer.id) }}" 
+                                                           class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-eye"></i> Visualizza
+                                                        </a>
+                                                        <a href="{{ url_for('edit_offerta', offerta_id=offer.id) }}" 
+                                                           class="btn btn-sm btn-warning">
+                                                            <i class="fas fa-edit"></i> Modifica
+                                                        </a>
+                                                        <a href="{{ url_for('download_pdf', offerta_id=offer.id) }}" 
+                                                           class="btn btn-sm btn-info">
+                                                            <i class="fas fa-download"></i> PDF
+                                                        </a>
+                                                        <button class="btn btn-sm btn-danger" 
+                                                                onclick="confirmDelete('{{ offer.id }}')">
+                                                            <i class="fas fa-trash"></i> Elimina
+                                                        </button>
+                                                    </div>
+                                                    <div class="status-buttons">
+                                                        {% if offer.status == 'in_attesa' %}
+                                                        <button class="btn btn-sm btn-success" 
+                                                                onclick="updateStatus('{{ offer.id }}', 'accettata')">
+                                                            <i class="fas fa-check"></i> Accetta
+                                                        </button>
+                                                        {% else %}
+                                                        <button class="btn btn-sm btn-warning" 
+                                                                onclick="updateStatus('{{ offer.id }}', 'in_attesa')">
+                                                            <i class="fas fa-clock"></i> Rimetti in Attesa
+                                                        </button>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Nessuna offerta trovata.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal di conferma eliminazione -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Conferma eliminazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Sei sicuro di voler eliminare questa offerta?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Elimina</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Definiamo la funzione confirmDelete prima che venga utilizzata
+    window.confirmDelete = function(offerId) {
+        console.log('Conferma eliminazione per offerta:', offerId);
+        const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        
+        confirmBtn.onclick = function() {
+            console.log('Inizio eliminazione offerta:', offerId);
+            fetch(`/offerta/${offerId}/elimina`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })
+            .then(response => {
+                console.log('Risposta eliminazione:', response);
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    throw new Error('Errore durante l\'eliminazione');
+                }
+            })
+            .catch(error => {
+                console.error('Errore eliminazione:', error);
+                alert('Si è verificato un errore durante l\'eliminazione dell\'offerta');
+            });
+        };
+        
+        modal.show();
+    };
+
+    // Definiamo la funzione updateStatus prima che venga utilizzata
+    window.updateStatus = function(offerId, newStatus) {
+        console.log('Aggiornamento stato per offerta:', offerId, 'Nuovo stato:', newStatus);
+        
+        // Crea un form data per inviare i dati
+        const formData = new FormData();
+        formData.append('status', newStatus);
+        
+        fetch(`/update_offer_status/${offerId}`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            console.log('Risposta aggiornamento stato:', response);
+            if (!response.ok) {
+                throw new Error('Errore nella risposta del server');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dati risposta:', data);
+            if (data.success) {
+                window.location.reload();
+            } else {
+                throw new Error(data.error || 'Errore durante l\'aggiornamento dello stato');
+            }
+        })
+        .catch(error => {
+            console.error('Errore aggiornamento stato:', error);
+            alert('Si è verificato un errore durante l\'aggiornamento dello stato: ' + error.message);
+        });
+    };
+</script>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Funzione di ricerca
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const offersContainer = document.getElementById('offersContainer');
+        const offerCards = document.querySelectorAll('.offer-card');
+        const noResultsAlert = document.createElement('div');
+        noResultsAlert.className = 'alert alert-info';
+        noResultsAlert.innerHTML = '<i class="fas fa-info-circle me-2"></i>Nessuna offerta trovata.';
+        noResultsAlert.style.display = 'none';
+        offersContainer.appendChild(noResultsAlert);
+
+        // Debug: Stampa i dati delle offerte nella console
+        offerCards.forEach(card => {
+            console.log('Dati offerta:', {
+                offerNumber: card.dataset.offerNumber,
+                customer: card.dataset.customer,
+                description: card.dataset.description
+            });
+        });
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let hasResults = false;
+
+            offerCards.forEach(card => {
+                const offerNumber = (card.dataset.offerNumber || '').toLowerCase();
+                const customer = (card.dataset.customer || '').toLowerCase();
+                const description = (card.dataset.description || '').toLowerCase();
+
+                // Debug: Stampa i valori di ricerca
+                console.log('Ricerca:', {
+                    searchTerm,
+                    offerNumber,
+                    customer,
+                    description,
+                    matches: offerNumber.includes(searchTerm) || 
+                            customer.includes(searchTerm) || 
+                            description.includes(searchTerm)
+                });
+
+                if (offerNumber.includes(searchTerm) || 
+                    customer.includes(searchTerm) || 
+                    description.includes(searchTerm)) {
+                    card.style.display = '';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResultsAlert.style.display = hasResults ? 'none' : '';
+        });
+    });
+</script>
+{% endblock %} 

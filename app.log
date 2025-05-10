@@ -1,0 +1,987 @@
+2025-04-22 09:56:39,108 [INFO] app:547 - Avvio applicazione Flask
+2025-04-22 09:56:40,142 [INFO] werkzeug:224 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.14:5000
+2025-04-22 09:56:40,142 [INFO] werkzeug:224 - [33mPress CTRL+C to quit[0m
+2025-04-22 09:56:40,142 [INFO] werkzeug:224 -  * Restarting with stat
+2025-04-22 09:56:40,725 [INFO] app:547 - Avvio applicazione Flask
+2025-04-22 09:56:40,743 [WARNING] werkzeug:224 -  * Debugger is active!
+2025-04-22 09:56:40,744 [INFO] werkzeug:224 -  * Debugger PIN: 119-055-184
+2025-04-22 09:56:42,754 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:42] "GET / HTTP/1.1" 200 -
+2025-04-22 09:56:42,986 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 09:56:42,997 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:42] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 09:56:43,005 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 09:56:47,146 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:47] "[32mPOST /offerta/34cc4ad2-e99a-4faa-be4a-7d17cf2510e1/elimina HTTP/1.1[0m" 302 -
+2025-04-22 09:56:47,178 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:47] "GET / HTTP/1.1" 200 -
+2025-04-22 09:56:47,210 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:47] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 09:56:47,212 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 09:56:47,214 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 09:56:48,488 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:48] "GET /nuova-offerta HTTP/1.1" 200 -
+2025-04-22 09:56:48,528 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 09:56:48,539 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:48] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 09:56:48,541 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:56:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 09:57:23,491 [INFO] app:357 - Ricevuto POST per nuova offerta
+2025-04-22 09:57:23,493 [INFO] app:58 - Estrazione tabs dal form
+2025-04-22 09:57:23,494 [INFO] app:62 - Numero di tabs dichiarati nel form: 1
+2025-04-22 09:57:23,494 [DEBUG] app:66 - Chiavi presenti nel form (17): ['date', 'offer_number', 'customer', 'customer_email', 'address', 'offer_description', 'tab_type_', 'posizione_', 'product_name_', 'product_code_', 'volts_', 'power_w_', 'size_', 'unit_price_', 'quantity_', 'description_', 'tab_count']...
+2025-04-22 09:57:23,495 [INFO] app:70 - Chiavi tab_type trovate: ['tab_type_']
+2025-04-22 09:57:23,496 [ERROR] app:92 - Errore nell'elaborazione del tab tab_type_: invalid literal for int() with base 10: ''
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\PROGETTI\app_offerte\app.py", line 76, in extract_tabs_from_form
+    tab_index = int(tab_key.split('_')[-1])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+2025-04-22 09:57:23,498 [INFO] app:97 - Totale tabs estratti: 0
+2025-04-22 09:57:23,498 [INFO] app:375 - Dati offerta preparati - 0 tabs
+2025-04-22 09:57:23,499 [INFO] app:245 - Salvataggio diretto offerta JSON con ID: nuovo
+2025-04-22 09:57:23,500 [DEBUG] app:253 - Contenuto tabs per salvataggio (0 elementi):
+2025-04-22 09:57:23,501 [INFO] app:275 - Salvando JSON in: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\MARNIA\2025-0014\dati_offerta.json
+2025-04-22 09:57:23,521 [INFO] app:286 - JSON salvato con successo - tabs count: 0
+2025-04-22 09:57:23,521 [DEBUG] app:307 - Aggiornamento indice offerte: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\offerte_index.json
+2025-04-22 09:57:23,521 [DEBUG] app:338 - Indice aggiornato con successo - 2 offerte totali
+2025-04-22 09:57:23,521 [INFO] app:381 - Offerta salvata con successo - ID: e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe
+2025-04-22 09:57:23,538 [WARNING] app:388 - Offerta caricata dal DB senza tabs, uso dati locali
+2025-04-22 09:57:23,538 [INFO] app:392 - Generazione PDF per offerta e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe con 0 tabs
+2025-04-22 09:57:23,569 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 09:57:23,569 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 09:57:23,569 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 09:57:23,575 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 09:57:23,575 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 8339
+2025-04-22 09:57:23,576 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 09:57:23,576 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 09:57:23,576 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 09:57:23,579 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 09:57:23,579 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 22614
+2025-04-22 09:57:23,585 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 09:57:23,599 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 09:57:23,602 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 09:57:23,602 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 09:57:23,603 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 8339
+2025-04-22 09:57:23,603 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 09:57:23,603 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 09:57:23,603 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 09:57:23,608 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 09:57:23,608 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 22614
+2025-04-22 09:57:23,654 [INFO] app:245 - Salvataggio diretto offerta JSON con ID: e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe
+2025-04-22 09:57:23,654 [DEBUG] app:253 - Contenuto tabs per salvataggio (0 elementi):
+2025-04-22 09:57:23,665 [INFO] app:275 - Salvando JSON in: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\MARNIA\2025-0014\dati_offerta.json
+2025-04-22 09:57:23,688 [INFO] app:286 - JSON salvato con successo - tabs count: 0
+2025-04-22 09:57:23,688 [DEBUG] app:307 - Aggiornamento indice offerte: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\offerte_index.json
+2025-04-22 09:57:23,694 [DEBUG] app:338 - Indice aggiornato con successo - 2 offerte totali
+2025-04-22 09:57:23,694 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:23] "[32mPOST /nuova-offerta HTTP/1.1[0m" 302 -
+2025-04-22 09:57:23,704 [INFO] app:442 - view_offerta: ID=e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe, tabs=0
+2025-04-22 09:57:23,716 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:23] "GET /offerta/e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe HTTP/1.1" 200 -
+2025-04-22 09:57:23,760 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 09:57:23,769 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 09:57:23,771 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:23] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 09:57:26,928 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 09:57:26] "GET /offerta/e1f3b78d-57aa-4862-9e9f-d6d38b5b96fe/json HTTP/1.1" 200 -
+2025-04-22 10:04:41,176 [INFO] app:556 - Avvio applicazione Flask
+2025-04-22 10:04:42,260 [INFO] werkzeug:224 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.14:5000
+2025-04-22 10:04:42,260 [INFO] werkzeug:224 - [33mPress CTRL+C to quit[0m
+2025-04-22 10:04:42,260 [INFO] werkzeug:224 -  * Restarting with stat
+2025-04-22 10:04:42,807 [INFO] app:556 - Avvio applicazione Flask
+2025-04-22 10:04:42,816 [WARNING] werkzeug:224 -  * Debugger is active!
+2025-04-22 10:04:42,839 [INFO] werkzeug:224 -  * Debugger PIN: 119-055-184
+2025-04-22 10:04:44,501 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:44] "GET / HTTP/1.1" 200 -
+2025-04-22 10:04:44,742 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:04:44,742 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:04:44,755 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:44] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:04:49,043 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:49] "GET /offerta/14f52d2d-7e54-4cb6-bee4-a58284bc0c84/modifica HTTP/1.1" 200 -
+2025-04-22 10:04:49,067 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:04:49,077 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:49] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:04:49,080 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:04:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:05:11,031 [INFO] app:471 - Ricevuto POST per modifica offerta 14f52d2d-7e54-4cb6-bee4-a58284bc0c84
+2025-04-22 10:05:11,035 [INFO] app:67 - Estrazione tabs dal form
+2025-04-22 10:05:11,036 [INFO] app:71 - Numero di tabs dichiarati nel form: 1
+2025-04-22 10:05:11,037 [DEBUG] app:75 - Chiavi presenti nel form (17): ['date', 'offer_number', 'customer', 'customer_email', 'address', 'offer_description', 'tab_type_', 'posizione_', 'product_name_', 'product_code_', 'volts_', 'power_w_', 'size_', 'unit_price_', 'quantity_', 'description_', 'tab_count']...
+2025-04-22 10:05:11,038 [INFO] app:79 - Chiavi tab_type trovate: ['tab_type_']
+2025-04-22 10:05:11,038 [ERROR] app:101 - Errore nell'elaborazione del tab tab_type_: invalid literal for int() with base 10: ''
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\PROGETTI\app_offerte\app.py", line 85, in extract_tabs_from_form
+    tab_index = int(tab_key.split('_')[-1])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+2025-04-22 10:05:11,041 [INFO] app:106 - Totale tabs estratti: 0
+2025-04-22 10:05:11,042 [INFO] app:489 - Dati offerta preparati per modifica - 0 tabs
+2025-04-22 10:05:11,042 [INFO] app:254 - Salvataggio diretto offerta JSON con ID: 14f52d2d-7e54-4cb6-bee4-a58284bc0c84
+2025-04-22 10:05:11,042 [DEBUG] app:262 - Contenuto tabs per salvataggio (0 elementi):
+2025-04-22 10:05:11,044 [INFO] app:284 - Salvando JSON in: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\MARNIA\2025-0013\dati_offerta.json
+2025-04-22 10:05:11,055 [INFO] app:295 - JSON salvato con successo - tabs count: 0
+2025-04-22 10:05:11,063 [DEBUG] app:316 - Aggiornamento indice offerte: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\offerte_index.json
+2025-04-22 10:05:11,064 [DEBUG] app:347 - Indice aggiornato con successo - 2 offerte totali
+2025-04-22 10:05:11,064 [INFO] app:499 - Offerta 14f52d2d-7e54-4cb6-bee4-a58284bc0c84 aggiornata con successo
+2025-04-22 10:05:11,073 [WARNING] app:506 - Offerta aggiornata caricata dal DB senza tabs, uso dati locali
+2025-04-22 10:05:11,079 [INFO] app:510 - Rigenerazione PDF per offerta 14f52d2d-7e54-4cb6-bee4-a58284bc0c84 con 0 tabs
+2025-04-22 10:05:11,100 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 10:05:11,100 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 8339
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 10:05:11,108 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 10:05:11,114 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 22614
+2025-04-22 10:05:11,135 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 10:05:11,136 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 10:05:11,136 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 8339
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IHDR' 16 13
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'sRGB' 41 1
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'gAMA' 54 4
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'pHYs' 70 9
+2025-04-22 10:05:11,137 [DEBUG] PIL.PngImagePlugin:204 - STREAM b'IDAT' 91 22614
+2025-04-22 10:05:11,155 [INFO] app:254 - Salvataggio diretto offerta JSON con ID: 14f52d2d-7e54-4cb6-bee4-a58284bc0c84
+2025-04-22 10:05:11,155 [DEBUG] app:262 - Contenuto tabs per salvataggio (0 elementi):
+2025-04-22 10:05:11,155 [INFO] app:284 - Salvando JSON in: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\MARNIA\2025-0013\dati_offerta.json
+2025-04-22 10:05:11,157 [INFO] app:295 - JSON salvato con successo - tabs count: 0
+2025-04-22 10:05:11,157 [DEBUG] app:316 - Aggiornamento indice offerte: C:\Users\Admin\Desktop\PROGETTI\app_offerte\data\offerte_index.json
+2025-04-22 10:05:11,157 [DEBUG] app:347 - Indice aggiornato con successo - 2 offerte totali
+2025-04-22 10:05:11,163 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:05:11] "[32mPOST /offerta/14f52d2d-7e54-4cb6-bee4-a58284bc0c84/modifica HTTP/1.1[0m" 302 -
+2025-04-22 10:05:11,174 [INFO] app:451 - view_offerta: ID=14f52d2d-7e54-4cb6-bee4-a58284bc0c84, tabs=0
+2025-04-22 10:05:11,200 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:05:11] "GET /offerta/14f52d2d-7e54-4cb6-bee4-a58284bc0c84 HTTP/1.1" 200 -
+2025-04-22 10:05:11,240 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:05:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:05:11,250 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:05:11] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:05:11,252 [INFO] werkzeug:224 - 127.0.0.1 - - [22/Apr/2025 10:05:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:05:44,750 [INFO] werkzeug:224 -  * Detected change in 'C:\\Users\\Admin\\Desktop\\PROGETTI\\app_offerte\\app.py', reloading
+2025-04-22 10:05:44,840 [INFO] werkzeug:224 -  * Restarting with stat
+2025-04-22 10:07:07,769 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.14:5000
+2025-04-22 10:07:07,769 [INFO] [33mPress CTRL+C to quit[0m
+2025-04-22 10:07:14,106 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:14] "GET / HTTP/1.1" 200 -
+2025-04-22 10:07:14,307 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:07:14,307 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:14] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:07:14,315 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:07:17,358 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:17] "[32mPOST /offerta/c67d68d7-3f9b-4fca-85bf-22dfd47e237b/elimina HTTP/1.1[0m" 302 -
+2025-04-22 10:07:17,374 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:17] "GET / HTTP/1.1" 200 -
+2025-04-22 10:07:17,400 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:07:17,408 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:17] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:07:17,408 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:07:18,476 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:18] "GET /nuova-offerta HTTP/1.1" 200 -
+2025-04-22 10:07:18,502 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:07:18,511 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:18] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:07:18,512 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-22 10:07:46,256 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:46] "[32mPOST /nuova-offerta HTTP/1.1[0m" 302 -
+2025-04-22 10:07:46,308 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:46] "GET /offerta/6f21d0e7-43b7-4048-9b06-f67e820bc555 HTTP/1.1" 200 -
+2025-04-22 10:07:46,346 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-22 10:07:46,352 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:46] "[36mGET /static/img/logo_valtservice.png HTTP/1.1[0m" 304 -
+2025-04-22 10:07:46,352 [INFO] 127.0.0.1 - - [22/Apr/2025 10:07:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-24 11:44:18,440 [INFO] Avvio server in modalità produzione sulla porta 5000
+2025-04-24 11:45:41,595 [INFO] Avvio server in modalità produzione sulla porta 5000
+2025-04-24 11:46:13,129 [INFO] Avvio server in modalità produzione sulla porta 5000
+2025-04-24 11:56:44,224 [INFO] Avvio server in modalità produzione sulla porta 5002
+2025-04-24 11:56:44,235 [INFO] Serving on http://0.0.0.0:5002
+2025-04-24 12:03:38,767 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:03:43,983 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:03:46,799 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:03:47,574 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:03:47,913 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:13:59,985 [INFO] Avvio server in modalità produzione sulla porta 5002
+2025-04-24 12:13:59,996 [INFO] Serving on http://0.0.0.0:5002
+2025-04-24 12:14:09,025 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:14:09,988 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:14:16,445 [ERROR] Exception on /login [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 36, in login
+    return app.render_template('login.html')
+AttributeError: 'Flask' object has no attribute 'render_template'
+2025-04-24 12:15:22,658 [INFO] Avvio server in modalità produzione sulla porta 5002
+2025-04-24 12:15:22,669 [INFO] Serving on http://0.0.0.0:5002
+2025-04-24 12:22:11,549 [INFO] Avvio server in modalità produzione sulla porta 5002
+2025-04-24 12:22:11,561 [INFO] Serving on http://0.0.0.0:5002
+2025-04-24 12:26:52,060 [INFO] Avvio server in modalità produzione sulla porta 5002
+2025-04-24 12:26:52,183 [INFO] Serving on http://0.0.0.0:5002
+2025-04-24 12:34:47,934 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:34:58,804 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:35:22,091 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9/modifica [POST]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 578, in edit_offerta
+    print(f"DEBUG - Ricevuto POST per modifica offerta {offerta_id}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 658, in edit_offerta
+    print(f"ERRORE in edit_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:35:26,776 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:36:53,176 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:37:00,090 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:39:49,081 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9/modifica [POST]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 578, in edit_offerta
+    print(f"DEBUG - Ricevuto POST per modifica offerta {offerta_id}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 658, in edit_offerta
+    print(f"ERRORE in edit_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:40:00,922 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9/modifica [POST]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 578, in edit_offerta
+    print(f"DEBUG - Ricevuto POST per modifica offerta {offerta_id}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 658, in edit_offerta
+    print(f"ERRORE in edit_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:41:28,101 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:48:24,701 [ERROR] Exception on /nuova-offerta [POST]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 477, in nuova_offerta
+    print("DEBUG - Ricevuto POST per nuova offerta")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 526, in nuova_offerta
+    print(f"ERRORE in nuova_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 12:57:46,110 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 13:11:28,017 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 13:12:04,946 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 13:12:08,220 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 13:13:03,433 [ERROR] Exception on /offerta/ba276748-2f37-4145-82f9-10d682702905 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"DEBUG view_offerta: ID={offerta_id}, tabs={len(offerta_data.get('tabs', []))}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 13:13:10,417 [ERROR] Exception on /offerta/5f8ee0d0-73f6-47ae-971f-17666fb0723d/elimina [POST]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 684, in delete_offerta
+    print(f"Ricevuta richiesta di eliminazione per offerta {offerta_id}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 719, in delete_offerta
+    print(f"ERRORE nell'eliminazione dell'offerta: {e}")
+OSError: [Errno 5] Input/output error
+2025-04-24 15:18:40,135 [ERROR] Exception on /offerta/c6308702-92eb-42be-8fc4-f4618862c7e9 [GET]
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 554, in view_offerta
+    print(f"Errore in view_offerta: {e}")
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/volume1/web/app_offerte/auth.py", line 16, in decorated_function
+    return f(*args, **kwargs)
+  File "/volume1/web/app_offerte/app.py", line 559, in view_offerta
+    @app.route('/offerta/<offerta_id>/modifica', methods=['GET', 'POST'])
+OSError: [Errno 5] Input/output error
+2025-04-24 15:36:41 [INFO] root:15 - Configurazione logging caricata da logging.conf
+2025-04-24 15:36:41 [INFO] root:55 - Avvio server in modalità produzione sulla porta 5002
+2025-04-24 15:36:41 [INFO] root:57 - Server configurato con 4 threads
+2025-04-24 15:36:41 [INFO] waitress:486 - Serving on http://0.0.0.0:5002
+2025-04-24 15:36:57 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 15:40:55 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 15:48:20 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:05:30 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:05:32 [WARNING] waitress.queue:114 - Task queue depth is 1
+2025-04-24 16:15:10 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:17:25 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:19:15 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:19:57 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:19:58 [INFO] root:206 - Elaborazione form ricevuto
+2025-04-24 16:38:44 [INFO] root:15 - Configurazione logging caricata da logging.conf
+2025-04-24 16:38:44 [INFO] root:55 - Avvio server in modalità produzione sulla porta 5002
+2025-04-24 16:38:44 [INFO] root:57 - Server configurato con 4 threads
+2025-04-24 16:38:44 [INFO] waitress:486 - Serving on http://0.0.0.0:5002
+2025-04-24 16:39:52 [INFO] root:577 - DEBUG view_offerta: ID=8fcd013e-8399-4dcb-a0f8-a79dc68c2f5f, tabs=3
+2025-04-24 16:39:59 [INFO] root:681 - ERRORE in edit_offerta: 'tab' is undefined
+2025-04-24 16:39:59 [INFO] root:682 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 598, in edit_offerta
+    return render_template('nuova_offerta.html', offerta=offerta, is_edit=True, today_date=datetime.now().strftime('%Y-%m-%d'))
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:02 [INFO] root:681 - ERRORE in edit_offerta: 'tab' is undefined
+2025-04-24 16:40:02 [INFO] root:682 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 598, in edit_offerta
+    return render_template('nuova_offerta.html', offerta=offerta, is_edit=True, today_date=datetime.now().strftime('%Y-%m-%d'))
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:05 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:05 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:07 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:07 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:08 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:08 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:10 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:10 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:11 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:11 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:40:11 [INFO] root:549 - ERRORE in nuova_offerta: 'tab' is undefined
+2025-04-24 16:40:11 [INFO] root:550 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 497, in nuova_offerta
+    return render_template('nuova_offerta.html', next_number=next_number, today_date=today_date)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="500" value="{{ tab.products[i][4] if i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:44:31 [INFO] root:681 - ERRORE in edit_offerta: 'tab' is undefined
+2025-04-24 16:44:31 [INFO] root:682 - Traceback (most recent call last):
+  File "/volume1/web/app_offerte/app.py", line 598, in edit_offerta
+    return render_template('nuova_offerta.html', offerta=offerta, is_edit=True, today_date=datetime.now().strftime('%Y-%m-%d'))
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/volume1/web/app_offerte/templates/layout.html", line 63, in top-level template code
+    {% block content %}{% endblock %}
+  File "/volume1/web/app_offerte/templates/nuova_offerta.html", line 119, in block 'content'
+    {% include 'components/form_multiprodotto.html' with context %}
+  File "/volume1/web/app_offerte/templates/components/form_multiprodotto.html", line 78, in top-level template code
+    maxlength="200" value="{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+  File "/volume1/web/app_offerte/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'tab' is undefined
+
+2025-04-24 16:52:46 [INFO] root:15 - Configurazione logging caricata da logging.conf
+2025-04-24 16:52:46 [INFO] root:55 - Avvio server in modalità produzione sulla porta 5002
+2025-04-24 16:52:46 [INFO] root:57 - Server configurato con 4 threads
+2025-04-24 16:52:46 [INFO] waitress:486 - Serving on http://0.0.0.0:5002
+2025-04-24 16:53:49 [INFO] root:577 - DEBUG view_offerta: ID=1a96df47-6aca-4815-bd2e-2d1d1c37b4b6, tabs=1
+2025-04-24 16:56:55 [INFO] root:500 - DEBUG - Ricevuto POST per nuova offerta
+2025-04-24 16:56:55 [INFO] root:207 - Elaborazione form ricevuto
+2025-04-24 16:56:55 [INFO] root:223 - Trovato tab_0type_ : single_product
+2025-04-24 16:56:55 [INFO] root:234 - Trovato tab_type_0 : single_product
+2025-04-24 16:56:55 [INFO] root:260 - Indici tab trovati: [0]
+2025-04-24 16:56:55 [INFO] root:261 - Indici prodotti trovati: {}
+2025-04-24 16:56:55 [INFO] root:265 - Elaborazione tab 0
+2025-04-24 16:56:55 [INFO] root:276 - Tipo tab 0: single_product
+2025-04-24 16:56:55 [INFO] root:318 - Trovato campo immagine product_0image_ per tab 0
+2025-04-24 16:56:55 [INFO] root:327 - Salvata nuova immagine in /static/uploads/20250424165655_1673865283501_2.png per tab 0
+2025-04-24 16:56:55 [INFO] root:329 - Valore finale di image_path per tab 0: /static/uploads/20250424165655_1673865283501_2.png
+2025-04-24 16:56:55 [INFO] root:349 - Aggiunto prodotto singolo: Cucina 4 fuochi
+2025-04-24 16:56:55 [INFO] root:443 - Processo completato. Totale schede elaborate: 1
+2025-04-24 16:56:55 [INFO] root:515 - DEBUG - Dati offerta preparati - 1 tabs
+2025-04-24 16:56:55 [INFO] root:524 - DEBUG - Salvataggio JSON in: /volume1/web/app_offerte/data/MARISA/2025-0123/dati_offerta.json
+2025-04-24 16:56:55 [INFO] root:529 - DEBUG - JSON salvato con successo
+2025-04-24 16:56:56 [INFO] root:577 - DEBUG view_offerta: ID=bd5c4288-ad5e-4e25-ad9c-2bbbe03fbb1b, tabs=1
+2025-04-24 16:57:30 [INFO] root:577 - DEBUG view_offerta: ID=8fcd013e-8399-4dcb-a0f8-a79dc68c2f5f, tabs=3
+2025-04-24 16:57:36 [INFO] root:601 - DEBUG - Ricevuto POST per modifica offerta 8fcd013e-8399-4dcb-a0f8-a79dc68c2f5f
+2025-04-24 16:57:36 [INFO] root:207 - Elaborazione form ricevuto
+2025-04-24 16:57:36 [INFO] root:223 - Trovato tab_0type_ : single_product
+2025-04-24 16:57:36 [INFO] root:234 - Trovato tab_type_0 : single_product
+2025-04-24 16:57:36 [INFO] root:223 - Trovato tab_1type_ : single_product
+2025-04-24 16:57:36 [INFO] root:234 - Trovato tab_type_1 : single_product
+2025-04-24 16:57:36 [INFO] root:223 - Trovato tab_2type_ : single_product
+2025-04-24 16:57:36 [INFO] root:234 - Trovato tab_type_2 : single_product
+2025-04-24 16:57:36 [INFO] root:260 - Indici tab trovati: [0, 1, 2]
+2025-04-24 16:57:36 [INFO] root:261 - Indici prodotti trovati: {}
+2025-04-24 16:57:36 [INFO] root:265 - Elaborazione tab 0
+2025-04-24 16:57:36 [INFO] root:276 - Tipo tab 0: single_product
+2025-04-24 16:57:36 [INFO] root:309 - Trovato campo existing_image_0 = /static/uploads/20250424154821_PH_700x700_PH_392027_1_1_392027.jpg
+2025-04-24 16:57:36 [INFO] root:329 - Valore finale di image_path per tab 0: /static/uploads/20250424154821_PH_700x700_PH_392027_1_1_392027.jpg
+2025-04-24 16:57:36 [INFO] root:349 - Aggiunto prodotto singolo: Cucina a gas top 4
+2025-04-24 16:57:36 [INFO] root:265 - Elaborazione tab 1
+2025-04-24 16:57:36 [INFO] root:276 - Tipo tab 1: single_product
+2025-04-24 16:57:36 [INFO] root:309 - Trovato campo existing_image_1 = /static/uploads/20250424160530_PH_1000x1000_PH_392068_1_1_392068.jpg
+2025-04-24 16:57:36 [INFO] root:329 - Valore finale di image_path per tab 1: /static/uploads/20250424160530_PH_1000x1000_PH_392068_1_1_392068.jpg
+2025-04-24 16:57:36 [INFO] root:349 - Aggiunto prodotto singolo: Fry top elettrico
+2025-04-24 16:57:36 [INFO] root:265 - Elaborazione tab 2
+2025-04-24 16:57:36 [INFO] root:276 - Tipo tab 2: single_product
+2025-04-24 16:57:36 [INFO] root:309 - Trovato campo existing_image_2 = /static/uploads/20250424160530_PH_700x700_PH_392046_1_1_392046.jpg
+2025-04-24 16:57:36 [INFO] root:329 - Valore finale di image_path per tab 2: /static/uploads/20250424160530_PH_700x700_PH_392046_1_1_392046.jpg
+2025-04-24 16:57:36 [INFO] root:349 - Aggiunto prodotto singolo: Tuttapiastra elettrica top 2 zone
+2025-04-24 16:57:36 [INFO] root:443 - Processo completato. Totale schede elaborate: 3
+2025-04-24 16:57:36 [INFO] root:622 - DEBUG - Dati offerta preparati per modifica - 3 tabs
+2025-04-24 16:57:38 [INFO] root:577 - DEBUG view_offerta: ID=8fcd013e-8399-4dcb-a0f8-a79dc68c2f5f, tabs=3
+2025-04-24 16:57:49 [INFO] root:577 - DEBUG view_offerta: ID=f2d48934-e526-4b1e-983b-a1e25cb8fdce, tabs=1
+2025-04-24 16:57:51 [INFO] root:577 - DEBUG view_offerta: ID=bd5c4288-ad5e-4e25-ad9c-2bbbe03fbb1b, tabs=1
+2025-04-24 16:58:00 [INFO] root:601 - DEBUG - Ricevuto POST per modifica offerta bd5c4288-ad5e-4e25-ad9c-2bbbe03fbb1b
+2025-04-24 16:58:00 [INFO] root:207 - Elaborazione form ricevuto
+2025-04-24 16:58:00 [INFO] root:223 - Trovato tab_0type_ : single_product
+2025-04-24 16:58:00 [INFO] root:234 - Trovato tab_type_0 : single_product
+2025-04-24 16:58:00 [INFO] root:260 - Indici tab trovati: [0]
+2025-04-24 16:58:00 [INFO] root:261 - Indici prodotti trovati: {}
+2025-04-24 16:58:00 [INFO] root:265 - Elaborazione tab 0
+2025-04-24 16:58:00 [INFO] root:276 - Tipo tab 0: single_product
+2025-04-24 16:58:00 [INFO] root:309 - Trovato campo existing_image_0 = /static/uploads/20250424165655_1673865283501_2.png
+2025-04-24 16:58:00 [INFO] root:318 - Trovato campo immagine product_0image_ per tab 0
+2025-04-24 16:58:00 [INFO] root:327 - Salvata nuova immagine in /static/uploads/20250424165800_1673865283501_2.png per tab 0
+2025-04-24 16:58:00 [INFO] root:329 - Valore finale di image_path per tab 0: /static/uploads/20250424165800_1673865283501_2.png
+2025-04-24 16:58:00 [INFO] root:349 - Aggiunto prodotto singolo: Cucina 4 fuochi
+2025-04-24 16:58:00 [INFO] root:443 - Processo completato. Totale schede elaborate: 1
+2025-04-24 16:58:00 [INFO] root:622 - DEBUG - Dati offerta preparati per modifica - 1 tabs
+2025-04-24 16:58:01 [INFO] root:577 - DEBUG view_offerta: ID=bd5c4288-ad5e-4e25-ad9c-2bbbe03fbb1b, tabs=1
+2025-04-24 17:03:11 [INFO] root:500 - DEBUG - Ricevuto POST per nuova offerta
+2025-04-24 17:03:11 [INFO] root:207 - Elaborazione form ricevuto
+2025-04-24 17:03:11 [INFO] root:223 - Trovato tab_0type_ : single_product
+2025-04-24 17:03:11 [INFO] root:234 - Trovato tab_type_0 : single_product
+2025-04-24 17:03:11 [INFO] root:260 - Indici tab trovati: [0]
+2025-04-24 17:03:11 [INFO] root:261 - Indici prodotti trovati: {}
+2025-04-24 17:03:11 [INFO] root:265 - Elaborazione tab 0
+2025-04-24 17:03:11 [INFO] root:276 - Tipo tab 0: single_product
+2025-04-24 17:03:11 [INFO] root:318 - Trovato campo immagine product_0image_ per tab 0
+2025-04-24 17:03:11 [INFO] root:327 - Salvata nuova immagine in /static/uploads/20250424170311_WhatsApp_Image_2025-04-10_at_09.52.13.jpeg per tab 0
+2025-04-24 17:03:11 [INFO] root:329 - Valore finale di image_path per tab 0: /static/uploads/20250424170311_WhatsApp_Image_2025-04-10_at_09.52.13.jpeg
+2025-04-24 17:03:11 [INFO] root:349 - Aggiunto prodotto singolo: forno
+2025-04-24 17:03:11 [INFO] root:443 - Processo completato. Totale schede elaborate: 1
+2025-04-24 17:03:11 [INFO] root:515 - DEBUG - Dati offerta preparati - 1 tabs
+2025-04-24 17:03:11 [INFO] root:524 - DEBUG - Salvataggio JSON in: /volume1/web/app_offerte/data/MARISA /2025-0077/dati_offerta.json
+2025-04-24 17:03:11 [INFO] root:529 - DEBUG - JSON salvato con successo
+2025-04-24 17:03:11 [INFO] root:577 - DEBUG view_offerta: ID=08921a5d-71b2-4840-b9af-33c444d911fb, tabs=1

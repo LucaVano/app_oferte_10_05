@@ -1,0 +1,28 @@
+{
+    "date": "2025-04-22",
+    "customer": "fiqbfdiabh",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "adhbfoadbf",
+    "offer_description": "",
+    "offer_number": "2025-0035",
+    "id": "fa68b891-e044-407a-aa3d-e9516c2d94b3",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "sfhbdafhoba",
+            "product_name": "kahdfkhadbaf",
+            "quantity": "2",
+            "unit_price": "36352",
+            "description": "",
+            "discount": "0",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": "/static/uploads/20250422171925_Immagine_2025-04-01_140525.png"
+        }
+    ],
+    "pdf_path": "offerta_2025-0035.pdf",
+    "status": "accettata"
+}

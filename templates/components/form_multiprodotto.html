@@ -1,0 +1,157 @@
+<div class="card mb-4 shadow-sm product-card" data-tab-index="{{ tab_index }}" data-tab-type="multi_product">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Scheda Multiprodotto</h5>
+        <button type="button" class="btn btn-sm btn-outline-danger remove-tab-btn">
+            <i class="fas fa-times"></i> Rimuovi
+        </button>
+    </div>
+    <div class="card-body">
+        <input type="hidden" name="tab_{{ tab_index }}type_" value="multi_product">
+        
+        <!-- Input nascosto per il numero massimo di prodotti per pagina -->
+        <input type="hidden" name="max_{{ tab_index }}items_per_page_" value="3">
+        
+        <div class="table-responsive mb-3">
+            <table class="table table-bordered table-hover" id="products_table_{{ tab_index }}">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nome Prodotto</th>
+                        <th>Modello</th>
+                        <th>Prezzo Unitario (€)</th>
+                        <th>Quantità</th>
+                        <th>Descrizione</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if tab and tab.products %}
+                        {% for i in range(3) %}
+                            <tr class="product-row">
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}name__{{ i }}" 
+                                        value="{{ tab.products[i][0] if i < tab.products|length else '' }}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}model__{{ i }}" 
+                                        value="{{ tab.products[i][1] if i < tab.products|length else '' }}">
+                                </td>
+                                <td>
+                                    <input type="number" step="0.01" min="0" class="form-control" name="product_{{ tab_index }}price__{{ i }}" 
+                                        value="{{ tab.products[i][2] if i < tab.products|length else '0.00' }}">
+                                </td>
+                                <td>
+                                    <input type="number" step="1" min="1" class="form-control" name="product_{{ tab_index }}quantity__{{ i }}" 
+                                        value="{{ tab.products[i][3] if i < tab.products|length else '1' }}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}description__{{ i }}" 
+                                           maxlength="200" value="{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+                                           onkeyup="updateMultiProdCharCount(this, 200)">
+                                    <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
+                                        <span>0</span>/200 caratteri
+                                    </small>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn" disabled>
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        {% for i in range(3) %}
+                            <tr class="product-row">
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}name__{{ i }}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}model__{{ i }}">
+                                </td>
+                                <td>
+                                    <input type="number" step="0.01" min="0" class="form-control" name="product_{{ tab_index }}price__{{ i }}" value="0.00">
+                                </td>
+                                <td>
+                                    <input type="number" step="1" min="1" class="form-control" name="product_{{ tab_index }}quantity__{{ i }}" value="1">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="product_{{ tab_index }}description__{{ i }}" 
+                                           maxlength="200" value="{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}"
+                                           onkeyup="updateMultiProdCharCount(this, 200)">
+                                    <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
+                                        <span>0</span>/200 caratteri
+                                    </small>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn" disabled>
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        
+        <input type="hidden" name="product_{{ tab_index }}count_" id="product_count_{{ tab_index }}" 
+            value="{{ tab.products|length if tab and tab.products else 1 }}">
+        
+        <button type="button" class="btn btn-success add-product-btn" data-tab-index="{{ tab_index }}">
+            <i class="fas fa-plus"></i> Aggiungi Prodotto
+        </button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Rimuovi il pulsante "Aggiungi Prodotto" poiché abbiamo sempre 3 righe
+        const addProductBtn = document.querySelector('.add-product-btn');
+        if (addProductBtn) {
+            addProductBtn.remove();
+        }
+        
+        // Aggiorna il contatore dei prodotti
+        const productCount = document.getElementById(`product_count_{{ tab_index }}`);
+        if (productCount) {
+            productCount.value = 3;
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Rimuovi il pulsante "Aggiungi Prodotto" poiché abbiamo sempre 3 righe
+        const addProductBtn = document.querySelector('.add-product-btn');
+        if (addProductBtn) {
+            addProductBtn.remove();
+        }
+        
+        // Aggiorna il contatore dei prodotti
+        const productCount = document.getElementById(`product_count_{{ tab_index }}`);
+        if (productCount) {
+            productCount.value = 3;
+        }
+        
+        // Inizializza tutti i contatori di caratteri
+        document.querySelectorAll('input[name^="product_{{ tab_index }}description__"]').forEach(function(input) {
+            updateMultiProdCharCount(input, 200);
+        });
+    });
+    
+    // Funzione per aggiornare il contatore di caratteri
+    function updateMultiProdCharCount(input, maxLength) {
+        const counter = input.nextElementSibling.querySelector('span');
+        const currentLength = input.value.length;
+        
+        counter.textContent = currentLength;
+        
+        // Cambia colore se si avvicina al limite
+        if (currentLength >= maxLength * 0.9) {
+            counter.parentElement.classList.add('text-danger');
+            counter.parentElement.classList.remove('text-muted');
+        } else {
+            counter.parentElement.classList.add('text-muted');
+            counter.parentElement.classList.remove('text-danger');
+        }
+    }
+</script>

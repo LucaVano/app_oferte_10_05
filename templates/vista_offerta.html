@@ -1,0 +1,405 @@
+{% extends "layout.html" %}
+
+{% block title %}Visualizza Offerta - Generatore Offerte Valtservice{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3">Dettagli Offerta {{ offerta.offer_number }}</h1>
+    <div class="btn-group">
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Torna alla lista
+        </a>
+        <a href="{{ url_for('edit_offerta', offerta_id=offerta.id) }}" class="btn btn-outline-primary">
+            <i class="fas fa-edit me-1"></i> Modifica
+        </a>
+        <a href="{{ url_for('download_pdf', offerta_id=offerta.id) }}" class="btn btn-outline-success">
+            <i class="fas fa-file-pdf me-1"></i> Scarica PDF
+        </a>
+        <a href="{{ url_for('debug_offerta_json', offerta_id=offerta.id) }}" target="_blank" class="btn btn-outline-info">
+            <i class="fas fa-bug me-1"></i> Debug JSON
+        </a>
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-exchange-alt me-1"></i> Cambia Stato
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="#" onclick="updateOfferStatus('{{ offerta.id }}', 'pending')">
+                        <i class="fas fa-clock me-2"></i> In Attesa
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" onclick="updateOfferStatus('{{ offerta.id }}', 'accepted')">
+                        <i class="fas fa-check me-2"></i> Accettata
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+        <h5 class="card-title mb-0">Informazioni Generali</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>Numero Offerta:</strong> {{ offerta.offer_number }}</p>
+                <p><strong>Data:</strong> {{ offerta.date }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Cliente:</strong> {{ offerta.customer }}</p>
+                <p><strong>Email:</strong> {{ offerta.customer_email }}</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Indirizzo:</strong> {{ offerta.address }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p><strong>Descrizione Offerta:</strong></p>
+                <p>{{ offerta.offer_description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if not offerta.tabs or offerta.tabs|length == 0 %}
+<div class="alert alert-warning alert-permanent">
+    <h5>Attenzione!</h5>
+    <p>Questa offerta non contiene schede prodotto o i dati potrebbero essere danneggiati.</p>
+</div>
+{% endif %}
+
+<!-- Inizializziamo il prezzo totale dell'offerta -->
+{% set grand_total = 0 %}
+
+<!-- Prima visualizziamo tutte le schede prodotto singolo -->
+{% for tab in offerta.tabs %}
+    {% if tab.type == 'single_product' %}
+        <!-- Calcolo del prezzo totale per il prodotto singolo -->
+        {% set prezzo_unitario = tab.unit_price|float %}
+        {% set quantita = tab.quantity|float %}
+        {% if tab.discount_flag %}
+            {% set discount = tab.discount|float %}
+            {% set prezzo_scontato = (prezzo_unitario * (1 - discount / 100))|round(2) %}
+            {% set prezzo_totale = (prezzo_scontato * quantita)|round(2) %}
+        {% else %}
+            {% set prezzo_totale = (prezzo_unitario * quantita)|round(2) %}
+        {% endif %}
+        {% set grand_total = grand_total + prezzo_totale %}
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">Prodotto Singolo - {{ tab.product_name }}</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Nome Prodotto:</strong> {{ tab.product_name }}</p>
+                                <p><strong>Modello:</strong> {{ tab.product_code }}</p>
+                                <p><strong>Posizione:</strong> {{ tab.posizione }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Tensione:</strong> {{ tab.volts }}</p>
+                                <p><strong>Potenza:</strong> {{ tab.power_w }}</p>
+                                <p><strong>Dimensioni:</strong> {{ tab.size }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Prezzo Unitario:</strong> {{ "%.2f"|format(prezzo_unitario) }} €</p>
+                                <p><strong>Quantità:</strong> {{ tab.quantity }}</p>
+                                {% if tab.discount_flag %}
+                                    <p><strong>Sconto:</strong> {{ tab.discount }}%</p>
+                                    <p><strong>Prezzo Scontato:</strong> {{ "%.2f"|format(prezzo_scontato) }} €</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-info alert-permanent">
+                                    <h5 class="alert-heading">Prezzo Totale</h5>
+                                    <h3 class="mb-0" data-price="{{ prezzo_totale }}">{{ "%.2f"|format(prezzo_totale) }} €</h3>
+                                    <small class="text-muted">IVA esclusa</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p><strong>Descrizione:</strong></p>
+                                <p>{{ tab.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        {% if tab.product_image_path %}
+                            <div class="text-center">
+                                <img src="{{ tab.product_image_path }}" alt="{{ tab.product_name }}" class="img-fluid img-thumbnail" style="max-height: 200px;">
+                            </div>
+                        {% else %}
+                            <div class="text-center p-4 bg-light border rounded">
+                                <i class="fas fa-image fa-4x text-muted"></i>
+                                <p class="mt-2 text-muted">Nessuna immagine disponibile</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% elif tab.type == 'multi_product' %}
+        {% set multi_product_total = 0 %}
+        {% set filled_products = 0 %}
+        
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">Scheda Multiprodotto</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Prodotti per pagina:</strong> <span id="filled-products-count">0</span></p>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nome Prodotto</th>
+                                <th>Modello</th>
+                                <th>Prezzo Unitario</th>
+                                <th>Quantità</th>
+                                <th>Prezzo Totale</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in tab.products %}
+                                {% if product|length >= 4 and product[0] and product[1] and product[2] and product[3] %}
+                                    {% set filled_products = filled_products + 1 %}
+                                    {% set product_price = product[2]|float %}
+                                    {% set product_quantity = product[3]|float %}
+                                    {% set product_total = (product_price * product_quantity)|round(2) %}
+                                    {% set multi_product_total = multi_product_total + product_total %}
+                                    <tr>
+                                        <td>{{ product[0] }}</td>
+                                        <td>{{ product[1] }}</td>
+                                        <td class="product-price">{{ "%.2f"|format(product_price) }} €</td>
+                                        <td class="product-quantity">{{ product_quantity }}</td>
+                                        <td class="product-total">{{ "%.2f"|format(product_total) }} €</td>
+                                        <td>{{ product[4] if product|length > 4 else '' }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-light">
+                                <th colspan="4" class="text-end">Totale multiprodotto:</th>
+                                <th id="multi-product-total" data-total="{{ multi_product_total }}">{{ "%.2f"|format(multi_product_total) }} €</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Aggiungiamo il totale di questa scheda al totale complessivo -->
+        {% set grand_total = grand_total + multi_product_total %}
+    {% endif %}
+{% endfor %}
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-file-alt me-2"></i> Riepilogo Offerta
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Numero Offerta:</strong> {{ offerta.offer_number }}</p>
+                <p><strong>Data:</strong> {{ offerta.date }}</p>
+                <p><strong>Cliente:</strong> {{ offerta.customer }}</p>
+                <p><strong>Email Cliente:</strong> {{ offerta.customer_email }}</p>
+                <p><strong>Indirizzo:</strong> {{ offerta.address }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Descrizione:</strong> {{ offerta.offer_description }}</p>
+                <div class="alert alert-success alert-permanent mt-3">
+                    <h5 class="mb-0">Prezzo Totale: <span id="totalPrice">€0.00</span></h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ url_for('download_pdf', offerta_id=offerta.id) }}" class="btn btn-primary me-2">
+                <i class="fas fa-file-pdf me-2"></i> Genera PDF
+            </a>
+            <button class="btn btn-success" onclick="saveOffer()">
+                <i class="fas fa-save me-2"></i> Salva Offerta
+            </button>
+        </div>
+
+        <!-- Messaggio di stato spostato in fondo -->
+        <div class="alert {% if offerta.status == 'accepted' %}alert-success{% else %}alert-warning{% endif %} alert-permanent mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas {% if offerta.status == 'accepted' %}fa-check-circle{% else %}fa-clock{% endif %} me-2"></i>
+                    <strong>Stato attuale:</strong> 
+                    {% if offerta.status == 'accepted' %}
+                        Offerta Accettata
+                    {% else %}
+                        Offerta in Attesa
+                    {% endif %}
+                </div>
+                <div>
+                    <button class="btn btn-sm {% if offerta.status == 'accepted' %}btn-warning{% else %}btn-success{% endif %} me-2" 
+                            onclick="updateOfferStatus('{{ offerta.id }}', '{% if offerta.status == 'accepted' %}pending{% else %}accepted{% endif %}')">
+                        <i class="fas {% if offerta.status == 'accepted' %}fa-clock{% else %}fa-check-circle{% endif %} me-1"></i>
+                        {% if offerta.status == 'accepted' %}
+                            Metti in Attesa
+                        {% else %}
+                            Accetta Offerta
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="saveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            <strong class="me-auto">Successo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Offerta salvata con successo!
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Aggiorna i totali nella visualizzazione dell'offerta
+    function updateTotals() {
+        let grandTotal = 0;
+        
+        // Calcola il totale dei prodotti singoli (prezzi totali in azzurro)
+        document.querySelectorAll('.alert-info h3[data-price]').forEach(priceElement => {
+            const price = parseFloat(priceElement.getAttribute('data-price')) || 0;
+            grandTotal += price;
+        });
+        
+        // Calcola il totale dei prodotti multipli e aggiorna i conteggi
+        document.querySelectorAll('#multi-product-total').forEach(totalElement => {
+            // Trova la tabella contenente il totalElement
+            const table = totalElement.closest('table');
+            if (table) {
+                let multiProductTotal = 0;
+                let filledRows = 0;
+                
+                // Calcola il totale dei prodotti nella tabella
+                table.querySelectorAll('tbody tr').forEach(row => {
+                    const priceCell = row.querySelector('.product-price');
+                    const quantityCell = row.querySelector('.product-quantity');
+                    
+                    if (priceCell && quantityCell) {
+                        const price = parseFloat(priceCell.textContent.replace('€', '').trim()) || 0;
+                        const quantity = parseFloat(quantityCell.textContent) || 0;
+                        const rowTotal = price * quantity;
+                        
+                        multiProductTotal += rowTotal;
+                        filledRows++;
+                        
+                        // Aggiorna il prezzo totale nella cella della riga
+                        const totalCell = row.querySelector('.product-total');
+                        if (totalCell) {
+                            totalCell.textContent = rowTotal.toFixed(2) + ' €';
+                        }
+                    }
+                });
+                
+                // Aggiorna il totale della scheda multiprodotto
+                totalElement.textContent = multiProductTotal.toFixed(2) + ' €';
+                totalElement.setAttribute('data-total', multiProductTotal);
+                grandTotal += multiProductTotal;
+                
+                // Aggiorna il conteggio dei prodotti per pagina
+                const filledProductsCount = table.closest('.card').querySelector('#filled-products-count');
+                if (filledProductsCount) {
+                    filledProductsCount.textContent = filledRows;
+                }
+            }
+        });
+        
+        // Aggiorna il prezzo totale
+        const totalPriceElement = document.getElementById('totalPrice');
+        if (totalPriceElement) {
+            totalPriceElement.textContent = '€' + grandTotal.toFixed(2);
+        }
+    }
+    
+    // Chiama updateTotals quando la pagina è caricata
+    updateTotals();
+});
+
+function updateOfferStatus(offerId, newStatus) {
+    fetch(`/update_offer_status/${offerId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Ricarica la pagina per mostrare il nuovo stato
+            window.location.reload();
+        } else {
+            alert('Errore durante l\'aggiornamento dello stato dell\'offerta');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Errore durante l\'aggiornamento dello stato dell\'offerta');
+    });
+}
+
+function saveOffer() {
+    fetch(`/offerta/{{ offerta.id }}/salva`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Mostra il toast di successo
+            const toast = new bootstrap.Toast(document.getElementById('saveToast'));
+            toast.show();
+        } else {
+            // Mostra un toast di errore
+            const toastElement = document.getElementById('saveToast');
+            toastElement.querySelector('.toast-header i').className = 'fas fa-exclamation-circle text-danger me-2';
+            toastElement.querySelector('.toast-header strong').textContent = 'Errore';
+            toastElement.querySelector('.toast-body').textContent = `Errore durante il salvataggio: ${data.error}`;
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+    })
+    .catch(error => {
+        // Mostra un toast di errore
+        const toastElement = document.getElementById('saveToast');
+        toastElement.querySelector('.toast-header i').className = 'fas fa-exclamation-circle text-danger me-2';
+        toastElement.querySelector('.toast-header strong').textContent = 'Errore';
+        toastElement.querySelector('.toast-body').textContent = 'Errore durante il salvataggio. Riprova più tardi.';
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    });
+}
+</script>
+{% endblock %}
