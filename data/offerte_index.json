@@ -158,5 +158,21 @@
         "customer": "Cliente di prova",
         "customer_email": "prova1@fafas.it",
         "description": "adsasdsdaascd"
+    },
+    {
+        "id": "63ce52da-d8e5-4b6d-89da-d73f6bb6925f",
+        "offer_number": "2025-0062",
+        "date": "2025-05-10",
+        "customer": "fhqihefvehf",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "9d3cc099-1e23-4b9e-a3d6-687dd959cf44",
+        "offer_number": "2025-0063",
+        "date": "2025-05-10",
+        "customer": "bfeobfljefel",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
     }
 ]

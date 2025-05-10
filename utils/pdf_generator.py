@@ -5,6 +5,7 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.utils import ImageReader
 import datetime
+from utils.format_utils import format_price
 
 def generate_pdf(offerta, app_root):
     """Genera il PDF con i dati delle schede."""
@@ -241,7 +242,7 @@ def generate_pdf(offerta, app_root):
                     y_position -= 40
 
                 c.setFont("Times-Bold", 14)
-                c.drawString(50, height - 630, f"PREZZO FORNITURA: {tab_total_price:.2f} €")
+                c.drawString(50, height - 630, f"PREZZO FORNITURA: {format_price(tab_total_price)} €")
                 
                 # Aggiorna il prezzo totale dell'offerta
                 total_offer_price += tab_total_price
@@ -445,7 +446,7 @@ def generate_pdf(offerta, app_root):
                 c.setFillColorRGB(0, 0, 0, alpha=1)
                 c.drawString(60, y_position, f"PREZZO DI LISTINO:")
 
-                c.drawString(250, y_position, f"€ {prezzo_list:.2f} iva ESCLUSA")
+                c.drawString(250, y_position, f"€ {format_price(prezzo_list)} iva ESCLUSA")
                 y_position -= 30
                 c.drawString(60, y_position, f"SCONTO")
                 c.drawString(250, y_position, f"{tab.get('discount', '0')} %")
@@ -455,12 +456,12 @@ def generate_pdf(offerta, app_root):
                 except ValueError:
                     discount = 0
                 c.drawString(60, y_position, f"PREZZO SCONTATO:")
-                c.drawString(250, y_position, f"€ {prezzo_list - (discount / 100) * prezzo_list:.2f} iva ESCLUSA")
+                c.drawString(250, y_position, f"€ {format_price(prezzo_list - (discount / 100) * prezzo_list)} iva ESCLUSA")
             else:
                 y_position1 = y_position - 43
                 c.setFillColorRGB(0, 0, 0, alpha=1)
                 c.drawString(60, y_position1, f"PREZZO SCONTATO:")
-                c.drawString(250, y_position1, f"€ {prezzo_list:.2f} iva ESCLUSA")
+                c.drawString(250, y_position1, f"€ {format_price(prezzo_list)} iva ESCLUSA")
     
             # Footer
             c.setFont("Times-Roman", 9)
@@ -522,7 +523,7 @@ def generate_pdf(offerta, app_root):
     # Condizioni dell'offerta
     c.setFont("Times-Roman", 12)
     y_position = 650
-    sp = 40
+    sp = 35
     c.drawString(60, y_position, "Garanzia:")
     c.drawString(60, y_position-sp, "Validità Offerta:")
     c.drawString(60, y_position-2*sp, "Termini di consegna:")
@@ -549,7 +550,7 @@ def generate_pdf(offerta, app_root):
     c.drawString(250, y_position-10*sp, "I prezzi indicati in offerta sono da considerarsi al netto IVA")
     
     c.setFont("Times-Bold", 16)
-    c.drawString(50,height-635, f"Prezzo totale offerta = {total_offer_price:.2f} €")
+    c.drawString(50,height-620, f"Prezzo totale offerta : {format_price(total_offer_price)} €")
 
     # Linea tratteggiata finale
     c.setDash(3, 2)

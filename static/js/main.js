@@ -100,27 +100,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Aggiorna i totali nella visualizzazione dell'offerta
     function updateTotals() {
-        const priceElements = document.querySelectorAll('.product-price');
-        const quantityElements = document.querySelectorAll('.product-quantity');
-        const totalElements = document.querySelectorAll('.product-total');
-        
         let grandTotal = 0;
         
-        for (let i = 0; i < priceElements.length; i++) {
-            const price = parseFloat(priceElements[i].textContent) || 0;
-            const quantity = parseFloat(quantityElements[i].textContent) || 0;
-            const total = price * quantity;
-            
-            if (totalElements[i]) {
-                totalElements[i].textContent = total.toFixed(2) + ' €';
-            }
-            
-            grandTotal += total;
-        }
+        // Calcola il totale dei prodotti singoli
+        document.querySelectorAll('.alert-info h3[data-price]').forEach(priceElement => {
+            const price = parseFloat(priceElement.getAttribute('data-price')) || 0;
+            grandTotal += price;
+            priceElement.textContent = formatPrice(price) + ' €';
+        });
         
-        const grandTotalElement = document.getElementById('grand-total');
-        if (grandTotalElement) {
-            grandTotalElement.textContent = grandTotal.toFixed(2) + ' €';
+        // Aggiorna i totali delle tabelle multiprodotto
+        document.querySelectorAll('#multi-product-total').forEach(totalElement => {
+            const total = parseFloat(totalElement.getAttribute('data-total')) || 0;
+            totalElement.textContent = formatPrice(total) + ' €';
+            grandTotal += total;
+        });
+        
+        // Aggiorna il prezzo totale
+        const totalPriceElement = document.getElementById('totalPrice');
+        if (totalPriceElement) {
+            totalPriceElement.textContent = '€ ' + formatPrice(grandTotal);
         }
     }
     
@@ -258,5 +257,23 @@ function updateMultiProdCharCount(input, maxLength) {
     } else {
         counter.parentElement.classList.add('text-muted');
         counter.parentElement.classList.remove('text-danger');
+    }
+}
+
+/**
+ * Funzione per formattare i prezzi
+ */
+function formatPrice(value) {
+    try {
+        const num = parseFloat(value);
+        if (isNaN(num)) return "0,00";
+        
+        const integerPart = Math.floor(num);
+        const decimalPart = Math.round((num - integerPart) * 100);
+        
+        const formattedInteger = integerPart.toLocaleString('it-IT').replace(/\./g, ',').replace(/,/g, '.');
+        return `${formattedInteger},${decimalPart.toString().padStart(2, '0')}`;
+    } catch (error) {
+        return "0,00";
     }
 }
