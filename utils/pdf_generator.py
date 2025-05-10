@@ -208,7 +208,7 @@ def generate_pdf(offerta, app_root):
                 page_products = products[i:i + max_items_per_page]
                 y_position = height - 150
                 for product in page_products:
-                    nome, modello, prezzo_unitario, quantita, descrizione = product
+                    nome, _, prezzo_unitario, quantita, descrizione = product
 
                     try:
                         prezzo_unitario = float(prezzo_unitario)
@@ -223,7 +223,6 @@ def generate_pdf(offerta, app_root):
                     c.setFillColorRGB(0, 0, 0, alpha=1)
                     c.setFont("Times-Bold", 12)
                     c.drawString(60, y_position - 15, f"Nome: {nome}")
-                    c.drawString(300, y_position - 15, f"Modello: {modello}")
                     c.line(50, y_position - 20, width - 50, y_position - 20)
                     c.line(50, y_position, width - 50, y_position)
 
@@ -373,7 +372,6 @@ def generate_pdf(offerta, app_root):
 
             text = [
                 f"NOME PRODOTTO: {product_name}",
-                f"MODELLO: {product_code}",
                 f"CARATTERISTICHE TECNICHE",
                 f"TENSIONE:                                     {volts}",
                 f"POTENZA:                                      {power}",
@@ -395,12 +393,8 @@ def generate_pdf(offerta, app_root):
                     c.setFillColorRGB(0, 0, 0, alpha=1)
                     c.drawString(60, height - 145, text[i])
                     c.setFont("Times-Roman", 12)
-                    c.drawString(50, height - 125, text[8])
-                elif i == 1:
-                    c.setFont("Times-Bold", 12)
-                    c.setFillColorRGB(0, 0, 0, alpha=1)
-                    c.drawString(350, height - 145, text[i])
-                elif i == 2:
+                    c.drawString(50, height - 125, text[7])
+                elif i == 1:  # This now handles the "CARATTERISTICHE TECNICHE" section
                     c.setFillColorRGB(128 / 256, 128 / 256, 128 / 256, alpha=0.3)
                     c.setStrokeColorRGB(0, 0, 0, alpha=0)
                     c.rect(60 + new_width, height - (fix + 3), width - (new_width + 110), 20, fill=1, stroke=1)
@@ -411,11 +405,11 @@ def generate_pdf(offerta, app_root):
                     c.line(60 + new_width, height - (fix + 3), width - 50, height - (fix + 3))
 
                     c.setFillColorRGB(0, 0, 0, alpha=1)
-                    c.drawString(80 + new_width, height - (fix - 2), text[2])
+                    c.drawString(80 + new_width, height - (fix - 2), text[1])
 
                     fix = fix + sp
 
-                elif i not in (0, 1, 2, 8):
+                elif i not in (0, 1, 7):
                     c.setFont("Times-Roman", 12)
                     c.setLineWidth(0.5)
                     c.setStrokeColorRGB(0, 0, 0, alpha=0.6)

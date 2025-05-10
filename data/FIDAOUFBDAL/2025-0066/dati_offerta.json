@@ -1,0 +1,41 @@
+{
+    "date": "2025-05-10",
+    "customer": "fidaoufbdal",
+    "customer_email": "cdkhbv@cdihboab.it",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0066",
+    "id": "620f58c9-19d0-4dba-92f2-fe8544e54c11",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "ifgoudafhaò",
+            "product_name": "fjvakhvah",
+            "quantity": "1",
+            "unit_price": "2544",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "4",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "fdafoad",
+                    "38545",
+                    "4545",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0066.pdf"
+}

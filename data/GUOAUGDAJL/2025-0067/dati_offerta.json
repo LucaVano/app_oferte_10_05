@@ -1,0 +1,41 @@
+{
+    "date": "2025-05-10",
+    "customer": "guoaugdajl",
+    "customer_email": "efih@fiuygyfigw.com",
+    "address": "sjcoadj",
+    "offer_description": "",
+    "offer_number": "2025-0067",
+    "id": "97c2f5fe-df9a-4dbf-9fb4-3e11bfed7530",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "fkdjbfljadbf",
+            "product_name": "fdbadjaf.f",
+            "quantity": "3",
+            "unit_price": "45343",
+            "description": "",
+            "discount": "73",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "eifdaf",
+                    "fdafj",
+                    "74384",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0067.pdf"
+}
