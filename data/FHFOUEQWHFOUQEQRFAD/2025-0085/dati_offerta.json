@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-14",
+    "customer": "fhfoueqwhfouqeqrfad",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "Panoramica 2",
+    "offer_description": "fkeqfoqofuh 9pgf9eufouq \r\nfqeoufqeufqeuohfehf ue9fqeufhqehpfqe\r\ngugf9ufhhvcefqifeq ufehfaiòefòeiqfnkad",
+    "offer_number": "2025-0085",
+    "id": "2f6edd56-e180-48c6-ab09-b8aa541832f1",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "kdfoahòfi",
+            "quantity": "1",
+            "unit_price": "4355",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0085.pdf"
+}

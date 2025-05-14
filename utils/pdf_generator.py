@@ -114,20 +114,27 @@ def generate_pdf(offerta, app_root):
     
     # Oggetto dell'offerta
     c.setFont("Times-Bold", 14)
-    c.drawString(50, height - 360, "Oggetto offerta:")
-    text_width = c.stringWidth("Oggetto offerta:", "Times-Bold", 16)
+    c.drawString(50, height - 360, "OGGETTO OFFERTA:")
+    text_width = c.stringWidth("OGGETTO OFFERTA: ", "Times-Bold", 14)
     c.setFont("Times-Roman", 14)
     c.drawString(text_width + 50, height - 360, "Abbiamo il piacere di presentare la ns. Offerta per la fornitura ")
     c.drawString(text_width + 50, height - 375, "di attrezzature per cucina.")
     
     # Descrizione offerta
     c.setFont("Times-Bold", 14)
-    offer_description_text = f"<b>Descrizione offerta:</b> {offerta['offer_description']}"
-    para = Paragraph(offer_description_text, ParagraphStyle(name="CustomStyle", fontSize=14, leading=20))
+    c.drawString(50, height - 400, "DESCRIZIONE OFFERTA:")
+    
+    description_text = offerta['offer_description']
+    para = Paragraph(description_text, ParagraphStyle(
+        name="DescriptionStyle",
+        fontSize=12,
+        fontName="Times-Roman",
+        leading=20
+    ))
     available_width = width - 100
-    available_height = height - 400
+    available_height = height - 410  # Moved down to account for title
     _, para_height = para.wrap(available_width, available_height)
-    para.drawOn(c, 50, height - 400 - para_height)
+    para.drawOn(c, 50, height - 410 - para_height)
     
     # Testo finale
     c.setFont("Times-Roman", 12)
@@ -235,13 +242,13 @@ def generate_pdf(offerta, app_root):
                     c.rect(50, y_position - 20, width - 100, 20, fill=1, stroke=0)
                     c.setFillColorRGB(0, 0, 0, alpha=1)
                     c.setFont("Times-Bold", 12)
-                    c.drawString(60, y_position - 15, f"Nome: {nome}")
+                    c.drawString(60, y_position - 15, f"NOME PRODOTTO: {nome}")
                     c.line(50, y_position - 20, width - 50, y_position - 20)
                     c.line(50, y_position, width - 50, y_position)
 
                     y_position -= 40
                     c.setFont("Times-Bold", 12)
-                    c.drawString(50, y_position, "Descrizione:")
+                    c.drawString(50, y_position, "DESCRIZIONE:")
                     description_paragraph = Paragraph(descrizione, custom_style)
                     available_width = width - 100
                     _, para_height = description_paragraph.wrap(available_width, y_position - 15)
@@ -249,8 +256,8 @@ def generate_pdf(offerta, app_root):
                     y_position -= 35 + para_height
 
                     c.setFont("Times-Bold", 12)
-                    c.drawString(50, y_position, f"Prezzo Unitario: {format_price(prezzo_unitario)} €")
-                    c.drawString(300, y_position, f"Quantità: {quantita:.0f}")
+                    c.drawString(50, y_position, f"PREZZO UNITARIO: {format_price(prezzo_unitario)} €")
+                    c.drawString(300, y_position, f"QUANTITA': {quantita:.0f}")
                     y_position -= 40
 
                 c.setFont("Times-Bold", 14)
@@ -450,16 +457,17 @@ def generate_pdf(offerta, app_root):
             c.setFillColorRGB(0, 0, 0, alpha=1)
             c.drawString(50, height - (fix+spazio), f"DESCRIZIONE PRODOTTO")
 
-            y_position = height - 565
+            y_position = height - 590
+            c.setFont("Times-Bold", 14)
             if tab.get('discount_flag'):
                 c.setFillColorRGB(0, 0, 0, alpha=1)
                 c.drawString(60, y_position, f"PREZZO DI LISTINO:")
 
                 c.drawString(250, y_position, f"€ {format_price(prezzo_list)} iva ESCLUSA")
-                y_position -= 30
+                y_position -= 20
                 c.drawString(60, y_position, f"SCONTO")
                 c.drawString(250, y_position, f"{tab.get('discount', '0')} %")
-                y_position -= 30
+                y_position -= 20
                 try:
                     discount = float(tab.get('discount', 0))
                 except ValueError:
@@ -467,7 +475,7 @@ def generate_pdf(offerta, app_root):
                 c.drawString(60, y_position, f"PREZZO SCONTATO:")
                 c.drawString(250, y_position, f"€ {format_price(prezzo_list - (discount / 100) * prezzo_list)} iva ESCLUSA")
             else:
-                y_position1 = y_position - 43
+                y_position1 = y_position - 40
                 c.setFillColorRGB(0, 0, 0, alpha=1)
                 c.drawString(60, y_position1, f"PREZZO SCONTATO:")
                 c.drawString(250, y_position1, f"€ {format_price(prezzo_list)} iva ESCLUSA")
@@ -560,7 +568,7 @@ def generate_pdf(offerta, app_root):
     c.drawString(250, y_position-9*sp, "Riserva di proprietà ai sensi dell'art. 1523 del Codice Civile.")
     c.drawString(250, y_position-10*sp, "I prezzi indicati in offerta sono da considerarsi al netto IVA")
     
-    c.setFont("Times-Bold", 16)
+    c.setFont("Times-Bold", 14)
     c.drawString(50,height-620, f"PREZZO TOTALE OFFERTA : {format_price(total_offer_price)} €")
 
     # Linea tratteggiata finale

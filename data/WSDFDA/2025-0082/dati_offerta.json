@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-14",
+    "customer": "wsdfda",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0082",
+    "id": "aeb83baa-ff83-4b29-84c0-2b6cf4bdbd1f",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "efdafda",
+            "quantity": "1",
+            "unit_price": "423",
+            "description": "",
+            "discount": "30",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0082.pdf"
+}

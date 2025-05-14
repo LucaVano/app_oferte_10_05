@@ -1,0 +1,48 @@
+{
+    "date": "2025-05-14",
+    "customer": "FAKFULA",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "fudfougedfpu h08rgpwrgpihwrgwr",
+    "offer_number": "2025-0081",
+    "id": "82c2096e-64b4-4e83-bd00-bad86e888ac7",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "fdfuqelfqe",
+            "quantity": "1",
+            "unit_price": "45345",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "5r434",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "fkqdfjlqeb",
+                    "fkjeqouf",
+                    "4253",
+                    "1",
+                    ""
+                ],
+                [
+                    "fljqdfjqbd",
+                    "eeeeee",
+                    "20",
+                    "10",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0081.pdf"
+}

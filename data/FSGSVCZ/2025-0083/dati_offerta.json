@@ -1,0 +1,27 @@
+{
+    "date": "2025-05-14",
+    "customer": "fsgsvcz",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0083",
+    "id": "b81da4c6-cda7-4e3b-8cd5-65d32b4f1951",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "davsdvsdz",
+            "quantity": "1",
+            "unit_price": "3454",
+            "description": "",
+            "discount": "23.00",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3v",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0083.pdf"
+}

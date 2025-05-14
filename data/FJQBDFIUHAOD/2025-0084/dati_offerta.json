@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-14",
+    "customer": "fjqbdfiuhaod",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "fkjdafoadhfo hf hf0qhfe0ihfq0eh f0heq0hfeq0h equ0f e0q fq\r\nefi0heguehfu0pif hpi f0ehf qpih hifqe \r\nfeq0hf0qehvnh0ueh8ghr0w jrw",
+    "offer_number": "2025-0084",
+    "id": "2c908aee-1b95-4396-9567-333ec4ae6b45",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "ugt7tfutuf",
+            "quantity": "1",
+            "unit_price": "3463",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "34",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0084.pdf"
+}
