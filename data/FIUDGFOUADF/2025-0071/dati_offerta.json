@@ -1,0 +1,27 @@
+{
+    "date": "2025-05-14",
+    "customer": "fiudgfouadf",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0071",
+    "id": "2a0d2c4f-8422-4621-981a-fc13b4998d82",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "v9shv0h hepfad",
+            "product_name": "vduogfoaduf",
+            "quantity": "1",
+            "unit_price": "3432",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "2324",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0071.pdf"
+}

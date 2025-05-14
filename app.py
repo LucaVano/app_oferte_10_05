@@ -329,10 +329,10 @@ def process_form_final(form, files):
             logging.info(f"Valore finale di image_path per tab {idx}: {image_path}")
             
             # Crea la scheda prodotto singolo
-            if product_name and product_code:  # Solo se i campi essenziali sono presenti
+            if product_name:  # Rimuovi il controllo su product_code per permettere l'inserimento senza modello
                 single_product_tab = {
                     'type': 'single_product',
-                    'product_code': product_code,
+                    'product_code': product_code, # Può essere vuoto
                     'product_name': product_name,
                     'quantity': quantity,
                     'unit_price': unit_price,
@@ -349,7 +349,7 @@ def process_form_final(form, files):
                 logging.info(f"Aggiunto prodotto singolo: {product_name}")
                 tabs.append(single_product_tab)
             else:
-                logging.warning(f"Saltato prodotto singolo per tab {idx} - dati essenziali mancanti")
+                logging.warning(f"Saltato prodotto singolo per tab {idx} - nome prodotto mancante")
         
         elif tab_type == 'multi_product':
             products = []

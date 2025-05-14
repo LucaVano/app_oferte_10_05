@@ -1,0 +1,56 @@
+{
+    "date": "2025-05-14",
+    "customer": "fiudgofuabl",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "fljdbfjlad",
+    "offer_description": "",
+    "offer_number": "2025-0073",
+    "id": "337070e6-744a-426b-a84c-dc9b9a116179",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "fdbfoudaf",
+            "quantity": "1",
+            "unit_price": "20000",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "3434",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "dfjadouf",
+                    "fjbdljbf",
+                    "345",
+                    "3",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        },
+        {
+            "type": "single_product",
+            "product_code": "fiygfoaduf",
+            "product_name": "fkjadblfjabd",
+            "quantity": "1",
+            "unit_price": "10000",
+            "description": "fkhbdfoo oefuhpfuohqepfhpeqih fheqp ihfpah pf uhph adpfh ad",
+            "discount": "10",
+            "discount_flag": true,
+            "power_w": "6235",
+            "volts": "4536",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0073.pdf"
+}

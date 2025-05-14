@@ -154,6 +154,19 @@ def generate_pdf(offerta, app_root):
     c.setFont("Times-Roman", 7)
     c.drawString(50, height - diff - 60, "I modelli e le specifiche tecniche dei prodotti indicati possono subire variazioni senza preavviso.")
     
+    # numero di pagina 1
+    c.setFont("Times-Roman", 9)
+    c.drawString(width/2, height - diff - 80, "Pagina 1")
+
+    def draw_page_number(canvas, doc):
+        """Disegna il numero di pagina centrato in basso"""
+        canvas.saveState()
+        canvas.setFont('Times-Roman', 9)
+        page_num = canvas.getPageNumber()
+        text = f"Pagina {page_num}" 
+        canvas.drawCentredString(width/2.0, height-diff-80, text)
+        canvas.restoreState()
+
     # Processa i tab
     for tab in offerta.get('tabs', []):
         if tab["type"] == "multi_product":
@@ -264,6 +277,8 @@ def generate_pdf(offerta, app_root):
                 c.drawString(450, height - diff - 40, "info@valtservice.com")
                 c.setFont("Times-Roman", 7)
                 c.drawString(50, height - diff - 60, "I modelli e le specifiche tecniche dei prodotti indicati possono subire variazioni senza preavviso.")
+
+                draw_page_number(c, None)
 
         else:
             # Pagina per prodotto singolo
@@ -470,6 +485,8 @@ def generate_pdf(offerta, app_root):
             c.drawString(450, height - diff - 40, "info@valtservice.com")
             c.setFont("Times-Roman", 7)
             c.drawString(50, height - diff - 60, "I modelli e le specifiche tecniche dei prodotti indicati possono subire variazioni senza preavviso.")
+
+            draw_page_number(c, None)
     
     # Aggiungi pagina finale (condizioni)
     c.showPage()
@@ -565,6 +582,8 @@ def generate_pdf(offerta, app_root):
     c.drawString(450, height - diff - 40, "info@valtservice.com")
     c.setFont("Times-Roman", 7)
     c.drawString(50, height - diff - 60, "I modelli e le specifiche tecniche dei prodotti indicati possono subire variazioni senza preavviso.")
+
+    draw_page_number(c, None)
 
     # Salva il PDF
     c.save()

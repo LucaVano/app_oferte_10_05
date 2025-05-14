@@ -1,0 +1,43 @@
+{
+    "date": "2025-05-14",
+    "customer": "fkiuqefougeaf",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0074",
+    "id": "a87a3268-da49-4ed3-9fae-aec492a6068c",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "ckhdacvh",
+            "quantity": "1",
+            "unit_price": "3433",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "VJDQKBFOADB",
+            "quantity": "1",
+            "unit_price": "35424",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0074.pdf"
+}
