@@ -111,17 +111,17 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <p><strong>Prezzo Unitario:</strong> {{ "%.2f"|format(prezzo_unitario) }} €</p>
+                                <p><strong>Prezzo Unitario:</strong> {{ format_price(prezzo_unitario) }} €</p>
                                 <p><strong>Quantità:</strong> {{ tab.quantity }}</p>
                                 {% if tab.discount_flag %}
                                     <p><strong>Sconto:</strong> {{ tab.discount }}%</p>
-                                    <p><strong>Prezzo Scontato:</strong> {{ "%.2f"|format(prezzo_scontato) }} €</p>
+                                    <p><strong>Prezzo Scontato:</strong> {{ format_price(prezzo_scontato) }} €</p>
                                 {% endif %}
                             </div>
                             <div class="col-md-6">
                                 <div class="alert alert-info alert-permanent">
                                     <h5 class="alert-heading">Prezzo Totale</h5>
-                                    <h3 class="mb-0" data-price="{{ prezzo_totale }}">{{ "%.2f"|format(prezzo_totale) }} €</h3>
+                                    <h3 class="mb-0" data-price="{{ prezzo_totale }}">{{ format_price(prezzo_totale) }} €</h3>
                                     <small class="text-muted">IVA esclusa</small>
                                 </div>
                             </div>
@@ -180,9 +180,9 @@
                                     <tr>
                                         <td>{{ product[0] }}</td>
                                         <td class="text-muted fst-italic">{{ product[1] }}</td>
-                                        <td class="product-price">{{ "%.2f"|format(product_price) }} €</td>
-                                        <td class="product-quantity">{{ product_quantity }}</td>
-                                        <td class="product-total">{{ "%.2f"|format(product_total) }} €</td>
+                                        <td class="product-price">{{ format_price(product_price) }} €</td>
+                                        <td class="product-quantity">{{ format_price(product_quantity) }}</td>
+                                        <td class="product-total">{{ format_price(product_total) }} €</td>
                                         <td>{{ product[4] if product|length > 4 else '' }}</td>
                                     </tr>
                                 {% endif %}
@@ -192,7 +192,7 @@
                             <tr class="table-light">
                                 <th colspan="4" class="text-end">Totale scheda:</th>
                                 <th colspan="2" id="multi-product-total" data-total="{{ multi_product_total }}">
-                                    {{ "%.2f"|format(multi_product_total) }} €
+                                    {{ format_price(multi_product_total) }} €
                                 </th>
                             </tr>
                         </tfoot>
@@ -224,7 +224,7 @@
             <div class="col-md-6">
                 <p><strong>Descrizione:</strong> {{ offerta.offer_description }}</p>
                 <div class="alert alert-success alert-permanent mt-3">
-                    <h5 class="mb-0">Prezzo Totale: <span id="totalPrice">€0.00</span></h5>
+                    <h5 class="mb-0">Prezzo Totale: <span id="totalPrice">{{ format_price(grand_total) }} €</span></h5>
                 </div>
             </div>
         </div>

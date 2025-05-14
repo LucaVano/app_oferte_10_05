@@ -9,6 +9,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 from utils.pdf_generator import generate_pdf
 from auth import init_auth, login_required
+from utils.format_utils import format_price
 
 app = Flask(__name__)
 app.secret_key = 'valtservice_secret_key'  # Assicurati sia una stringa sicura in produzione
@@ -31,6 +32,10 @@ def allowed_file(filename):
 def inject_now():
     """Inietta la data attuale nei template"""
     return {'now': datetime.now()}
+
+@app.context_processor
+def utility_processor():
+    return dict(format_price=format_price)
 
 def get_next_offer_number():
     """Genera il prossimo numero di offerta nel formato YYYY-XXXX"""

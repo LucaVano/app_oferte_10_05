@@ -1,0 +1,40 @@
+{
+    "date": "2025-05-14",
+    "customer": "fkhadgbad",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0087",
+    "id": "a3c48377-2188-4b1a-a577-d34906c93465",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "fadhfihaf",
+                    "",
+                    "3232",
+                    "3",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        },
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "uhsvfhakbsfdk",
+            "quantity": "1",
+            "unit_price": "3222",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0087.pdf"
+}

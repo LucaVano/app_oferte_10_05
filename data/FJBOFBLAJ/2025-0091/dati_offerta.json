@@ -1,0 +1,48 @@
+{
+    "date": "2025-05-14",
+    "customer": "fjbofblaj",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0091",
+    "id": "3123303b-aba8-4dc2-ae13-00aef5b542e9",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "cnscka ",
+            "quantity": "1",
+            "unit_price": "2432",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "hsidvaskh",
+                    "",
+                    "2311",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "totals": {
+        "tab_totals": {
+            "tab_0": 2432.0,
+            "tab_1": 2311.0
+        },
+        "total_offer_price": 4743.0
+    },
+    "pdf_path": "offerta_2025-0091.pdf"
+}

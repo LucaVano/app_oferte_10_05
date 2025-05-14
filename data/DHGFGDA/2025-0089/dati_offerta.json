@@ -1,0 +1,48 @@
+{
+    "date": "2025-05-14",
+    "customer": "dhgfgda",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0089",
+    "id": "7b2ab400-ad53-4b1d-938e-3a0c093bedbb",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "djqfilqgdfiqd",
+            "quantity": "1",
+            "unit_price": "3000",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "wrewww",
+                    "",
+                    "2000",
+                    "5",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "totals": {
+        "tab_totals": {
+            "tab_0": 3000.0,
+            "tab_1": 10000.0
+        },
+        "total_offer_price": 13000.0
+    },
+    "pdf_path": "offerta_2025-0089.pdf"
+}
