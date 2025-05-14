@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
             priceElement.textContent = formatPrice(price) + ' €';
         });
         
-        // Aggiorna i totali delle tabelle multiprodotto
+        // Calcola il totale dei prodotti multipli e aggiorna i conteggi
         document.querySelectorAll('#multi-product-total').forEach(totalElement => {
             const total = parseFloat(totalElement.getAttribute('data-total')) || 0;
-            totalElement.textContent = formatPrice(total) + ' €';
             grandTotal += total;
+            totalElement.textContent = formatPrice(total) + ' €';
         });
         
         // Aggiorna il prezzo totale
@@ -133,6 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inizializza l'auto-espansione dei textarea
     initAutoExpandTextareas();
+
+    // Gestione dei textarea per prodotti multipli
+    handleMultiProductTextarea();
 });
 
 /**
@@ -226,6 +229,24 @@ function initCharacterCounters() {
     });
 }
 
+// Funzione per aggiornare il contatore di caratteri
+function updateCharCount(textareaId, counterId) {
+    const textarea = document.getElementById(textareaId);
+    const counter = document.getElementById(counterId);
+    
+    if (textarea && counter) {
+        const currentLength = textarea.value.length;
+        counter.querySelector('span').textContent = currentLength;
+    }
+}
+
+// Funzione per aggiornare il contatore di caratteri per i prodotti multipli
+function updateMultiProdCharCount(input) {
+    const counter = input.nextElementSibling.querySelector('span');
+    const currentLength = input.value.length;
+    counter.textContent = currentLength;
+}
+
 // Funzione per aggiornare il contatore di caratteri (usata direttamente dagli elementi HTML)
 function updateCharCount(textareaId, counterId, maxLength) {
     const textarea = document.getElementById(textareaId);
@@ -285,15 +306,48 @@ function formatPrice(value) {
  * Funzione per gestire l'auto-espansione dei textarea
  */
 function initAutoExpandTextareas() {
+    // Handle regular textareas
     document.querySelectorAll('textarea.auto-expand').forEach(textarea => {
         textarea.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
         
-        // Imposta altezza iniziale
+        // Set initial height
         textarea.style.height = 'auto';
         textarea.style.height = (textarea.scrollHeight) + 'px';
+    });
+
+    // Handle table textareas
+    document.querySelectorAll('textarea.auto-expand-table').forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            this.style.height = '38px';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+        
+        // Set initial height
+        if (textarea.value) {
+            textarea.style.height = '38px';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+    });
+}
+
+/**
+ * Aggiorna la gestione dei textarea per prodotti multipli
+ */
+function handleMultiProductTextarea() {
+    document.querySelectorAll('textarea.auto-expand').forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            updateMultiProdCharCount(this, parseInt(this.getAttribute('maxlength')) || 200);
+        });
+        
+        // Set initial height
+        textarea.style.height = 'auto';
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+        updateMultiProdCharCount(textarea, parseInt(this.getAttribute('maxlength')) || 200);
     });
 }
 

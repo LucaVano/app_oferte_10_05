@@ -367,9 +367,20 @@ def process_form_final(form, files):
                     model = get_form_value(form, [f'product_{idx}model__{i}', f'product_model__{i}'])
                     price = get_form_value(form, [f'product_{idx}price__{i}', f'product_price__{i}'], '0')
                     quantity = get_form_value(form, [f'product_{idx}quantity__{i}', f'product_quantity__{i}'], '1')
-                    description = get_form_value(form, [f'product_{idx}description__{i}', f'product_description__{i}'])
+                    description = get_form_value(form, [
+                        f'product_{idx}description__{i}', 
+                        f'product_description__{i}',
+                        f'description_{idx}_{i}'
+                    ], '')  # Add more possible key patterns
                     
-                    products.append([name, model, price, quantity, description])
+                    # Ensure description is included in the product data
+                    products.append([
+                        name.strip(),
+                        model.strip(),
+                        price,
+                        quantity,
+                        description.strip()
+                    ])
             
             multi_product_tab = {
                 'type': 'multi_product',

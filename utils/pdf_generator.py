@@ -561,7 +561,7 @@ def generate_pdf(offerta, app_root):
     c.drawString(250, y_position-10*sp, "I prezzi indicati in offerta sono da considerarsi al netto IVA")
     
     c.setFont("Times-Bold", 16)
-    c.drawString(50,height-620, f"Prezzo totale offerta : {format_price(total_offer_price)} €")
+    c.drawString(50,height-620, f"PREZZO TOTALE OFFERTA : {format_price(total_offer_price)} €")
 
     # Linea tratteggiata finale
     c.setDash(3, 2)

@@ -76,16 +76,10 @@
         
         <div class="mb-3">
             <label for="description_{{ tab_index }}" class="form-label">Descrizione Prodotto</label>
-            <div class="position-relative">
-                <textarea class="form-control auto-expand description-input" 
-                          id="description_{{ tab_index }}" 
-                          name="description_{{ tab_index }}" 
-                          rows="4" maxlength="1000" 
-                          onkeyup="updateCharCount('description_{{ tab_index }}', 'charCount_{{ tab_index }}', 1000)">{{ tab.description|default('') if tab is defined and tab else '' }}</textarea>
-                <small id="charCount_{{ tab_index }}" class="form-text text-muted position-absolute bottom-0 end-0 p-1">
-                    <span>0</span>/1000 caratteri
-                </small>
-            </div>
+            <textarea class="form-control auto-expand description-input" 
+                      id="description_{{ tab_index }}" 
+                      name="description_{{ tab_index }}" 
+                      rows="4">{{ tab.description|default('') if tab is defined and tab else '' }}</textarea>
         </div>
         
         <div class="mb-3">
@@ -110,31 +104,5 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Rimuovo il codice che disabilita il campo sconto
-        
-        // Inizializza il contatore di caratteri
-        const textarea = document.getElementById('description_{{ tab_index }}');
-        if (textarea) {
-            updateCharCount('description_{{ tab_index }}', 'charCount_{{ tab_index }}', 1000);
-        }
     });
-    
-    // Funzione per aggiornare il contatore di caratteri
-    function updateCharCount(textareaId, counterId, maxLength) {
-        const textarea = document.getElementById(textareaId);
-        const counter = document.getElementById(counterId);
-        
-        if (textarea && counter) {
-            const currentLength = textarea.value.length;
-            counter.querySelector('span').textContent = currentLength;
-            
-            // Cambia colore se si avvicina al limite
-            if (currentLength >= maxLength * 0.9) {
-                counter.classList.add('text-danger');
-                counter.classList.remove('text-muted');
-            } else {
-                counter.classList.add('text-muted');
-                counter.classList.remove('text-danger');
-            }
-        }
-    }
 </script>

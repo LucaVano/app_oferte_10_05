@@ -45,13 +45,9 @@
                                         value="{{ tab.products[i][3] if i < tab.products|length else '1' }}">
                                 </td>
                                 <td>
-                                    <textarea class="form-control auto-expand" 
+                                    <textarea class="form-control auto-expand-table" 
                                               name="product_{{ tab_index }}description__{{ i }}" 
-                                              maxlength="200" 
-                                              onkeyup="updateMultiProdCharCount(this, 200)">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
-                                    <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
-                                        <span>0</span>/200 caratteri
-                                    </small>
+                                              rows="2">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn" disabled>
@@ -77,13 +73,9 @@
                                     <input type="number" step="1" min="1" class="form-control" name="product_{{ tab_index }}quantity__{{ i }}" value="1">
                                 </td>
                                 <td>
-                                    <textarea class="form-control auto-expand" 
+                                    <textarea class="form-control auto-expand-table" 
                                               name="product_{{ tab_index }}description__{{ i }}" 
-                                              maxlength="200" 
-                                              onkeyup="updateMultiProdCharCount(this, 200)">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
-                                    <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
-                                        <span>0</span>/200 caratteri
-                                    </small>
+                                              rows="2">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn" disabled>
@@ -135,27 +127,5 @@
         if (productCount) {
             productCount.value = 3;
         }
-        
-        // Inizializza tutti i contatori di caratteri
-        document.querySelectorAll('input[name^="product_{{ tab_index }}description__"]').forEach(function(input) {
-            updateMultiProdCharCount(input, 200);
-        });
     });
-    
-    // Funzione per aggiornare il contatore di caratteri
-    function updateMultiProdCharCount(input, maxLength) {
-        const counter = input.nextElementSibling.querySelector('span');
-        const currentLength = input.value.length;
-        
-        counter.textContent = currentLength;
-        
-        // Cambia colore se si avvicina al limite
-        if (currentLength >= maxLength * 0.9) {
-            counter.parentElement.classList.add('text-danger');
-            counter.parentElement.classList.remove('text-muted');
-        } else {
-            counter.parentElement.classList.add('text-muted');
-            counter.parentElement.classList.remove('text-danger');
-        }
-    }
 </script>

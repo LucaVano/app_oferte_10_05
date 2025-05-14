@@ -87,6 +87,10 @@ main {
     background-color: rgba(0, 116, 217, 0.05);
 }
 
+.table td {
+    vertical-align: top;
+}
+
 /* Animazioni e transizioni */
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
@@ -195,6 +199,13 @@ footer {
     transition: height 0.2s ease;
     resize: none;
     overflow-y: hidden;
+}
+
+.auto-expand-table {
+    min-height: 38px;
+    height: auto;
+    resize: vertical;
+    overflow-y: auto;
 }
 
 .description-input {

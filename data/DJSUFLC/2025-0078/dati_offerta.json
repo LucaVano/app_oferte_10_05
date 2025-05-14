@@ -1,0 +1,41 @@
+{
+    "date": "2025-05-14",
+    "customer": "djsuflc",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0078",
+    "id": "13630422-1c53-4805-b1ef-b61a4ac9032b",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "fdfsdgvs",
+            "quantity": "1",
+            "unit_price": "4353",
+            "description": "fjdafouadgfougdafugadu difhdaihfòiadhfad\r\n\r\n\r\n\r\nfdfdgwf ",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "gfgsfgfsg",
+                    "dfadvad",
+                    "3454",
+                    "1",
+                    "fdafadfadfadfadvssf"
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0078.pdf"
+}

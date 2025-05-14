@@ -157,15 +157,13 @@
                 <h5 class="card-title mb-0">Scheda Multiprodotto</h5>
             </div>
             <div class="card-body">
-                <p><strong>Prodotti per pagina:</strong> <span id="filled-products-count">0</span></p>
-                
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead class="table-light">
                             <tr>
                                 <th>Nome Prodotto</th>
                                 <th>Modello</th>
-                                <th>Prezzo Unitario</th>
+                                <th>Prezzo Unitario (€)</th>
                                 <th>Quantità</th>
                                 <th>Prezzo Totale</th>
                                 <th>Descrizione</th>
@@ -173,7 +171,7 @@
                         </thead>
                         <tbody>
                             {% for product in tab.products %}
-                                {% if product|length >= 4 and product[0] and product[1] and product[2] and product[3] %}
+                                {% if product|length >= 4 and product[0] %}
                                     {% set filled_products = filled_products + 1 %}
                                     {% set product_price = product[2]|float %}
                                     {% set product_quantity = product[3]|float %}
@@ -181,7 +179,7 @@
                                     {% set multi_product_total = multi_product_total + product_total %}
                                     <tr>
                                         <td>{{ product[0] }}</td>
-                                        <td>{{ product[1] }}</td>
+                                        <td class="text-muted fst-italic">{{ product[1] }}</td>
                                         <td class="product-price">{{ "%.2f"|format(product_price) }} €</td>
                                         <td class="product-quantity">{{ product_quantity }}</td>
                                         <td class="product-total">{{ "%.2f"|format(product_total) }} €</td>
@@ -192,16 +190,18 @@
                         </tbody>
                         <tfoot>
                             <tr class="table-light">
-                                <th colspan="4" class="text-end">Totale multiprodotto:</th>
-                                <th id="multi-product-total" data-total="{{ multi_product_total }}">{{ "%.2f"|format(multi_product_total) }} €</th>
-                                <th></th>
+                                <th colspan="4" class="text-end">Totale scheda:</th>
+                                <th colspan="2" id="multi-product-total" data-total="{{ multi_product_total }}">
+                                    {{ "%.2f"|format(multi_product_total) }} €
+                                </th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-        <!-- Aggiungiamo il totale di questa scheda al totale complessivo -->
+        
+        <!-- Aggiorna il totale generale -->
         {% set grand_total = grand_total + multi_product_total %}
     {% endif %}
 {% endfor %}
