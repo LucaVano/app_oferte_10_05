@@ -45,9 +45,10 @@
                                         value="{{ tab.products[i][3] if i < tab.products|length else '1' }}">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" name="product_{{ tab_index }}description__{{ i }}" 
-                                           maxlength="200" value="{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}"
-                                           onkeyup="updateMultiProdCharCount(this, 200)">
+                                    <textarea class="form-control auto-expand" 
+                                              name="product_{{ tab_index }}description__{{ i }}" 
+                                              maxlength="200" 
+                                              onkeyup="updateMultiProdCharCount(this, 200)">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
                                     <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
                                         <span>0</span>/200 caratteri
                                     </small>
@@ -76,9 +77,10 @@
                                     <input type="number" step="1" min="1" class="form-control" name="product_{{ tab_index }}quantity__{{ i }}" value="1">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" name="product_{{ tab_index }}description__{{ i }}" 
-                                           maxlength="200" value="{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}"
-                                           onkeyup="updateMultiProdCharCount(this, 200)">
+                                    <textarea class="form-control auto-expand" 
+                                              name="product_{{ tab_index }}description__{{ i }}" 
+                                              maxlength="200" 
+                                              onkeyup="updateMultiProdCharCount(this, 200)">{{ tab.products[i][4] if tab is defined and tab and tab.products and i < tab.products|length and tab.products[i]|length > 4 else '' }}</textarea>
                                     <small class="form-text text-muted char-counter" style="font-size: 0.75rem; display: block; text-align: right;">
                                         <span>0</span>/200 caratteri
                                     </small>

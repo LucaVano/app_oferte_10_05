@@ -71,7 +71,8 @@
             
             <div class="mb-3">
                 <label for="offer_description" class="form-label">Descrizione Offerta</label>
-                <textarea class="form-control" id="offer_description" name="offer_description" rows="3">{{ offerta.offer_description if is_edit else '' }}</textarea>
+                <textarea class="form-control auto-expand description-input" id="offer_description" 
+                          name="offer_description" rows="3">{{ offerta.offer_description if is_edit else '' }}</textarea>
             </div>
         </div>
     </div>

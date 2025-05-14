@@ -130,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inizializza i contatori di caratteri
     initCharacterCounters();
+
+    // Inizializza l'auto-espansione dei textarea
+    initAutoExpandTextareas();
 });
 
 /**
@@ -276,4 +279,27 @@ function formatPrice(value) {
     } catch (error) {
         return "0,00";
     }
+}
+
+/**
+ * Funzione per gestire l'auto-espansione dei textarea
+ */
+function initAutoExpandTextareas() {
+    document.querySelectorAll('textarea.auto-expand').forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+        
+        // Imposta altezza iniziale
+        textarea.style.height = 'auto';
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+    });
+}
+
+/**
+ * Aggiungi la funzione al gestore delle schede
+ */
+function handleNewTab() {
+    initAutoExpandTextareas();
 }

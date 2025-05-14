@@ -188,3 +188,20 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* Stili per textarea auto-espandibili */
+.auto-expand {
+    min-height: 100px;
+    transition: height 0.2s ease;
+    resize: none;
+    overflow-y: hidden;
+}
+
+.description-input {
+    min-height: 80px;
+    transition: all 0.3s ease;
+}
+
+.description-input:focus {
+    min-height: 150px;
+}

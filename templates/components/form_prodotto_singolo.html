@@ -77,7 +77,9 @@
         <div class="mb-3">
             <label for="description_{{ tab_index }}" class="form-label">Descrizione Prodotto</label>
             <div class="position-relative">
-                <textarea class="form-control" id="description_{{ tab_index }}" name="description_{{ tab_index }}" 
+                <textarea class="form-control auto-expand description-input" 
+                          id="description_{{ tab_index }}" 
+                          name="description_{{ tab_index }}" 
                           rows="4" maxlength="1000" 
                           onkeyup="updateCharCount('description_{{ tab_index }}', 'charCount_{{ tab_index }}', 1000)">{{ tab.description|default('') if tab is defined and tab else '' }}</textarea>
                 <small id="charCount_{{ tab_index }}" class="form-text text-muted position-absolute bottom-0 end-0 p-1">
