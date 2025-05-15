@@ -1,0 +1,40 @@
+{
+    "date": "2025-05-15",
+    "customer": "duboufql",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0118",
+    "id": "b536b729-632a-473e-9ca3-f5321a41e130",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "dkh qkhvsa",
+                    "",
+                    "5643.00",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        },
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "feyfviygak",
+            "quantity": "1",
+            "unit_price": "3422",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "43",
+            "size": "",
+            "posizione": "5",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0118.pdf"
+}

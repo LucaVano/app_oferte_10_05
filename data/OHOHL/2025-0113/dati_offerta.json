@@ -1,0 +1,25 @@
+{
+    "date": "2025-05-15",
+    "customer": "ohohl",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0113",
+    "id": "c0d04f07-86e0-48ef-ad2f-7ddf257806fb",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "cggcgc",
+                    "",
+                    "1342.0",
+                    "1.0",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0113.pdf"
+}

@@ -1,0 +1,25 @@
+{
+    "date": "2025-05-15",
+    "customer": "njnj",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0111",
+    "id": "ba1b7e96-f6de-4ff7-9bd1-d25afa0ed7b0",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "bbbb",
+                    "",
+                    "5656.00",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0111.pdf"
+}

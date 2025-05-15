@@ -1,0 +1,26 @@
+{
+    "date": "2025-05-15",
+    "customer": "cboubcljabj",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0116",
+    "id": "5497f4de-c55d-4933-a819-727bac159baa",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "fhuidb",
+                    "",
+                    "3422",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0116.pdf"
+}

@@ -174,15 +174,15 @@
                                 {% if product|length >= 4 and product[0] %}
                                     {% set filled_products = filled_products + 1 %}
                                     {% set product_price = product[2]|float %}
-                                    {% set product_quantity = product[3]|float %}
+                                    {% set product_quantity = product[3]|int %}
                                     {% set product_total = (product_price * product_quantity)|round(2) %}
                                     {% set multi_product_total = multi_product_total + product_total %}
                                     <tr>
                                         <td>{{ product[0] }}</td>
                                         <td class="text-muted fst-italic">{{ product[1] }}</td>
-                                        <td class="product-price">{{ format_price(product_price) }} €</td>
-                                        <td class="product-quantity">{{ format_price(product_quantity) }}</td>
-                                        <td class="product-total">{{ format_price(product_total) }} €</td>
+                                        <td class="product-price">{{ format_price(product_price) }}</td>
+                                        <td class="product-quantity">{{ product_quantity }}</td>
+                                        <td class="product-total">{{ format_price(product_total) }}</td>
                                         <td>{{ product[4] if product|length > 4 else '' }}</td>
                                     </tr>
                                 {% endif %}
@@ -306,7 +306,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const quantityCell = row.querySelector('.product-quantity');
                     
                     if (priceCell && quantityCell) {
-                        const price = parseFloat(priceCell.textContent.replace('€', '').trim()) || 0;
+                        // Rimuovi prima il simbolo €, poi sostituisci il punto con niente e la virgola con il punto
+                        const price = parseFloat(priceCell.textContent.replace('€', '').replace('.', '').replace(',', '.').trim()) || 0;
                         const quantity = parseFloat(quantityCell.textContent) || 0;
                         const rowTotal = price * quantity;
                         

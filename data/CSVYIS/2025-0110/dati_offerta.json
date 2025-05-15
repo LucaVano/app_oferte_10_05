@@ -1,0 +1,26 @@
+{
+    "date": "2025-05-15",
+    "customer": "cSVYIS",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0110",
+    "id": "af1c5093-37c5-4404-a624-60e9fc5318be",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "VHVGvgvg",
+                    "",
+                    "2455",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0110.pdf"
+}

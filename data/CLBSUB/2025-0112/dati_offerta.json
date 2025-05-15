@@ -1,0 +1,25 @@
+{
+    "date": "2025-05-15",
+    "customer": "clbsub",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0112",
+    "id": "d2f3b3dd-36ad-4091-8713-88b00594d9ad",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "dhsbdjs",
+                    "",
+                    "4568.00",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0112.pdf"
+}
