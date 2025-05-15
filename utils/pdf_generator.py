@@ -123,29 +123,69 @@ def generate_pdf(offerta, app_root):
     # Descrizione offerta
     c.setFont("Times-Bold", 14)
     c.drawString(50, height - 400, "DESCRIZIONE OFFERTA:")
-    
+
     description_text = offerta['offer_description']
-    para = Paragraph(description_text, ParagraphStyle(
-        name="DescriptionStyle",
-        fontSize=12,
+
+    # Prima verifica l'altezza con font 14
+    test_style = ParagraphStyle(
+        name="TestStyle",
+        fontSize=14,
         fontName="Times-Roman",
         leading=20
-    ))
+    )
+    test_para = Paragraph(description_text, test_style)
     available_width = width - 100
-    available_height = height - 410  # Moved down to account for title
-    _, para_height = para.wrap(available_width, available_height)
+    _, test_para_height = test_para.wrap(available_width, height - 410)
+
+    # Scegli il font in base all'altezza
+    if test_para_height < 200:
+        # Usa il font 14 se il testo è corto
+        font_size = 14
+    else:
+        # Altrimenti usa il font 12
+        font_size = 12
+
+    # Ora crea il paragrafo con il font scelto
+    final_style = ParagraphStyle(
+        name="DescriptionStyle",
+        fontSize=font_size,
+        fontName="Times-Roman",
+        leading=20
+    )
+    para = Paragraph(description_text, final_style)
+    _, para_height = para.wrap(available_width, height - 410)
     para.drawOn(c, 50, height - 410 - para_height)
+
+    # Calcola la posizione del testo finale basata sulla fine del paragrafo
+    # La posizione finale del paragrafo è (height - 410 - para_height)
+    # Aggiungiamo un po' di spazio (30 unità) prima del testo finale
+    text_y_position = height - 410 - para_height - 30
+
+    if text_y_position > (height - 610):
+        # Testo finale
+        c.setFont("Times-Roman", 12)
+        c.drawString(50, height - 620, "Per ulteriori dettagli e specifiche consultare l'interno dell'offerta.")
+        c.drawString(50, height - 640, "Augurando buon lavoro, porgiamo cordiali saluti.")
+
+        # Linea tratteggiata finale
+        c.setDash(3, 2)
+        c.line(50, height - 655, width - 50, height - 655)
+        c.line(50, height - 660, width - 50, height - 660)
+        c.setDash()
+
+    else:
+        # Testo finale (posizionato dinamicamente)
+        c.setFont("Times-Roman", 12)
+        c.drawString(50, text_y_position + 10, "Per ulteriori dettagli e specifiche consultare l'interno dell'offerta.")
+        c.drawString(50, text_y_position - 5, "Augurando buon lavoro, porgiamo cordiali saluti.")
+            
+        # Linea tratteggiata finale (posizionata dinamicamente)
+        c.setDash(3, 2)
+        c.line(50, text_y_position - 20, width - 50, text_y_position - 20)
+        c.line(50, text_y_position - 25, width - 50, text_y_position - 25)
+        c.setDash()
+
     
-    # Testo finale
-    c.setFont("Times-Roman", 12)
-    c.drawString(50, height - 620, "Per ulteriori dettagli e specifiche consultare l'interno dell'offerta.")
-    c.drawString(50, height - 640, "Augurando buon lavoro, porgiamo cordiali saluti.")
-    
-    # Linea tratteggiata finale
-    c.setDash(3, 2)
-    c.line(50, height - 655, width - 50, height - 655)
-    c.line(50, height - 660, width - 50, height - 660)
-    c.setDash()
     
     # Footer
     c.setFont("Times-Roman", 9)
@@ -346,8 +386,7 @@ def generate_pdf(offerta, app_root):
                 quantity = 0
 
             prezzo_list = unit_price * quantity
-            # Aggiorna il prezzo totale dell'offerta
-            total_offer_price += prezzo_list
+
 
             c.line(50, height - 105, width - 50, height - 105)
         
@@ -474,11 +513,15 @@ def generate_pdf(offerta, app_root):
                     discount = 0
                 c.drawString(60, y_position, f"PREZZO SCONTATO:")
                 c.drawString(250, y_position, f"€ {format_price(prezzo_list - (discount / 100) * prezzo_list)} iva ESCLUSA")
+                # Aggiorna il prezzo totale dell'offerta
+                total_offer_price += (prezzo_list - (discount / 100) * prezzo_list)
             else:
                 y_position1 = y_position - 40
                 c.setFillColorRGB(0, 0, 0, alpha=1)
                 c.drawString(60, y_position1, f"PREZZO SCONTATO:")
-                c.drawString(250, y_position1, f"€ {format_price(prezzo_list)} iva ESCLUSA")
+                c.drawString(250, y_position1, f"€ {format_price(prezzo_list)} iva ESCLUSA")    
+                # Aggiorna il prezzo totale dell'offerta
+                total_offer_price += prezzo_list
     
             # Footer
             c.setFont("Times-Roman", 9)
@@ -569,7 +612,7 @@ def generate_pdf(offerta, app_root):
     c.drawString(250, y_position-10*sp, "I prezzi indicati in offerta sono da considerarsi al netto IVA")
     
     c.setFont("Times-Bold", 14)
-    c.drawString(50,height-620, f"PREZZO TOTALE OFFERTA : {format_price(total_offer_price)} €")
+    c.drawString(50,height-620, f"PREZZO TOTALE OFFERTA : {format_price(round(total_offer_price/10)*10)} €")
 
     # Linea tratteggiata finale
     c.setDash(3, 2)

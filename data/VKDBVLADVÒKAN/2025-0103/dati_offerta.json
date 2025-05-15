@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-15",
+    "customer": "vkdbvladvòkan",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0103",
+    "id": "e453678d-6a00-4381-8666-e3ae9b68f98d",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "fdjbfljadblf",
+            "quantity": "1",
+            "unit_price": "3432",
+            "description": "",
+            "discount": "32",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "4",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0103.pdf"
+}

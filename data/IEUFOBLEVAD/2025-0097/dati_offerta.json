@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-15",
+    "customer": "ieufoblevad",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "ckqhevfluqebf ufqebflqefòhqelf qelflqefqefq",
+    "offer_number": "2025-0097",
+    "id": "27abeb7b-1e6f-4057-8854-d4a6253ba577",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "keqvludvld",
+            "quantity": "1",
+            "unit_price": "4563",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "4",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0097.pdf"
+}

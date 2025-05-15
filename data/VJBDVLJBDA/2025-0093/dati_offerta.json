@@ -1,0 +1,40 @@
+{
+    "date": "2025-05-15",
+    "customer": "vjbdvljbda",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "fqljbeflqehb ubeqpih hpqeihgpqeihgipqe qhgviqehvòiqbvbbbp hfpeqhg pihqgèoa fqljbeflqehb ubeqpih hpqeihgpqeihgipqe qhgviqehvòiqbvbbbp hfpeqhg pihqgèoa fqljbeflqehb ubeqpih hpqeihgpqeihgipqe qhgviqehvòiqbvbbbp hfpeqhg pihqgè",
+    "offer_number": "2025-0093",
+    "id": "8b0db82c-e7d3-43e7-9986-a7683ec35988",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "gljbfuahdn",
+            "quantity": "1",
+            "unit_price": "5600",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": ""
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "VOUVOUSB",
+                    "565",
+                    "565",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0093.pdf"
+}
