@@ -71,8 +71,13 @@
             
             <div class="mb-3">
                 <label for="offer_description" class="form-label">Descrizione Offerta</label>
-                <textarea class="form-control auto-expand description-input" id="offer_description" 
-                          name="offer_description" rows="3">{{ offerta.offer_description if is_edit else '' }}</textarea>
+                <div class="position-relative">
+                    <textarea class="form-control" id="offer_description" name="offer_description" 
+                              rows="4" onkeyup="updateCharCount(this)">{{ offerta.offer_description if offerta else '' }}</textarea>
+                    <small class="text-muted position-absolute bottom-0 end-0 mb-2 me-2">
+                        <span id="charCount">0</span>/1200 caratteri (inclusi spazi e ritorni a capo)
+                    </small>
+                </div>
             </div>
         </div>
     </div>
@@ -480,6 +485,39 @@ document.addEventListener('DOMContentLoaded', function() {
         // Imposta lo stato iniziale di tutti i campi sconto
         toggleDiscount(checkbox);
     });
+});
+
+// Funzione per aggiornare il conteggio dei caratteri
+function updateCharCount(textarea) {
+    const maxLength = 1200;  // Updated from 1751 to 1000
+    // Count actual length including newlines
+    const currentLength = textarea.value.length;
+    const charCountElement = document.getElementById('charCount');
+    
+    charCountElement.textContent = currentLength;
+    
+    // Cambia colore quando ci si avvicina al limite
+    if (currentLength >= maxLength - 100) {
+        charCountElement.style.color = 'red';
+    } else if (currentLength >= maxLength - 300) {
+        charCountElement.style.color = 'orange';
+    } else {
+        charCountElement.style.color = 'inherit';
+    }
+    
+    // Impedisci l'inserimento di ulteriori caratteri se si raggiunge il limite
+    if (currentLength > maxLength) {
+        textarea.value = textarea.value.substring(0, maxLength);
+        charCountElement.textContent = maxLength;
+    }
+}
+
+// Inizializza il contatore al caricamento della pagina
+document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.getElementById('offer_description');
+    if (textarea) {
+        updateCharCount(textarea);
+    }
 });
 </script>
 
