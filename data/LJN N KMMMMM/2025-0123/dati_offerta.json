@@ -1,0 +1,27 @@
+{
+    "date": "2025-05-16",
+    "customer": "ljn n kmmmmm",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0123",
+    "id": "b37eca75-efa8-4d60-beea-5ad4e42d3947",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "fdsfds",
+            "quantity": "1",
+            "unit_price": "2322",
+            "description": "jfwjsdnzd",
+            "discount": "23.00",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "dfbaldjbfjla",
+            "product_image_path": ""
+        }
+    ],
+    "pdf_path": "offerta_2025-0123.pdf"
+}

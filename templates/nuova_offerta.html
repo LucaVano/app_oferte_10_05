@@ -465,6 +465,11 @@
         // Assicurati che gli indici siano aggiornati all'inizio
         updateTabIndices();
     });
+    
+    // Chiama setupDiscountCalculation quando la pagina è caricata
+    if (typeof setupDiscountCalculation === 'function') {
+        setupDiscountCalculation();
+    }
 </script>
 
 <script>

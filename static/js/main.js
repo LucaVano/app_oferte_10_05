@@ -138,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Gestione dei textarea per prodotti multipli
     handleMultiProductTextarea();
+    
+    // Imposta il calcolo dello sconto in tempo reale
+    setupDiscountCalculation();
 });
 
 /**
@@ -359,3 +362,120 @@ function handleMultiProductTextarea() {
 function handleNewTab() {
     initAutoExpandTextareas();
 }
+
+/**
+ * Funzione per calcolare e mostrare il prezzo scontato
+ */
+function updateDiscountedPrice(tabIndex) {
+    const discountInput = document.getElementById(`discount_${tabIndex}`);
+    const priceInput = document.getElementById(`unit_${tabIndex}price_`);
+    const discountFlagCheckbox = document.getElementById(`discount_flag_${tabIndex}`);
+    const discountedPriceElement = document.getElementById(`discounted_price_${tabIndex}`);
+    
+    if (discountInput && priceInput && discountedPriceElement) {
+        const discount = parseFloat(discountInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
+        
+        // Calcola il prezzo scontato solo se lo sconto è attivo
+        if (discountFlagCheckbox && discountFlagCheckbox.checked) {
+            const discountedPrice = price * (1 - discount/100);
+            discountedPriceElement.textContent = formatPrice(discountedPrice) + ' €';
+            discountedPriceElement.parentElement.classList.remove('text-muted');
+            discountedPriceElement.parentElement.classList.add('text-success');
+        } else {
+            discountedPriceElement.textContent = formatPrice(price) + ' €';
+            discountedPriceElement.parentElement.classList.add('text-muted');
+            discountedPriceElement.parentElement.classList.remove('text-success');
+        }
+    }
+}
+
+// Aggiungiamo un listener per il campo prezzo unitario
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[id^="unit_"][id$="price_"]').forEach(input => {
+        input.addEventListener('input', function() {
+            const tabIndex = this.id.replace('unit_', '').replace('price_', '');
+            updateDiscountedPrice(tabIndex);
+        });
+    });
+});
+
+// Modifichiamo la funzione toggleDiscount esistente
+function toggleDiscount(checkbox) {
+    const index = checkbox.id.replace('discount_flag_', '');
+    const discountInput = document.getElementById('discount_' + index);
+    
+    if (discountInput) {
+        discountInput.disabled = !checkbox.checked;
+        console.log("Toggle sconto per indice " + index + ": " + checkbox.checked);
+        updateDiscountedPrice(index);
+    }
+}
+
+// Aggiungi questa nuova funzione per calcolare e mostrare il prezzo scontato in tempo reale
+function setupDiscountCalculation() {
+    document.querySelectorAll('.discount-checkbox').forEach(checkbox => {
+        const tabIndex = checkbox.id.replace('discount_flag_', '');
+        const priceInput = document.getElementById(`unit_${tabIndex}price_`);
+        const quantityInput = document.getElementById(`quantity_${tabIndex}`);
+        const discountInput = document.getElementById(`discount_${tabIndex}`);
+        
+        if (priceInput && quantityInput && discountInput) {
+            // Funzione per calcolare e mostrare il prezzo scontato
+            const updateDiscountedPrice = () => {
+                if (checkbox.checked) {
+                    const price = parseFloat(priceInput.value) || 0;
+                    const quantity = parseFloat(quantityInput.value) || 1;
+                    const discount = parseFloat(discountInput.value) || 0;
+                    
+                    const totalPrice = price * quantity;
+                    const discountAmount = totalPrice * (discount / 100);
+                    const discountedPrice = totalPrice - discountAmount;
+                    
+                    // Trova o crea l'elemento per mostrare il prezzo scontato
+                    let discountedPriceElement = document.getElementById(`discounted_price_${tabIndex}`);
+                    if (!discountedPriceElement) {
+                        discountedPriceElement = document.createElement('p');
+                        discountedPriceElement.id = `discounted_price_${tabIndex}`;
+                        discountedPriceElement.className = 'text-success mt-2';
+                        discountInput.parentNode.appendChild(discountedPriceElement);
+                    }
+                    
+                    discountedPriceElement.innerHTML = `<strong>Prezzo scontato:</strong> ${formatPrice(discountedPrice)} €`;
+                } else {
+                    // Rimuovi l'elemento se lo sconto non è attivo
+                    const discountedPriceElement = document.getElementById(`discounted_price_${tabIndex}`);
+                    if (discountedPriceElement) {
+                        discountedPriceElement.remove();
+                    }
+                }
+            };
+            
+            // Collega gli eventi ai campi
+            checkbox.addEventListener('change', updateDiscountedPrice);
+            priceInput.addEventListener('input', updateDiscountedPrice);
+            quantityInput.addEventListener('input', updateDiscountedPrice);
+            discountInput.addEventListener('input', updateDiscountedPrice);
+            
+            // Esegui il calcolo iniziale
+            updateDiscountedPrice();
+        }
+    });
+}
+
+// Aggiungiamo il calcolo dello sconto anche al caricamento iniziale della pagina
+document.addEventListener('DOMContentLoaded', function() {
+    // ...existing code...
+
+    // Inizializza il calcolo dello sconto per tutti i campi esistenti
+    setupDiscountCalculation();
+
+    // Aggiungi event listener per i nuovi campi creati dinamicamente
+    document.querySelectorAll('#addSingleProductBtn, #addMultiProductBtn').forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(() => {
+                setupDiscountCalculation(); // Reinizializza il calcolo dello sconto per i nuovi campi
+            }, 100); // Ritardo per assicurarsi che i nuovi campi siano stati aggiunti al DOM
+        });
+    });
+});

@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-16",
+    "customer": "ouqdbo u bfuhfbfufvbu ufu",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0124",
+    "id": "11a22c01-6170-4c74-bfc4-040f15cdb783",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "cdhcoagdcl",
+            "quantity": "1",
+            "unit_price": "1232",
+            "description": "",
+            "discount": "2",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "4",
+            "product_image_path": ""
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0124.pdf"
+}
