@@ -1,0 +1,48 @@
+{
+    "date": "2025-05-16",
+    "customer": "bbvbvvnvbv",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq ",
+    "offer_number": "2025-0121",
+    "id": "8ba30df4-b9f4-4a91-8ad9-d8c35ab9078f",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "khdbabkzd",
+            "product_name": "ckihdfivadk",
+            "quantity": "1",
+            "unit_price": "3455",
+            "description": "whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq  whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq whffeqb oufou eqfbufoug qe eqf gqou bvb rg uowh ofequ fq ",
+            "discount": "23",
+            "discount_flag": true,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "5",
+            "product_image_path": "/static/uploads/20250516071830_22.png"
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "bcjiiuasls",
+                    "",
+                    "233",
+                    "5",
+                    ""
+                ],
+                [
+                    "ckbdakljb",
+                    "",
+                    "4355",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0121.pdf"
+}

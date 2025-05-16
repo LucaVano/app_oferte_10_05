@@ -338,7 +338,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aggiorna il prezzo totale
         const totalPriceElement = document.getElementById('totalPrice');
         if (totalPriceElement) {
-            totalPriceElement.textContent = '€' + grandTotal.toFixed(2);
+            // Arrotonda alla decina più vicina
+            const roundedTotal = Math.round(grandTotal / 10) * 10;
+            totalPriceElement.textContent = '€' + roundedTotal.toFixed(2);
         }
     }
     
