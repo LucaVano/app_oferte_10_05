@@ -132,7 +132,46 @@
                                 <p>{{ tab.description }}</p>
                             </div>
                         </div>
+                        
+                        <!-- Add Accessories Section -->
+                        {% if tab.accessories and tab.accessories|length > 0 %}
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-puzzle-piece me-2"></i>Accessori (uso interno)</h6>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Nome</th>
+                                                        <th>Codice</th>
+                                                        <th>Prezzo (€)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for accessory in tab.accessories %}
+                                                    <tr>
+                                                        <td>{{ accessory.name }}</td>
+                                                        <td>{{ accessory.code }}</td>
+                                                        <td>{{ accessory.price }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white text-muted small">
+                                        <i class="fas fa-info-circle me-1"></i>Questi accessori sono visibili solo internamente e non influiscono sul prezzo totale.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
+                    
                     <div class="col-md-4">
                         {% if tab.product_image_path %}
                             <div class="text-center">

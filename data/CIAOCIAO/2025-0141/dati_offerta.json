@@ -1,0 +1,28 @@
+{
+    "date": "2025-05-21",
+    "customer": "ciaociao",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0141",
+    "id": "ef8e987a-5b41-43ea-8006-5af915730a63",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "blabla",
+            "quantity": "1",
+            "unit_price": "3400",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "230",
+            "size": "",
+            "posizione": "3",
+            "product_image_path": "/static/uploads/20250521101706_22.png",
+            "accessories": []
+        }
+    ],
+    "pdf_path": "offerta_2025-0141.pdf"
+}

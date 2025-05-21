@@ -670,5 +670,53 @@
         "customer": "CVCVC",
         "customer_email": "",
         "description": ""
+    },
+    {
+        "id": "ef8e987a-5b41-43ea-8006-5af915730a63",
+        "offer_number": "2025-0141",
+        "date": "2025-05-21",
+        "customer": "ciaociao",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "e1b62ce2-4868-4a14-bc61-bdbcc24fd33a",
+        "offer_number": "2025-0142",
+        "date": "2025-05-21",
+        "customer": "ffdfdfdfdfdfdfdfd",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "5fe0b912-2619-4b71-9a49-80a00cf60b67",
+        "offer_number": "2025-0146",
+        "date": "2025-05-21",
+        "customer": "cljdvlbca ljjsb",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "9c43085f-8ac4-4310-bcf1-b77d443c0d99",
+        "offer_number": "2025-0151",
+        "date": "2025-05-21",
+        "customer": "baobjclad",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "b8ffba50-07c4-491b-b52b-57568429ebe8",
+        "offer_number": "2025-0152",
+        "date": "2025-05-21",
+        "customer": "xdfewrzzzxx",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "b8143005-216d-49a0-920b-01028e9ebb56",
+        "offer_number": "2025-0153",
+        "date": "2025-05-21",
+        "customer": "apihfpaidhfad",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": "dafadoufbadouv ubdouab ad"
     }
 ]

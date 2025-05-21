@@ -334,6 +334,17 @@ def process_form_final(form, files):
 
             logging.info(f"Valore finale di image_path per tab {idx}: {image_path}")
             
+            # Parse accessories JSON if present
+            accessories = []
+            accessories_key = f'accessories_{idx}'
+            if accessories_key in form and form[accessories_key]:
+                try:
+                    import json
+                    accessories = json.loads(form[accessories_key])
+                    logging.info(f"Caricati {len(accessories)} accessori per tab {idx}")
+                except Exception as e:
+                    logging.error(f"Errore nel parsing degli accessori: {e}")
+            
             # Crea la scheda prodotto singolo
             if product_name:  # Rimuovi il controllo su product_code per permettere l'inserimento senza modello
                 single_product_tab = {
@@ -349,7 +360,8 @@ def process_form_final(form, files):
                     'volts': volts,
                     'size': size,
                     'posizione': posizione,
-                    'product_image_path': image_path
+                    'product_image_path': image_path,
+                    'accessories': accessories  # Add accessories to the tab
                 }
                 
                 logging.info(f"Aggiunto prodotto singolo: {product_name}")

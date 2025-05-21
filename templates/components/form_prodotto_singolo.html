@@ -98,6 +98,61 @@
                 </div>
             {% endif %}
         </div>
+        
+        <!-- New Accessories Section -->
+        <div class="mt-4 border-top pt-3">
+            <h5>Accessori (uso interno)</h5>
+            <p class="text-muted small">Gli accessori sono visibili solo internamente e non vengono inclusi nel PDF cliente o nel prezzo totale</p>
+            
+            <div id="accessories_list_{{ tab_index }}" class="mb-3">
+                <table class="table table-sm table-bordered" id="accessories_table_{{ tab_index }}">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nome Accessorio</th>
+                            <th>Codice</th>
+                            <th>Prezzo (€)</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if tab and tab.accessories %}
+                            {% for accessory in tab.accessories %}
+                                <tr>
+                                    <td>{{ accessory.name }}</td>
+                                    <td>{{ accessory.code }}</td>
+                                    <td>{{ accessory.price }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-danger remove-accessory-btn">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="row g-3 mb-3" id="accessory_form_{{ tab_index }}">
+                <div class="col-md-4">
+                    <input type="text" class="form-control form-control-sm" id="accessory_name_{{ tab_index }}" placeholder="Nome accessorio">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-control-sm" id="accessory_code_{{ tab_index }}" placeholder="Codice">
+                </div>
+                <div class="col-md-3">
+                    <input type="number" step="0.01" min="0" class="form-control form-control-sm" id="accessory_price_{{ tab_index }}" placeholder="Prezzo">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-primary add-accessory-btn" data-tab-index="{{ tab_index }}">
+                        <i class="fas fa-plus"></i> Aggiungi
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Hidden input to store accessories as JSON -->
+            <input type="hidden" id="accessories_data_{{ tab_index }}" name="accessories_{{ tab_index }}" value="{{ tab.accessories|tojson if tab and tab.accessories else '[]' }}">
+        </div>
     </div>
 </div>
 
@@ -110,5 +165,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Rimuovo il codice che disabilita il campo sconto
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Setup accessory management for this form
+        setupAccessoryManagement({{ tab_index }});
     });
 </script>

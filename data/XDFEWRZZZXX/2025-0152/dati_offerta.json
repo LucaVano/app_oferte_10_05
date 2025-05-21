@@ -1,0 +1,39 @@
+{
+    "date": "2025-05-21",
+    "customer": "xdfewrzzzxx",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0152",
+    "id": "b8ffba50-07c4-491b-b52b-57568429ebe8",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "giulio",
+            "quantity": "1",
+            "unit_price": "1200",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "",
+            "size": "",
+            "posizione": "1",
+            "product_image_path": "",
+            "accessories": [
+                {
+                    "name": "blabla",
+                    "code": "3423",
+                    "price": "300.00"
+                },
+                {
+                    "name": "vivivi",
+                    "code": "432243",
+                    "price": "200.00"
+                }
+            ]
+        }
+    ],
+    "pdf_path": "offerta_2025-0152.pdf"
+}
