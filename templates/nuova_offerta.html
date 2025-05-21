@@ -248,6 +248,15 @@
 
 {% block extra_js %}
 <script>
+    // Assicuriamo che le funzioni globali siano disponibili
+    if (typeof updateDiscountedPrice !== 'function') {
+        console.error('updateDiscountedPrice function not available. Check that main.js is loaded correctly.');
+    }
+    
+    if (typeof setupAccessoryManagement !== 'function') {
+        console.error('setupAccessoryManagement function not available. Check that accessory-manager.js is loaded correctly.');
+    }
+    
     document.addEventListener('DOMContentLoaded', function() {
         const tabsContainer = document.getElementById('tabsContainer');
         const tabCount = document.getElementById('tabCount');
@@ -293,6 +302,11 @@
             
             // Aggiorna tutti gli indici per essere sicuri
             updateTabIndices();
+            
+            // Inizializza sconto e accessori per la nuova scheda
+            setTimeout(() => {
+                initializeNewTab(newElement);
+            }, 200);
         });
         
         // Aggiungi una scheda multiprodotto

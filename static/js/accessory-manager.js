@@ -4,9 +4,20 @@
 
 // Initialize the accessory management functionality for a specific tab
 function setupAccessoryManagement(tabIndex) {
+    console.log(`Setting up accessory management for tab ${tabIndex}`);
+    
+    // Verifica se il setup è già stato fatto per evitare duplicazioni
+    if (document.querySelector(`#accessories_table_${tabIndex}`).hasAttribute('data-initialized')) {
+        console.log(`Accessory management already initialized for tab ${tabIndex}`);
+        return;
+    }
+    
     const addBtn = document.querySelector(`.add-accessory-btn[data-tab-index="${tabIndex}"]`);
     
-    if (!addBtn) return;
+    if (!addBtn) {
+        console.warn(`Add accessory button not found for tab ${tabIndex}`);
+        return;
+    }
     
     // Load existing accessories from hidden input
     loadAccessories(tabIndex);
@@ -20,13 +31,27 @@ function setupAccessoryManagement(tabIndex) {
     setupRemoveButtons(tabIndex);
     
     // Add event listener to the form for submission
-    const form = document.querySelector(`#accessories_data_${tabIndex}`).closest('form');
-    if (form) {
-        form.addEventListener('submit', function() {
-            // Ensure accessories are properly saved before form submission
-            validateAccessoriesData(tabIndex);
-        });
+    const dataInput = document.getElementById(`accessories_data_${tabIndex}`);
+    if (!dataInput) {
+        console.warn(`Accessories data input not found for tab ${tabIndex}`);
+        return;
     }
+    
+    const form = dataInput.closest('form');
+    if (form) {
+        // Verifica se l'event handler è già stato aggiunto
+        if (!form.hasAttribute(`data-accessory-listener-${tabIndex}`)) {
+            form.setAttribute(`data-accessory-listener-${tabIndex}`, 'true');
+            form.addEventListener('submit', function() {
+                // Ensure accessories are properly saved before form submission
+                validateAccessoriesData(tabIndex);
+            });
+        }
+    }
+    
+    // Mark as initialized
+    document.querySelector(`#accessories_table_${tabIndex}`).setAttribute('data-initialized', 'true');
+    console.log(`Accessory management setup complete for tab ${tabIndex}`);
 }
 
 // Load existing accessories from the hidden input

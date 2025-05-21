@@ -718,5 +718,37 @@
         "customer": "apihfpaidhfad",
         "customer_email": "lucavanov8@gmail.com",
         "description": "dafadoufbadouv ubdouab ad"
+    },
+    {
+        "id": "52c88c11-3ddf-446e-936d-6f5e094dd772",
+        "offer_number": "2025-0154",
+        "date": "2025-05-21",
+        "customer": "sdqdedwdaa",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "c255d9d9-edcc-4d3d-9ab1-e8546950c053",
+        "offer_number": "2025-0161",
+        "date": "2025-05-21",
+        "customer": "hfwiefbowuv",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": "ugucugvhjvgivhk"
+    },
+    {
+        "id": "ae4a87e6-3174-4219-8158-afcaa4243cc6",
+        "offer_number": "2025-0162",
+        "date": "2025-05-21",
+        "customer": "dfwdfwdfffff",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "aa77ec3e-8748-464c-8197-4afe7dd0eb6e",
+        "offer_number": "2025-0163",
+        "date": "2025-05-21",
+        "customer": "xvdsfegethgbfd",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
     }
 ]

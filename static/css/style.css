@@ -1,11 +1,59 @@
 /* CSS personalizzato per l'applicazione */
 
+/* Variabili CSS per il tema chiaro (predefinito) */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.125);
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --table-hover-bg: rgba(0, 116, 217, 0.05);
+    --table-border: #dee2e6;
+    --navbar-bg: #0074d9;
+    --navbar-color: #ffffff;
+    --footer-bg: #343a40;
+    --footer-color: #ffffff;
+    --primary-color: #0074d9;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+}
+
+/* Variabili CSS per il tema scuro */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-border: rgba(255, 255, 255, 0.125);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --input-bg: #2c2c2c;
+    --input-border: #444444;
+    --table-hover-bg: rgba(255, 255, 255, 0.05);
+    --table-border: #333333;
+    --navbar-bg: #1a1a1a;
+    --navbar-color: #ffffff;
+    --footer-bg: #1a1a1a;
+    --footer-color: #e0e0e0;
+    /* Mantenere i colori primari simili per consistenza UI */
+    --primary-color: #0074d9;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+}
+
+/* Applicazione delle variabili */
 html, body {
     height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-    background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -22,28 +70,54 @@ main {
 /* Stile per la navbar */
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--navbar-bg) !important;
 }
 
-.navbar-brand img {
-    margin-right: 0.5rem;
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+    color: var(--navbar-color);
 }
 
 /* Stile per le card */
 .card {
-    border: none;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 0.5rem;
     overflow: hidden;
     transition: all 0.3s ease;
+    color: var(--text-color);
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px var(--card-shadow);
 }
 
 .card-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom: 1px solid var(--card-border);
     font-weight: 500;
+    background-color: rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .card-header {
+    background-color: #333333 !important; /* Change from rgba(255,255,255,0.03) to a solid gray */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+/* Add style for bg-light class in dark theme */
+[data-theme="dark"] .bg-light {
+    background-color: #333333 !important;
+    color: #e0e0e0;
+}
+
+/* Ensure table headers in dark theme are visible */
+[data-theme="dark"] .table-light, 
+[data-theme="dark"] .table-light th, 
+[data-theme="dark"] .table thead.table-light {
+    background-color: #333333 !important;
+    color: #e0e0e0;
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Stili per i pulsanti */
@@ -73,18 +147,28 @@ main {
     border-color: #218838;
 }
 
-/* Stili per le tabelle */
-.table {
-    margin-bottom: 0;
+/* Stili per i form */
+.form-control, .form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-color);
 }
 
-.table thead th {
-    font-weight: 600;
-    border-top: none;
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 116, 217, 0.25);
+}
+
+/* Stili per le tabelle */
+.table {
+    color: var(--text-color);
+    border-color: var(--table-border);
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(0, 116, 217, 0.05);
+    background-color: var(--table-hover-bg);
 }
 
 .table td {
@@ -103,6 +187,8 @@ main {
 
 /* Stili per il footer */
 footer {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-color) !important;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -125,16 +211,6 @@ footer {
     .table-responsive {
         font-size: 0.875rem;
     }
-}
-
-/* Stili per i form */
-.form-control:focus {
-    border-color: #0074d9;
-    box-shadow: 0 0 0 0.2rem rgba(0, 116, 217, 0.25);
-}
-
-.form-label {
-    font-weight: 500;
 }
 
 /* Stili per le schede prodotto */
@@ -282,4 +358,43 @@ footer {
 #togglePreviewBtn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Stile per il pulsante toggle tema */
+#themeToggleBtn {
+    border-radius: 50px;
+    padding: 0.375rem 0.75rem;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] #themeToggleBtn {
+    background-color: #333;
+    color: #fff;
+    border-color: #444;
+}
+
+[data-theme="dark"] .theme-icon-light {
+    display: none;
+}
+
+[data-theme="dark"] .theme-icon-dark {
+    display: inline-block !important;
+}
+
+.theme-icon-light, .theme-icon-dark {
+    transition: transform 0.3s ease;
+}
+
+#themeToggleBtn:hover .theme-icon-light,
+#themeToggleBtn:hover .theme-icon-dark {
+    transform: rotate(30deg);
+}
+
+/* Classe per il testo sensibile al tema */
+.theme-sensitive-text {
+  color: #6c757d; /* Colore default simile a text-muted */
+}
+
+[data-theme="dark"] .theme-sensitive-text {
+  color: #ffffff !important; /* Bianco nel tema scuro */
 }

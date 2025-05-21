@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS personalizzato -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="h-100 d-flex flex-column">
@@ -40,6 +41,15 @@
                             </a>
                         </li>
                     </ul>
+                    
+                    <!-- Aggiunto pulsante theme toggle -->
+                    <div class="theme-toggle ms-2 me-3">
+                        <button id="themeToggleBtn" class="btn btn-light btn-sm" title="Cambia tema">
+                            <i class="fas fa-sun theme-icon-light"></i>
+                            <i class="fas fa-moon theme-icon-dark d-none"></i>
+                            <span class="d-none d-md-inline ms-1 theme-text">Tema</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

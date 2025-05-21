@@ -1,0 +1,40 @@
+/* Theme-sensitive styles */
+
+/* Text that should adapt to theme */
+.theme-sensitive-text {
+    color: #6c757d;  /* Default gray for light theme */
+}
+
+/* Inputs that should adapt to theme */
+.theme-sensitive-input {
+    background-color: rgba(0, 0, 0, 0.03);  /* Very light gray background for light theme */
+    color: #6c757d;  /* Gray text for light theme */
+}
+
+.theme-sensitive-input::placeholder {
+    color: #adb5bd;  /* Lighter gray for placeholders in light theme */
+    opacity: 1;
+}
+
+/* Dark theme styles using prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+    .theme-sensitive-text {
+        color: #adb5bd !important;  /* Lighter gray for dark theme */
+    }
+    
+    .theme-sensitive-input {
+        background-color: rgba(255, 255, 255, 0.05) !important;  /* Slightly lighter than dark background */
+        color: #e9ecef !important;  /* Light text for dark theme */
+        border-color: rgba(255, 255, 255, 0.15) !important;  /* Slightly visible border */
+    }
+    
+    .theme-sensitive-input::placeholder {
+        color: #868e96 !important;  /* Medium-light gray for placeholders in dark theme */
+        opacity: 1;
+    }
+    
+    /* Adjust table background in dark theme */
+    .table .bg-light {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+}

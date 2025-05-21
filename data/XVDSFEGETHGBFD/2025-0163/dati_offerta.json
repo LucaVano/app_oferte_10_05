@@ -1,0 +1,26 @@
+{
+    "date": "2025-05-21",
+    "customer": "xvdsfegethgbfd",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "",
+    "offer_description": "",
+    "offer_number": "2025-0163",
+    "id": "aa77ec3e-8748-464c-8197-4afe7dd0eb6e",
+    "tabs": [
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "bdbdb",
+                    "frgegef",
+                    "200",
+                    "1",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0163.pdf"
+}

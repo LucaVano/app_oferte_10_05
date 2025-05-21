@@ -1,0 +1,59 @@
+{
+    "date": "2025-05-21",
+    "customer": "hfwiefbowuv",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "Panoramica 2",
+    "offer_description": "ugucugvhjvgivhk",
+    "offer_number": "2025-0161",
+    "id": "c255d9d9-edcc-4d3d-9ab1-e8546950c053",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "Luca Vanotti",
+            "quantity": "1",
+            "unit_price": "2328",
+            "description": "b j jb hvivhvvkibjk",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "240",
+            "size": "",
+            "posizione": "32",
+            "product_image_path": "",
+            "accessories": [
+                {
+                    "name": "wd cosjd",
+                    "code": "3423",
+                    "price": "34.00"
+                },
+                {
+                    "name": "dvihbihcb",
+                    "code": "3434",
+                    "price": "444.00"
+                }
+            ]
+        },
+        {
+            "type": "multi_product",
+            "products": [
+                [
+                    "vibjjbkjbk",
+                    "",
+                    "230",
+                    "2",
+                    ""
+                ],
+                [
+                    "ugvyrxyu",
+                    "",
+                    "399",
+                    "9",
+                    ""
+                ]
+            ],
+            "max_items_per_page": 3
+        }
+    ],
+    "pdf_path": "offerta_2025-0161.pdf"
+}

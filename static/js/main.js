@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
+    // Inizializza il gestore del tema
+    initThemeManager();
+
     // Chiudi automaticamente gli alert dopo 5 secondi
     setTimeout(function() {
         var alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
@@ -142,6 +145,100 @@ document.addEventListener('DOMContentLoaded', function() {
     // Imposta il calcolo dello sconto in tempo reale
     setupDiscountCalculation();
 });
+
+/**
+ * Gestione del tema chiaro/scuro
+ */
+function initThemeManager() {
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const lightIcon = document.querySelector('.theme-icon-light');
+    const darkIcon = document.querySelector('.theme-icon-dark');
+    const themeText = document.querySelector('.theme-text');
+    
+    // Controlla se c'è una preferenza salvata
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Imposta il tema in base alla preferenza salvata o al default (light)
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        lightIcon.classList.add('d-none');
+        darkIcon.classList.remove('d-none');
+        themeText.textContent = 'Chiaro';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        darkIcon.classList.add('d-none');
+        lightIcon.classList.remove('d-none');
+        themeText.textContent = 'Scuro';
+    }
+    
+    // Event listener per il pulsante toggle
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                // Cambio a tema chiaro
+                document.documentElement.setAttribute('data-theme', 'light');
+                darkIcon.classList.add('d-none');
+                lightIcon.classList.remove('d-none');
+                themeText.textContent = 'Scuro';
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Cambio a tema scuro
+                document.documentElement.setAttribute('data-theme', 'dark');
+                lightIcon.classList.add('d-none');
+                darkIcon.classList.remove('d-none');
+                themeText.textContent = 'Chiaro';
+                localStorage.setItem('theme', 'dark');
+            }
+            
+            // Animazione sul pulsante
+            themeToggleBtn.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                themeToggleBtn.classList.remove('animate__animated', 'animate__pulse');
+            }, 500);
+        });
+    }
+    
+    // Gestisce il cambio del tema in base alle preferenze del sistema
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Imposta il tema iniziale se non c'è una preferenza salvata
+    if (!savedTheme) {
+        if (prefersDarkScheme.matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            lightIcon.classList.add('d-none');
+            darkIcon.classList.remove('d-none');
+            themeText.textContent = 'Chiaro';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            darkIcon.classList.add('d-none');
+            lightIcon.classList.remove('d-none');
+            themeText.textContent = 'Scuro';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    
+    // Ascolta cambiamenti nella preferenza di sistema
+    prefersDarkScheme.addEventListener('change', function(e) {
+        // Cambia tema solo se l'utente non ha impostato una preferenza manuale
+        const userPreference = localStorage.getItem('theme');
+        if (!userPreference) {
+            if (e.matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                lightIcon.classList.add('d-none');
+                darkIcon.classList.remove('d-none');
+                themeText.textContent = 'Chiaro';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                darkIcon.classList.add('d-none');
+                lightIcon.classList.remove('d-none');
+                themeText.textContent = 'Scuro';
+            }
+        }
+    });
+}
 
 /**
  * Funzioni globali per il conteggio caratteri
@@ -367,9 +464,40 @@ function handleNewTab() {
  * Funzione per calcolare e mostrare il prezzo scontato
  */
 function updateDiscountedPrice(tabIndex) {
+    console.log(`Updating discounted price for tab ${tabIndex}`);
     const discountInput = document.getElementById(`discount_${tabIndex}`);
     const priceInput = document.getElementById(`unit_${tabIndex}price_`);
     const discountFlagCheckbox = document.getElementById(`discount_flag_${tabIndex}`);
+    const discountedPriceSpan = document.getElementById(`discounted_price_${tabIndex}`);
+    
+    if (!discountInput || !priceInput) {
+        console.log(`Missing elements for tab ${tabIndex}`);
+        return;
+    }
+    
+    if (!discountedPriceSpan) {
+        console.log(`Creating discounted price element for tab ${tabIndex}`);
+        // Se l'elemento non esiste, lo creiamo
+        const container = discountInput.closest('.input-group').nextElementSibling;
+        if (container) {
+            const span = document.createElement('span');
+            span.id = `discounted_price_${tabIndex}`;
+            span.className = 'text-success fw-bold';
+            span.textContent = '-';
+            
+            // Trova o crea il contenitore small
+            let small = container.querySelector('small');
+            if (!small) {
+                small = document.createElement('small');
+                small.className = 'text-muted';
+                small.textContent = 'Prezzo scontato: ';
+                container.appendChild(small);
+            }
+            small.appendChild(span);
+        }
+    }
+    
+    // Riottieni il riferimento in caso sia stato appena creato
     const discountedPriceElement = document.getElementById(`discounted_price_${tabIndex}`);
     
     if (discountInput && priceInput && discountedPriceElement) {
@@ -380,12 +508,16 @@ function updateDiscountedPrice(tabIndex) {
         if (discountFlagCheckbox && discountFlagCheckbox.checked) {
             const discountedPrice = price * (1 - discount/100);
             discountedPriceElement.textContent = formatPrice(discountedPrice) + ' €';
-            discountedPriceElement.parentElement.classList.remove('text-muted');
-            discountedPriceElement.parentElement.classList.add('text-success');
+            if (discountedPriceElement.parentElement) {
+                discountedPriceElement.parentElement.classList.remove('text-muted');
+                discountedPriceElement.parentElement.classList.add('text-success');
+            }
         } else {
             discountedPriceElement.textContent = formatPrice(price) + ' €';
-            discountedPriceElement.parentElement.classList.add('text-muted');
-            discountedPriceElement.parentElement.classList.remove('text-success');
+            if (discountedPriceElement.parentElement) {
+                discountedPriceElement.parentElement.classList.add('text-muted');
+                discountedPriceElement.parentElement.classList.remove('text-success');
+            }
         }
     }
 }
@@ -441,7 +573,7 @@ function setupDiscountCalculation() {
                         discountInput.parentNode.appendChild(discountedPriceElement);
                     }
                     
-                    discountedPriceElement.innerHTML = `<strong>Prezzo scontato:</strong> ${formatPrice(discountedPrice)} €`;
+                    discountedPriceElement.innerHTML = `<strong class="theme-sensitive-text">Prezzo scontato:</strong> ${formatPrice(discountedPrice)} €`;
                 } else {
                     // Rimuovi l'elemento se lo sconto non è attivo
                     const discountedPriceElement = document.getElementById(`discounted_price_${tabIndex}`);
@@ -465,16 +597,39 @@ function setupDiscountCalculation() {
 
 // Aggiungiamo il calcolo dello sconto anche al caricamento iniziale della pagina
 document.addEventListener('DOMContentLoaded', function() {
-    // ...existing code...
-
     // Inizializza il calcolo dello sconto per tutti i campi esistenti
     setupDiscountCalculation();
+    
+    // Inizializza anche per i tab esistenti direttamente
+    document.querySelectorAll('.product-card[data-tab-type="single_product"]').forEach(card => {
+        const tabIndex = card.getAttribute('data-tab-index');
+        if (tabIndex) {
+            setTimeout(() => {
+                updateDiscountedPrice(tabIndex);
+            }, 100);
+        }
+    });
 
     // Aggiungi event listener per i nuovi campi creati dinamicamente
     document.querySelectorAll('#addSingleProductBtn, #addMultiProductBtn').forEach(button => {
         button.addEventListener('click', function() {
             setTimeout(() => {
                 setupDiscountCalculation(); // Reinizializza il calcolo dello sconto per i nuovi campi
+                
+                // Trova l'ultimo tab aggiunto e inizializza la gestione degli accessori
+                const allCards = document.querySelectorAll('.product-card');
+                if (allCards.length > 0) {
+                    const lastCard = allCards[allCards.length - 1];
+                    const tabIndex = lastCard.getAttribute('data-tab-index');
+                    const tabType = lastCard.getAttribute('data-tab-type');
+                    
+                    if (tabIndex && tabType === 'single_product') {
+                        updateDiscountedPrice(tabIndex);
+                        if (typeof setupAccessoryManagement === 'function') {
+                            setupAccessoryManagement(tabIndex);
+                        }
+                    }
+                }
             }, 100); // Ritardo per assicurarsi che i nuovi campi siano stati aggiunti al DOM
         });
     });

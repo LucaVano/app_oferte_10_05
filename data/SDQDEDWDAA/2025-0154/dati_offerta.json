@@ -1,0 +1,29 @@
+{
+    "date": "2025-05-21",
+    "customer": "sdqdedwdaa",
+    "customer_email": "lucavanov8@gmail.com",
+    "address": "Panoramica 2",
+    "offer_description": "",
+    "offer_number": "2025-0154",
+    "id": "52c88c11-3ddf-446e-936d-6f5e094dd772",
+    "tabs": [
+        {
+            "type": "single_product",
+            "product_code": "",
+            "product_name": "Luca Vanotti",
+            "quantity": "1",
+            "unit_price": "1290",
+            "description": "",
+            "discount": "0",
+            "discount_flag": false,
+            "power_w": "",
+            "volts": "230",
+            "size": "",
+            "posizione": "",
+            "product_image_path": "",
+            "accessories": []
+        }
+    ],
+    "status": "in_attesa",
+    "pdf_path": "offerta_2025-0154.pdf"
+}
