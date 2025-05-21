@@ -13,108 +13,228 @@
     .remove-tab-btn:hover, .remove-product-btn:hover {
         transform: scale(1.05);
     }
+
+    /* Stili per il layout a due colonne */
+    #mainContainer {
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    /* Stili per il pannello di anteprima PDF */
+    #pdfPreviewPanel {
+        width: 45%;
+        height: 100vh;
+        background-color: white;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+        display: none;
+        position: sticky;
+        top: 0;
+        overflow-y: auto;
+    }
+    
+    /* Quando l'anteprima è attiva */
+    .preview-active #mainContainer {
+        width: 55%;
+    }
+    
+    .preview-active #pdfPreviewPanel {
+        display: block;
+    }
+    
+    #pdfPreviewFrame {
+        width: 100%;
+        height: calc(100vh - 110px); /* Altezza che copre l'intera viewport meno intestazione e piè di pagina */
+        border: none;
+    }
+    
+    #previewLoadingIndicator {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    
+    #previewErrorContainer {
+        display: none;
+    }
+    
+    /* Stile per il pulsante di anteprima ingrandito */
+    #togglePreviewBtn {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Stili responsive */
+    @media (max-width: 992px) {
+        .preview-active #mainContainer,
+        #pdfPreviewPanel {
+            width: 100%;
+        }
+        
+        .preview-active #pdfPreviewPanel {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1050;
+            height: 100vh;
+        }
+        
+        #pdfPreviewFrame {
+            height: calc(100% - 120px);
+        }
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">{{ 'Modifica Offerta' if is_edit else 'Nuova Offerta' }}</h1>
-    <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">
-        <i class="fas fa-arrow-left me-1"></i> Indietro
-    </button>
-</div>
-
-<form action="{{ url_for('edit_offerta', offerta_id=offerta.id) if is_edit else url_for('nuova_offerta') }}" method="post" enctype="multipart/form-data" id="offerForm">
-    <div class="card shadow-sm mb-4">
-        <div class="card-header bg-light">
-            <h5 class="card-title mb-0">Informazioni Offerta</h5>
+<div class="d-flex flex-column flex-lg-row h-100">
+    <!-- Contenitore principale (form) -->
+    <div id="mainContainer" class="pe-0 pe-lg-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">{{ 'Modifica Offerta' if is_edit else 'Nuova Offerta' }}</h1>
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">
+                    <i class="fas fa-arrow-left me-1"></i> Indietro
+                </button>
+                <!-- Pulsante di anteprima ingrandito e più visibile -->
+                <button id="togglePreviewBtn" class="btn btn-primary">
+                    <i class="fas fa-file-pdf me-2"></i> Anteprima PDF
+                </button>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="row mb-3">
-                <div class="col-md-3">
-                    <label for="date" class="form-label">Data</label>
-                    <input type="date" class="form-control" id="date" name="date" required
-                           value="{{ offerta.date if is_edit else today_date }}">
+
+        <form action="{{ url_for('edit_offerta', offerta_id=offerta.id) if is_edit else url_for('nuova_offerta') }}" method="post" enctype="multipart/form-data" id="offerForm">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Informazioni Offerta</h5>
                 </div>
-                <div class="col-md-4">
-                    <label for="offer_number" class="form-label">Numero Offerta</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="offer_number" name="offer_number" 
-                               value="{{ offerta.offer_number if is_edit else next_number }}">
-                        <div class="input-group-text">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="update_counter" name="update_counter">
-                                <label class="form-check-label" for="update_counter">Aggiorna contatore</label>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="date" class="form-label">Data</label>
+                            <input type="date" class="form-control" id="date" name="date" required
+                                   value="{{ offerta.date if is_edit else today_date }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="offer_number" class="form-label">Numero Offerta</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="offer_number" name="offer_number" 
+                                       value="{{ offerta.offer_number if is_edit else next_number }}">
+                                <div class="input-group-text">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="update_counter" name="update_counter">
+                                        <label class="form-check-label" for="update_counter">Aggiorna contatore</label>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="customer" class="form-label">Cliente</label>
+                            <input type="text" class="form-control" id="customer" name="customer" required
+                                   value="{{ offerta.customer if is_edit else '' }}">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="customer_email" class="form-label">Email Cliente</label>
+                            <input type="email" class="form-control" id="customer_email" name="customer_email"
+                                   value="{{ offerta.customer_email if is_edit else '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="address" class="form-label">Indirizzo</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                   value="{{ offerta.address if is_edit else '' }}">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="offer_description" class="form-label">Descrizione Offerta</label>
+                        <div class="position-relative">
+                            <textarea class="form-control" id="offer_description" name="offer_description" 
+                                      rows="4" onkeyup="updateCharCount(this)">{{ offerta.offer_description if offerta else '' }}</textarea>
+                            <small class="text-muted position-absolute bottom-0 end-0 mb-2 me-2">
+                                <span id="charCount">0</span>/1200 caratteri (inclusi spazi e ritorni a capo)
+                            </small>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <label for="customer" class="form-label">Cliente</label>
-                    <input type="text" class="form-control" id="customer" name="customer" required
-                           value="{{ offerta.customer if is_edit else '' }}">
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h4">Schede Prodotto</h3>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary" id="addSingleProductBtn">
+                        <i class="fas fa-plus"></i> Aggiungi Prodotto Singolo
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" id="addMultiProductBtn">
+                        <i class="fas fa-plus"></i> Aggiungi Multiprodotto
+                    </button>
                 </div>
             </div>
             
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="customer_email" class="form-label">Email Cliente</label>
-                    <input type="email" class="form-control" id="customer_email" name="customer_email"
-                           value="{{ offerta.customer_email if is_edit else '' }}">
-                </div>
-                <div class="col-md-6">
-                    <label for="address" class="form-label">Indirizzo</label>
-                    <input type="text" class="form-control" id="address" name="address"
-                           value="{{ offerta.address if is_edit else '' }}">
-                </div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="offer_description" class="form-label">Descrizione Offerta</label>
-                <div class="position-relative">
-                    <textarea class="form-control" id="offer_description" name="offer_description" 
-                              rows="4" onkeyup="updateCharCount(this)">{{ offerta.offer_description if offerta else '' }}</textarea>
-                    <small class="text-muted position-absolute bottom-0 end-0 mb-2 me-2">
-                        <span id="charCount">0</span>/1200 caratteri (inclusi spazi e ritorni a capo)
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="h4">Schede Prodotto</h3>
-        <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary" id="addSingleProductBtn">
-                <i class="fas fa-plus"></i> Aggiungi Prodotto Singolo
-            </button>
-            <button type="button" class="btn btn-outline-primary" id="addMultiProductBtn">
-                <i class="fas fa-plus"></i> Aggiungi Multiprodotto
-            </button>
-        </div>
-    </div>
-    
-    <div id="tabsContainer">
-        {% if is_edit and offerta.tabs %}
-            {% for tab in offerta.tabs %}
-                {% set tab_index = loop.index0 %}
-                {% if tab.type == 'single_product' %}
-                    {% include 'components/form_prodotto_singolo.html' with context %}
-                {% elif tab.type == 'multi_product' %}
-                    {% include 'components/form_multiprodotto.html' with context %}
+            <div id="tabsContainer">
+                {% if is_edit and offerta.tabs %}
+                    {% for tab in offerta.tabs %}
+                        {% set tab_index = loop.index0 %}
+                        {% if tab.type == 'single_product' %}
+                            {% include 'components/form_prodotto_singolo.html' with context %}
+                        {% elif tab.type == 'multi_product' %}
+                            {% include 'components/form_multiprodotto.html' with context %}
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
-            {% endfor %}
-        {% endif %}
+            </div>
+            
+            <input type="hidden" name="tab_count" id="tabCount" value="{{ offerta.tabs|length if is_edit and offerta.tabs else 0 }}">
+            
+            <div class="text-center my-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-save me-2"></i> {{ 'Aggiorna Offerta' if is_edit else 'Genera Offerta' }}
+                </button>
+            </div>
+        </form>
     </div>
-    
-    <input type="hidden" name="tab_count" id="tabCount" value="{{ offerta.tabs|length if is_edit and offerta.tabs else 0 }}">
-    
-    <div class="text-center my-4">
-        <button type="submit" class="btn btn-primary btn-lg">
-            <i class="fas fa-save me-2"></i> {{ 'Aggiorna Offerta' if is_edit else 'Genera Offerta' }}
-        </button>
+
+    <!-- Pannello di anteprima PDF -->
+    <div id="pdfPreviewPanel" class="bg-white shadow">
+        <div class="d-flex flex-column h-100">
+            <div class="p-2 bg-light border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-file-pdf text-danger me-2"></i> Anteprima PDF</h5>
+                <button type="button" class="btn-close" id="closePreviewBtn"></button>
+            </div>
+            <div class="p-2 bg-light border-bottom">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="autoUpdatePreview">
+                    <label class="form-check-label" for="autoUpdatePreview">Aggiornamento automatico</label>
+                </div>
+                <small class="text-muted d-block">L'anteprima si aggiorna automaticamente mentre compili il form</small>
+            </div>
+            <div class="p-2 flex-grow-1 d-flex flex-column" style="min-height: 0;">
+                <div id="previewLoadingIndicator" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Caricamento...</span>
+                    </div>
+                    <p class="mt-2">Generazione anteprima in corso...</p>
+                </div>
+                <div id="previewErrorContainer" class="alert alert-danger mt-2" style="display: none;">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span id="previewErrorMessage">Errore nella generazione dell'anteprima</span>
+                </div>
+                <iframe id="pdfPreviewFrame" class="w-100 flex-grow-1" style="display: none;"></iframe>
+            </div>
+            <div class="p-2 bg-light border-top">
+                <button id="updatePdfBtn" class="btn btn-primary btn-sm me-2">
+                    <i class="fas fa-sync-alt me-1"></i> Aggiorna PDF
+                </button>
+                <small class="text-muted ms-2">Ultimo aggiornamento: <span id="lastUpdateTime">-</span></small>
+            </div>
+        </div>
     </div>
-</form>
+</div>
 
 <!-- Template per nuove schede (nascosti) -->
 <div id="singleProductTemplate" class="d-none">
@@ -124,7 +244,6 @@
 <div id="multiProductTemplate" class="d-none">
     {% include 'components/form_multiprodotto.html' with context %}
 </div>
-
 {% endblock %}
 
 {% block extra_js %}
@@ -526,4 +645,168 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePreviewBtn = document.getElementById('togglePreviewBtn');
+    const closePreviewBtn = document.getElementById('closePreviewBtn');
+    const pdfPreviewPanel = document.getElementById('pdfPreviewPanel');
+    const pdfPreviewFrame = document.getElementById('pdfPreviewFrame');
+    const updatePdfBtn = document.getElementById('updatePdfBtn');
+    const autoUpdateCheckbox = document.getElementById('autoUpdatePreview');
+    const previewLoadingIndicator = document.getElementById('previewLoadingIndicator');
+    const previewErrorContainer = document.getElementById('previewErrorContainer');
+    const previewErrorMessage = document.getElementById('previewErrorMessage');
+    const lastUpdateTime = document.getElementById('lastUpdateTime');
+    const mainContainer = document.getElementById('mainContainer');
+    const bodyElement = document.querySelector('body');
+    
+    let previewUpdateTimer = null;
+    let isGeneratingPreview = false;
+    
+    // Toggle preview panel
+    togglePreviewBtn.addEventListener('click', function() {
+        bodyElement.classList.toggle('preview-active');
+        
+        // Generate preview on first open if not already visible
+        if (bodyElement.classList.contains('preview-active') && 
+            (pdfPreviewFrame.style.display === 'none' || !pdfPreviewFrame.src)) {
+            generatePdfPreview();
+        }
+        
+        // Scroll to top when toggling preview
+        window.scrollTo(0, 0);
+    });
+    
+    // Close preview panel
+    closePreviewBtn.addEventListener('click', function() {
+        bodyElement.classList.remove('preview-active');
+    });
+    
+    // Manual update PDF button
+    updatePdfBtn.addEventListener('click', function() {
+        generatePdfPreview();
+    });
+    
+    // Toggle auto-update
+    autoUpdateCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Setup timer for auto-update
+            previewUpdateTimer = setInterval(function() {
+                // Only update if preview is visible and not already generating
+                if (bodyElement.classList.contains('preview-active') && !isGeneratingPreview) {
+                    generatePdfPreview();
+                }
+            }, 5000); // Update every 5 seconds
+        } else {
+            // Clear auto-update timer
+            clearInterval(previewUpdateTimer);
+        }
+    });
+    
+    // Setup initial auto-update timer only if checkbox is checked
+    if (autoUpdateCheckbox.checked) {
+        previewUpdateTimer = setInterval(function() {
+            if (bodyElement.classList.contains('preview-active') && !isGeneratingPreview) {
+                generatePdfPreview();
+            }
+        }, 5000);
+    }
+    
+    // Monitor form changes to trigger updates
+    const form = document.querySelector('form');
+    const formInputs = form.querySelectorAll('input, textarea, select');
+    
+    formInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            // If auto-update is enabled and preview is visible, schedule an update
+            if (autoUpdateCheckbox.checked && bodyElement.classList.contains('preview-active')) {
+                // Clear any existing timeout to prevent multiple rapid updates
+                if (window.formChangeTimeout) {
+                    clearTimeout(window.formChangeTimeout);
+                }
+                
+                // Schedule an update in 1 second after the last change
+                window.formChangeTimeout = setTimeout(function() {
+                    if (!isGeneratingPreview) {
+                        generatePdfPreview();
+                    }
+                }, 1000);
+            }
+        });
+    });
+    
+    // Function to generate PDF preview
+    function generatePdfPreview() {
+        if (isGeneratingPreview) return;
+        
+        isGeneratingPreview = true;
+        previewLoadingIndicator.style.display = 'flex';
+        pdfPreviewFrame.style.display = 'none';
+        previewErrorContainer.style.display = 'none';
+        
+        // Create FormData from the form
+        const formData = new FormData(form);
+        
+        // Send AJAX request to generate preview
+        fetch('/preview_pdf', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            isGeneratingPreview = false;
+            
+            if (data.success) {
+                // Update iframe with new PDF URL
+                pdfPreviewFrame.src = data.preview_url;
+                pdfPreviewFrame.style.display = 'block';
+                previewLoadingIndicator.style.display = 'none';
+                
+                // Update last update time
+                const now = new Date();
+                lastUpdateTime.textContent = now.toLocaleTimeString();
+            } else {
+                // Show error
+                previewLoadingIndicator.style.display = 'none';
+                previewErrorContainer.style.display = 'block';
+                previewErrorMessage.textContent = data.error || 'Errore nella generazione dell\'anteprima';
+            }
+        })
+        .catch(error => {
+            isGeneratingPreview = false;
+            previewLoadingIndicator.style.display = 'none';
+            previewErrorContainer.style.display = 'block';
+            previewErrorMessage.textContent = 'Errore di connessione al server';
+            console.error('Error generating preview:', error);
+        });
+    }
+    
+    // Handle iframe load event
+    pdfPreviewFrame.addEventListener('load', function() {
+        // Check if the iframe loaded successfully
+        try {
+            // If we can access iframe content, it loaded successfully
+            if (pdfPreviewFrame.contentDocument || pdfPreviewFrame.contentWindow) {
+                previewLoadingIndicator.style.display = 'none';
+                pdfPreviewFrame.style.display = 'block';
+            }
+        } catch (e) {
+            // If we can't access iframe content (e.g., PDF), it's still fine
+            previewLoadingIndicator.style.display = 'none';
+            pdfPreviewFrame.style.display = 'block';
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        // Ensure proper layout on resize
+        if (bodyElement.classList.contains('preview-active')) {
+            // On smaller screens, might need additional adjustments
+            if (window.innerWidth < 992) {
+                // Mobile view adjustments if needed
+            }
+        }
+    });
+});
+</script>
 {% endblock %}

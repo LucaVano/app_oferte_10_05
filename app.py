@@ -8,6 +8,7 @@ import logging
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from utils.pdf_generator import generate_pdf
+from utils.pdf_preview import generate_pdf_preview
 from auth import init_auth, login_required
 from utils.format_utils import format_price
 
@@ -857,6 +858,69 @@ def offerte_accettate():
                          title='Offerte Accettate',
                          icon='fa-check-circle',
                          offers=accepted_offers)
+
+@app.route('/preview_pdf', methods=['POST'])
+@login_required
+def preview_pdf():
+    """Generates a temporary PDF preview based on current form data"""
+    try:
+        # Create a temporary folder for previews if it doesn't exist
+        preview_folder = os.path.join(app.config['DATA_FOLDER'], '_previews')
+        os.makedirs(preview_folder, exist_ok=True)
+        
+        # Clean up old preview files (older than 1 hour)
+        current_time = datetime.now().timestamp()
+        for filename in os.listdir(preview_folder):
+            file_path = os.path.join(preview_folder, filename)
+            if os.path.isfile(file_path) and (current_time - os.path.getmtime(file_path)) > 3600:
+                os.remove(file_path)
+        
+        # Process form data like in the regular form submission
+        form_data = request.form.to_dict()
+        files_data = request.files.to_dict()
+        
+        # Create temporary data for PDF generation
+        temp_data = {
+            'date': form_data.get('date', datetime.now().strftime('%Y-%m-%d')),
+            'customer': form_data.get('customer', 'Cliente Temporaneo'),
+            'customer_email': form_data.get('customer_email', 'email@esempio.com'),
+            'address': form_data.get('address', 'Indirizzo Temporaneo'),
+            'offer_description': form_data.get('offer_description', 'Descrizione Temporanea'),
+            'offer_number': form_data.get('offer_number', 'TEMP-0001'),
+            'id': 'preview-' + str(uuid.uuid4()),
+            'tabs': process_form_final(form_data, files_data),
+            'status': 'pending'
+        }
+        
+        # Generate a unique filename for this preview
+        preview_filename = f"preview_{uuid.uuid4()}.pdf"
+        preview_path = os.path.join(preview_folder, preview_filename)
+        
+        # Generate the PDF directly to the preview location
+        from utils.pdf_generator import generate_pdf_preview
+        generate_pdf_preview(temp_data, app.root_path, preview_path)
+        
+        # Return the URL to the preview PDF
+        return jsonify({
+            'success': True,
+            'preview_url': url_for('serve_preview', filename=preview_filename)
+        })
+        
+    except Exception as e:
+        import traceback
+        logging.info(f"Error generating PDF preview: {e}")
+        logging.info(traceback.format_exc())
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/preview/<filename>')
+@login_required
+def serve_preview(filename):
+    """Serves a preview PDF file"""
+    preview_folder = os.path.join(app.config['DATA_FOLDER'], '_previews')
+    return send_file(os.path.join(preview_folder, filename))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

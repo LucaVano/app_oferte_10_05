@@ -654,5 +654,21 @@
         "customer": "fljqbv  obuubo ugcuocuuc",
         "customer_email": "lucavanov8@gmail.com",
         "description": ""
+    },
+    {
+        "id": "47c9e421-87e4-4877-aaa7-39e31d4ed558",
+        "offer_number": "2025-0128",
+        "date": "2025-05-20",
+        "customer": "ssd",
+        "customer_email": "lucavanov8@gmail.com",
+        "description": ""
+    },
+    {
+        "id": "23aafe0e-cf46-4cb4-981e-8fa99ed8e2a2",
+        "offer_number": "2025-0137",
+        "date": "2025-05-20",
+        "customer": "CVCVC",
+        "customer_email": "",
+        "description": ""
     }
 ]
